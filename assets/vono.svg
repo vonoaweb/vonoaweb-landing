@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" id="vono-svg" role="img" aria-label="Astronauta VonoaWeb con laptop">
+  <defs>
+    
+    <linearGradient id="helm-glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"></stop>
+      <stop offset="55%" stop-color="#E8EEF6"></stop>
+      <stop offset="100%" stop-color="#B9C4D5"></stop>
+    </linearGradient>
+    <linearGradient id="helm-tint" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5EE3D0"></stop>
+      <stop offset="60%" stop-color="#2BB6DB"></stop>
+      <stop offset="100%" stop-color="#1E7FB8"></stop>
+    </linearGradient>
+    <radialGradient id="helm-shine" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"></stop>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"></stop>
+      <stop offset="55%" stop-color="#E2E8F2"></stop>
+      <stop offset="100%" stop-color="#A6B2C6"></stop>
+    </linearGradient>
+    <linearGradient id="laptop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F2A3D"></stop>
+      <stop offset="100%" stop-color="#0B1322"></stop>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1CA0F4"></stop>
+      <stop offset="100%" stop-color="#2EE9B9"></stop>
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#5EE3D0" stop-opacity="0.35"></stop>
+      <stop offset="60%" stop-color="#1CA0F4" stop-opacity="0.12"></stop>
+      <stop offset="100%" stop-color="#1CA0F4" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter>
+  </defs>
+
+  
+  <circle cx="300" cy="320" r="260" fill="url(#aura)"></circle>
+
+  
+  <g fill="#0B1832" opacity="0.85">
+    <path d="M 40 220 Q 90 200 140 215 Q 180 200 210 220 Q 200 240 160 235 Q 110 245 70 240 Q 40 245 40 220 Z"></path>
+    <path d="M 410 250 Q 460 235 510 250 Q 555 245 580 260 Q 555 280 500 275 Q 450 285 410 275 Z"></path>
+    <path d="M 60 410 Q 120 395 180 410 Q 220 405 240 425 Q 200 440 150 432 Q 100 442 60 432 Z"></path>
+    <path d="M 380 430 Q 450 415 510 430 Q 555 425 580 445 Q 530 460 470 452 Q 410 462 380 450 Z"></path>
+  </g>
+
+  
+  <g class="stars" stroke-linecap="round">
+    <g class="star s1" transform="translate(120 130)"><path d="M0 -7 V7 M-7 0 H7" stroke="#FFFFFF" stroke-width="2"></path></g>
+    <g class="star s2" transform="translate(490 110)"><path d="M0 -6 V6 M-6 0 H6" stroke="#FFFFFF" stroke-width="2"></path></g>
+    <g class="star s3" transform="translate(70 320)"><path d="M0 -5 V5 M-5 0 H5" stroke="#2EE9B9" stroke-width="2"></path></g>
+    <g class="star s4" transform="translate(540 320)"><path d="M0 -6 V6 M-6 0 H6" stroke="#FF5BA0" stroke-width="2"></path></g>
+    <g class="star s5" transform="translate(160 480)"><path d="M0 -5 V5 M-5 0 H5" stroke="#2EE9B9" stroke-width="2"></path></g>
+    <g class="star s6" transform="translate(470 500)"><path d="M0 -5 V5 M-5 0 H5" stroke="#FFFFFF" stroke-width="2"></path></g>
+    <circle class="dot d1" cx="80" cy="180" r="2.5" fill="#FFFFFF"></circle>
+    <circle class="dot d2" cx="520" cy="180" r="2" fill="#2EE9B9"></circle>
+    <circle class="dot d3" cx="40" cy="380" r="2" fill="#FFFFFF"></circle>
+    <circle class="dot d4" cx="560" cy="400" r="2.5" fill="#FFFFFF"></circle>
+    <circle class="dot d5" cx="220" cy="80" r="2" fill="#2EE9B9"></circle>
+    <circle class="dot d6" cx="380" cy="70" r="2" fill="#FFFFFF"></circle>
+  </g>
+
+  
+  <g class="astro">
+    
+    <rect x="208" y="270" width="40" height="80" rx="10" fill="url(#suit)"></rect>
+    <rect x="352" y="270" width="40" height="80" rx="10" fill="url(#suit)"></rect>
+    
+    <path d="M 220 270 Q 220 260 240 258 L 360 258 Q 380 260 380 270 L 388 360 Q 388 380 365 385 L 235 385 Q 212 380 212 360 Z" fill="url(#suit)"></path>
+    
+    <rect x="265" y="310" width="70" height="36" rx="8" fill="#0E1A2C"></rect>
+    <circle cx="278" cy="328" r="4" fill="#2EE9B9"></circle>
+    <circle cx="293" cy="328" r="4" fill="#1CA0F4"></circle>
+    <circle cx="308" cy="328" r="4" fill="#FF5BA0"></circle>
+    <rect x="320" y="324" width="10" height="3" rx="1.5" fill="#FFFFFF"></rect>
+    <rect x="320" y="330" width="10" height="3" rx="1.5" fill="#FFFFFF" opacity="0.5"></rect>
+    
+    <text x="300" y="370" text-anchor="middle" font-family="Sora, sans-serif" font-size="11" font-weight="800" fill="#1CA0F4" letter-spacing="2">VONOA</text>
+
+    
+    
+    <path class="arm-l" d="M 222 290 Q 195 320 200 360 Q 205 395 240 415" stroke="url(#suit)" stroke-width="34" fill="none" stroke-linecap="round"></path>
+    
+    <path class="arm-r" d="M 378 290 Q 405 320 400 360 Q 395 395 360 415" stroke="url(#suit)" stroke-width="34" fill="none" stroke-linecap="round"></path>
+    
+    <circle class="hand hand-l" cx="240" cy="418" r="20" fill="#1CA0F4"></circle>
+    <circle class="hand hand-r" cx="360" cy="418" r="20" fill="#1CA0F4"></circle>
+    
+    <circle cx="240" cy="418" r="20" fill="none" stroke="#0B5BA0" stroke-width="2"></circle>
+    <circle cx="360" cy="418" r="20" fill="none" stroke="#0B5BA0" stroke-width="2"></circle>
+
+    
+    <g class="laptop">
+      
+      <path d="M 215 460 L 385 460 Q 405 460 400 472 L 200 472 Q 195 460 215 460 Z" fill="#0B1322"></path>
+      <rect x="220" y="455" width="160" height="10" rx="2" fill="url(#laptop)"></rect>
+      
+      <g class="lid-tilt" transform-origin="300 455">
+        <rect x="225" y="385" width="150" height="75" rx="6" fill="url(#laptop)"></rect>
+        <rect x="232" y="392" width="136" height="61" rx="3" fill="url(#screen)"></rect>
+        
+        <g class="code">
+          <rect x="240" y="400" width="40" height="3" rx="1.5" fill="#FFFFFF" opacity="0.9"></rect>
+          <rect x="284" y="400" width="20" height="3" rx="1.5" fill="#FFFFFF" opacity="0.6"></rect>
+          <rect x="248" y="408" width="60" height="3" rx="1.5" fill="#FFFFFF" opacity="0.7"></rect>
+          <rect x="248" y="416" width="35" height="3" rx="1.5" fill="#FFFFFF" opacity="0.85"></rect>
+          <rect x="287" y="416" width="25" height="3" rx="1.5" fill="#FFFFFF" opacity="0.55"></rect>
+          <rect x="240" y="424" width="48" height="3" rx="1.5" fill="#FFFFFF" opacity="0.7"></rect>
+          <rect x="248" y="432" width="70" height="3" rx="1.5" fill="#FFFFFF" opacity="0.85"></rect>
+          <rect class="cursor" x="322" y="432" width="8" height="3" fill="#FFFFFF"></rect>
+          <rect x="240" y="440" width="30" height="3" rx="1.5" fill="#FFFFFF" opacity="0.5"></rect>
+        </g>
+        
+        <path d="M 232 392 L 250 392 L 240 453 L 232 453 Z" fill="#FFFFFF" opacity="0.18"></path>
+      </g>
+    </g>
+
+    
+    <g class="helmet">
+      
+      <ellipse cx="300" cy="258" rx="80" ry="14" fill="#C7D2E2"></ellipse>
+      <ellipse cx="300" cy="256" rx="78" ry="12" fill="url(#suit)"></ellipse>
+      
+      <circle cx="300" cy="180" r="98" fill="url(#helm-glass)"></circle>
+      
+      <path d="M 300 82 A 98 98 0 0 0 202 180 L 300 180 Z" fill="url(#helm-tint)" opacity="0.95"></path>
+      
+      <path d="M 202 180 A 98 98 0 0 1 398 180" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"></path>
+      
+      <circle cx="300" cy="180" r="8" fill="#E8EEF6"></circle>
+      <circle cx="300" cy="180" r="8" fill="none" stroke="#B9C4D5" stroke-width="1.5"></circle>
+      
+      <path d="M 232 138 Q 222 168 232 200" stroke="#FFFFFF" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.95"></path>
+      <circle cx="244" cy="124" r="5" fill="#FFFFFF"></circle>
+      
+      <path d="M 358 110 Q 380 140 372 175" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"></path>
+      
+      <ellipse cx="270" cy="135" rx="60" ry="30" fill="url(#helm-shine)"></ellipse>
+
+      
+      <circle cx="300" cy="180" r="98" fill="none" stroke="#9CA9BD" stroke-width="2.5"></circle>
+      
+      <rect x="296" y="78" width="8" height="6" rx="2" fill="#9CA9BD"></rect>
+      <circle cx="300" cy="76" r="3" fill="#FF5BA0" class="antenna-light"></circle>
+    </g>
+  </g>
+
+  
+</svg>

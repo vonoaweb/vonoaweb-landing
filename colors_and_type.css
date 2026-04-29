@@ -1,0 +1,59 @@
+/* ============================================
+   VonoaWeb — Design Tokens (Brand Kit v1.0)
+   Guadalajara, Jalisco · vonoaweb.com
+   ============================================ */
+
+:root {
+  /* ── Color Palette ── */
+  --vw-deep-space:  #070F21;   /* Fondo principal              */
+  --vw-navy:        #02215D;   /* Fondo secundario             */
+  --vw-cyan:        #2EE9B9;   /* Acento · start               */
+  --vw-blue:        #1CA0F4;   /* Acento · end                 */
+  --vw-white:       #FFFFFF;   /* Texto / claros               */
+  --vw-slate:       #94A3B8;   /* Texto secundario             */
+  --vw-midnight:    #0F2040;   /* Cards / modales              */
+
+  /* ── Gradiente de marca ── */
+  --vw-gradient:    linear-gradient(135deg, #2EE9B9 0%, #1CA0F4 100%);
+
+  /* ── Semantic aliases ── */
+  --fg-muted:       #94A3B8;
+  --border:         rgba(148, 163, 184, 0.12);
+
+  /* ── Typography ── */
+  --font-display:   'Sora', system-ui, -apple-system, sans-serif;
+  --font-body:      'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* ── Type scale (Brand Kit) ── */
+  --text-h1:        56px;
+  --text-h2:        40px;
+  --text-h3:        28px;
+  --text-body:      18px;
+  --text-label:     11px;
+
+  /* ── Spacing ── */
+  --space-xs:       4px;
+  --space-sm:       8px;
+  --space-md:       16px;
+  --space-lg:       32px;
+  --space-xl:       64px;
+  --space-2xl:      96px;
+
+  /* ── Radii ── */
+  --radius-sm:      8px;
+  --radius-md:      12px;
+  --radius-lg:      16px;
+  --radius-xl:      20px;
+  --radius-full:    999px;
+
+  /* ── Shadows ── */
+  --shadow-card:    0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-glow:    0 14px 32px -10px rgba(28, 160, 244, 0.55);
+  --shadow-hover:   0 30px 70px rgba(0, 0, 0, 0.5);
+
+  /* ── Transitions ── */
+  --ease-out:       cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.18s var(--ease-out);
+  --transition-med:  0.24s var(--ease-out);
+  --transition-slow: 0.4s var(--ease-out);
+}
