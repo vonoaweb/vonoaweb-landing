@@ -473,34 +473,146 @@ p{color:#B6C2D8;font-size:17px;line-height:1.65;margin:0;text-wrap:pretty}
 .burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 .burger span{transition:all .3s ease}
 
-/* Mobile */
+/* ══════════════════════════════════════════
+   RESPONSIVE — Tablet (≤ 900px)
+   ══════════════════════════════════════════ */
 @media (max-width:900px){
   .section{padding:64px 0}
-  h1{font-size:38px}h2{font-size:28px}h3{font-size:22px}
+  h1{font-size:34px;max-width:100%}
+  h2{font-size:26px}
+  h3{font-size:20px}
   .container{padding:0 20px}
+
+  /* Layouts → single column */
   .hero-inner,.why,.benefits,.offer,.cta-band-inner,.contact-grid,.f-top{grid-template-columns:1fr;gap:32px}
   .grid-2,.grid-3,.grid-4,.services-grid{grid-template-columns:1fr}
-  .vmv-card {padding: 24px 20px}
-  .why-stats,.offer-list,.includes-grid{grid-template-columns:repeat(2,1fr)}
+  .vmv-card{padding:24px 20px}
+  .why-stats{grid-template-columns:repeat(2,1fr)}
+  .offer-list{grid-template-columns:repeat(2,1fr)}
+  .includes-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Hero */
+  .hero{padding:56px 0 72px}
   .hero-vis{display:none}
+  .hero-text .lede{font-size:16px}
+
+  /* Hero chip / badge */
+  .hero-text .chip{font-size:11px!important;padding:6px 14px!important;line-height:1.4;white-space:normal;text-align:center}
+
+  /* Case study badge */
+  .case-study-badge{font-size:12px!important;padding:12px!important}
+
+  /* Nav */
   .links{display:none}
   .burger{display:flex}
   .cta-sm{display:none}
+
+  /* Plans */
   .plan.hot{transform:none}
+  .plan .num{font-size:38px}
+  .plan .cur{font-size:16px}
+  .plan .unit{font-size:12px}
+  .plan .psub{font-size:13px}
+
+  /* Stats — prevent overflow */
+  .stat .num{font-size:34px}
+  .stat .num small{font-size:15px}
+  .stat{padding:18px 14px}
+
+  /* Benefits vis */
+  .benefits-vis{max-height:320px;overflow:hidden}
+  .vono-stage.small{height:300px}
+
+  /* WhatsApp FAB */
   .wa-float .wa-text{display:none}
-  .wa-float{padding:10px;border-radius:50%;background:transparent;border:0;box-shadow:none}
-  .wa-float:hover{background:transparent;border:0;box-shadow:none}
-  .wa-ic{width:48px;height:48px}
-  .wa-ic svg{width:28px;height:28px}
+  .wa-float{padding:10px;border-radius:50%;background:rgba(15,32,64,.85);border:1px solid rgba(37,211,102,.3);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .wa-float:hover{background:rgba(15,32,64,.95);border:1px solid rgba(37,211,102,.5);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .wa-ic{width:44px;height:44px}
+  .wa-ic svg{width:24px;height:24px}
+
+  /* Chatbot toggle — move up to avoid overlap */
+  #vonoa-toggle,#vonoa-pulse{bottom:16px;right:16px;width:58px;height:58px}
+  #vonoa-toggle .vt-icon img{width:46px;height:46px}
+
+  /* Footer */
   .f-cols{grid-template-columns:repeat(2,1fr)}
+  .f-bot{flex-direction:column;gap:8px;text-align:center}
+
+  /* Form */
   .form{grid-template-columns:1fr}
   .form label.full{grid-column:1}
   .form .btn{grid-column:1}
   .form .fine{grid-column:1}
+
+  /* Service details */
   .svc-detail,.svc-detail.reverse{grid-template-columns:1fr;gap:32px}
   .svc-detail.reverse .svc-detail-text,.svc-detail.reverse .svc-detail-vis{order:unset}
   .svc-detail-vis{display:none}
+
+  /* Interior pages */
   .page-hero{padding:100px 0 48px}
-  .page-hero h1{font-size:32px}
+  .page-hero h1{font-size:28px}
+
+  /* CTA band */
+  .cta-band-inner{text-align:center}
+  .cta-band h2{max-width:100%}
+  .cta-band p{max-width:100%}
+
+  /* Section lede */
+  .lede-sec{font-size:15px}
+  .section-head h2{max-width:100%}
+
+  /* Body padding for FAB clearance */
+  .site-footer{padding-bottom:80px}
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Small phone (≤ 600px)
+   ══════════════════════════════════════════ */
+@media (max-width:600px){
+  .container{padding:0 16px}
+  h1{font-size:28px}
+  h2{font-size:22px}
+  h3{font-size:18px}
+
+  .section{padding:48px 0}
+  .hero{padding:40px 0 56px}
+
+  /* Stats → 1 column on very small */
+  .why-stats{grid-template-columns:1fr}
+  .stat .num{font-size:30px}
+
+  /* Offer list → single column */
+  .offer-list{grid-template-columns:1fr}
+  .includes-grid{grid-template-columns:1fr}
+
+  /* Plans — smaller price numbers */
+  .plan{padding:24px 20px}
+  .plan .num{font-size:32px}
+  .plan .badge{font-size:9px;padding:4px 10px;left:20px}
+
+  /* Testimonials */
+  .quote{padding:20px}
+  .quote p{font-size:14px}
+
+  /* Contact info */
+  .c-info li{flex-direction:column;gap:4px;align-items:flex-start}
+
+  /* Footer columns → 1 col */
+  .f-cols{grid-template-columns:1fr}
+
+  /* Hero chip even smaller */
+  .hero-text .chip{font-size:10px!important;padding:5px 12px!important}
+
+  /* Page hero */
+  .page-hero{padding:80px 0 40px}
+  .page-hero h1{font-size:24px}
+  .page-hero .lede{font-size:14px}
+
+  /* Portfolio meta */
+  .portfolio-feat .meta{padding:16px;flex-direction:column}
+
+  /* Mobile menu safe area */
+  .mobile-menu{padding:env(safe-area-inset-top,20px) 20px env(safe-area-inset-bottom,20px)}
 }
 
