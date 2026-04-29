@@ -58,7 +58,7 @@
     <div class="hero-text">
       <span class="chip" style="display: inline-block; margin-bottom: 24px; padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(46, 233, 185, 0.3); background: rgba(46, 233, 185, 0.1); color: var(--vw-cyan); font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">🏆 ÚNICA AGENCIA EN JALISCO ESPECIALIZADA EN IA PARA PYMES</span>
       <h1>Adelántate a tu competencia con <span class="g">Inteligencia Artificial</span></h1>
-      <p class="lede">Web + Chatbots + Automatización = Más clientes, menos trabajo manual.<br><br><b>Planes accesibles para PYMES desde $2,999/mes.</b></p>
+      <p class="lede">Web + Chatbots + Automatización = Más clientes, menos trabajo manual.<br><br><b>Tu negocio vendiendo 24/7 desde $3,999/mes.</b></p>
       <div class="cta-row">
         <a class="btn primary" href="contacto.html">Integra IA hoy mismo →</a>
         <a class="btn ghost" href="#servicios">Ver servicios</a>
@@ -283,15 +283,15 @@
       <p>Cada sitio que entregamos incluye todo lo necesario para que no tengas que preocuparte por lo técnico.</p>
     </div>
     <ul class="offer-list">
-      <li>Optimización <b>SEO</b></li>
-      <li>Iconografía de stock</li>
-      <li>Videos de stock</li>
-      <li>Música de stock</li>
-      <li>Integración de Google Maps</li>
-      <li>Integración de Redes Sociales</li>
-      <li>Funciones personalizadas</li>
-      <li>Posicionamiento en Google</li>
-      <li>Optimización del sitio web</li>
+      <li>Optimización <b>SEO</b> profesional</li>
+      <li>Diseño <b>UX/UI</b> premium</li>
+      <li>Sitio 100% <b>responsivo</b></li>
+      <li>Integración de <b>Google Maps</b></li>
+      <li>Integración de <b>Redes Sociales</b></li>
+      <li>Conexión con <b>WhatsApp Business</b></li>
+      <li>Panel de <b>analíticas</b> integrado</li>
+      <li>Certificado <b>SSL</b> de seguridad</li>
+      <li><b>Soporte técnico</b> post-entrega</li>
     </ul>
   </div>
 </section>
@@ -367,7 +367,7 @@
       <article class="plan">
         <span class="overline">Plan Impulso</span>
         <div class="psub">Ideal para emprendedores y negocios que necesitan estar en línea.</div>
-        <div class="price"><span class="cur">$</span><span class="num">7,500</span><span class="unit">MXN</span></div>
+        <div class="price"><span class="cur">$</span><span class="num">5,200</span><span class="unit">MXN</span></div>
         <ul>
           <li>Hasta 3 secciones</li>
           <li>Diseño responsivo</li>
@@ -379,7 +379,7 @@
       <article class="plan">
         <span class="overline">Plan Presencia Pro</span>
         <div class="psub">Haz que tu marca destaque con mayor nivel de secciones y diseño.</div>
-        <div class="price"><span class="cur">$</span><span class="num">10,500</span><span class="unit">MXN</span></div>
+        <div class="price"><span class="cur">$</span><span class="num">7,400</span><span class="unit">MXN</span></div>
         <ul>
           <li>Hasta 6 secciones</li>
           <li>Animaciones suaves</li>
@@ -391,7 +391,7 @@
       <article class="plan">
         <span class="overline">Premium</span>
         <div class="psub">Empieza a vender en línea hoy. Tienda e-commerce.</div>
-        <div class="price"><span class="cur">$</span><span class="num">15,500</span><span class="unit">MXN</span></div>
+        <div class="price"><span class="cur">$</span><span class="num">10,500</span><span class="unit">MXN</span></div>
         <ul>
           <li>Tienda en línea (WooCommerce)</li>
           <li>Pasarelas de pago</li>
@@ -854,37 +854,43 @@ const SHOW_NOTIF_AFTER = 2500;         // ms antes de mostrar el punto de notifi
 /* ═══════════════════════════════════════════
    SYSTEM PROMPT DEL AGENTE
    ═══════════════════════════════════════════ */
-const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño y desarrollo web en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital, y los guías hacia una consulta gratuita con un asistente humano de nuestro equipo.
+const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e inteligencia artificial en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital con IA, y los guías hacia una consulta gratuita con un asesor humano de nuestro equipo.
 
 SOBRE VONOAWEB:
-- Agencia especializada en WordPress/Divi y Shopify para PyMEs mexicanas
-- Equipo fundador apasionado por diseño editorial y resultados reales
-- Proyectos destacados: California Glam (Shopify, cosméticos), CIAPSA (WordPress/Divi, industrial), MAKAURUM (Shopify OS 2.0, joyería de lujo), Tu Gran Evento (invitaciones digitales)
+- Única agencia en Jalisco especializada en IA para PYMES
+- Combinamos diseño web profesional + chatbots IA + automatización de procesos
+- Proyectos destacados: Moncatu (e-commerce joyería, WooCommerce + MercadoPago), Azul de Metileno (corporativo, SEO técnico)
 
-SERVICIOS Y PRECIOS APROXIMADOS:
-- Sitio WordPress/Divi (corporativo, portafolio): desde $12,000 MXN
-- Tienda Shopify (diseño + configuración + pagos): desde $18,000 MXN
-- Shopify OS 2.0 personalizado (Liquid): desde $25,000 MXN
-- Landing page: desde $8,000 MXN
-- SEO mensual: desde $3,500 MXN/mes
-- Mantenimiento web: desde $1,500 MXN/mes
-- Invitación digital (Tu Gran Evento): desde $800 MXN
-Integraciones comunes: MercadoPago, OXXO, WhatsApp Business, Meta Pixel, Google Analytics, Mailchimp.
+PLANES DE IA (nuestro diferenciador):
+- Asistente IA: Setup $4,999 + $2,999/mes — Chatbot IA en WhatsApp + Web, atención 24/7, calificación de leads
+- Transformación IA ★ (recomendado): Setup $5,999 + $3,999/mes — Web optimizada + Chatbot IA + 1 automatización
+- Escala Automática: Setup $9,999 + $6,999/mes — Todo lo anterior + hasta 3 automatizaciones + marketing inteligente
+
+PLANES DE DISEÑO WEB (pago único):
+- Plan Impulso: $5,200 MXN — hasta 3 secciones, responsivo, SEO básico
+- Presencia Pro: $7,400 MXN — hasta 6 secciones, animaciones, integración redes
+- Premium: $10,500 MXN — tienda WooCommerce, pasarelas de pago, analíticas
+
+OTROS SERVICIOS:
+- Marketing Digital + SEO: desde $4,500 MXN/mes
+- Automatización de procesos: desde $1,999 MXN/mes (setup $2,999)
+- Sistemas personalizados con IA: cotización a medida
+Integraciones: MercadoPago, WhatsApp Business, Meta Pixel, Google Analytics, CRMs.
 
 PERSONALIDAD:
 - Amigable, directo y profesional — no robótico
 - Español mexicano natural e informal (tutéalo)
 - Respuestas cortas (2-4 oraciones). Usa bullets si hay varios puntos
 - Emojis con moderación
-- Nunca inventes precios exactos; aclara que son aproximados y dependen del alcance
-- Si no sabes algo: ofrece conectar con un asistente humano del equipo
+- Los precios son los publicados, pero aclara que el alcance final puede variar
+- Si no sabes algo: ofrece conectar con un asesor humano del equipo
 
 FLUJO:
 1. Identifica qué necesita el negocio
-2. Da info del servicio relevante
+2. Da info del servicio relevante y recomienda el plan Transformación IA como mejor opción
 3. Si hay interés real → pide nombre y giro del negocio
-4. Invítalo a consulta gratuita con un asistente humano por WhatsApp
-Responde siempre en el idioma del usuario. Nunca menciones el nombre "Fernando" ni nombres propios del equipo.`;
+4. Invítalo a consulta gratuita con un asesor humano por WhatsApp
+Responde siempre en el idioma del usuario. Nunca menciones nombres propios del equipo.`;
 
 /* ═══════════════════════════════════════════
    LÓGICA DEL WIDGET
