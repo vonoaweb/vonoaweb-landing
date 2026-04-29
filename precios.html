@@ -70,7 +70,7 @@
           <li>Integración con tu negocio</li>
           <li>Soporte técnico premium</li>
         </ul>
-        <a class="btn ghost full" href="contacto.html">Quiero este plan →</a>
+        <a class="btn ghost full" href="#calculadora" onclick="seleccionarPlan('asistente')">Quiero este plan →</a>
       </div>
 
       <div class="plan hot">
@@ -86,7 +86,7 @@
           <li><b>1 automatización de procesos</b></li>
           <li>Soporte técnico premium</li>
         </ul>
-        <a class="btn primary full" href="contacto.html">Quiero este plan →</a>
+        <a class="btn primary full" href="#calculadora" onclick="seleccionarPlan('transformacion')">Quiero este plan →</a>
       </div>
 
       <div class="plan">
@@ -101,7 +101,7 @@
           <li>Análisis de datos avanzado</li>
           <li>Marketing Inteligente (SEO/Ads)</li>
         </ul>
-        <a class="btn ghost full" href="contacto.html">Quiero este plan →</a>
+        <a class="btn ghost full" href="#calculadora" onclick="seleccionarPlan('escala')">Quiero este plan →</a>
       </div>
 
     </div>
@@ -122,7 +122,7 @@
           <li>Botón de WhatsApp manual</li>
           <li>SEO básico</li>
         </ul>
-        <a class="btn ghost full" href="contacto.html">Elegir plan →</a>
+        <a class="btn ghost full" href="#calculadora" onclick="seleccionarPlan('impulso')">Elegir plan →</a>
       </div>
       <div class="plan">
         <span class="overline plan-name">Plan Presencia Pro</span>
@@ -134,7 +134,7 @@
           <li>Integración con redes</li>
           <li>SEO técnico inicial</li>
         </ul>
-        <a class="btn ghost full" href="contacto.html">Elegir plan →</a>
+        <a class="btn ghost full" href="#calculadora" onclick="seleccionarPlan('presencia')">Elegir plan →</a>
       </div>
       <div class="plan">
         <span class="overline plan-name">Premium</span>
@@ -146,7 +146,7 @@
           <li>Carga de hasta 10 productos</li>
           <li>Analíticas integradas</li>
         </ul>
-        <a class="btn ghost full" href="contacto.html">Elegir plan →</a>
+        <a class="btn ghost full" href="#calculadora" onclick="seleccionarPlan('premium')">Elegir plan →</a>
       </div>
     </div>
   </div>
@@ -162,6 +162,208 @@
         <span>✓ Hosting y dominio (o instalación en el tuyo)</span>
         <span>✓ Soporte durante el desarrollo</span>
         <span>✓ Manual básico para actualizar tu sitio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= COST CALCULATOR ======= -->
+<section class="section alt" id="calculadora">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Cotizador Interactivo</span>
+      <h2>Arma <span class="g">tu plan ideal</span></h2>
+      <p class="lede-sec">Selecciona los servicios que necesitas y obtén tu cotización al instante. Sin compromisos.</p>
+    </div>
+
+    <div class="calc-layout reveal">
+      <!-- LEFT: Options -->
+      <div class="calc-options">
+
+        <!-- Category: Web -->
+        <div class="calc-cat">
+          <div class="calc-cat-head">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2EE9B9" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Página Web</span>
+            <small>Elige una opción</small>
+          </div>
+          <div class="calc-radios" id="calc-web">
+            <label class="calc-radio">
+              <input type="radio" name="web" value="0" data-setup="0" data-label="Sin página web" checked>
+              <div class="calc-radio-box">
+                <div class="calc-radio-dot"></div>
+                <div class="calc-radio-info">
+                  <span class="calc-radio-name">No necesito página web</span>
+                  <span class="calc-radio-desc">Ya tengo sitio o solo quiero servicios de IA</span>
+                </div>
+                <span class="calc-radio-price">$0</span>
+              </div>
+            </label>
+            <label class="calc-radio">
+              <input type="radio" name="web" value="5200" data-setup="5200" data-label="Plan Impulso">
+              <div class="calc-radio-box">
+                <div class="calc-radio-dot"></div>
+                <div class="calc-radio-info">
+                  <span class="calc-radio-name">Plan Impulso</span>
+                  <span class="calc-radio-desc">Hasta 3 secciones · Responsivo · SEO básico</span>
+                </div>
+                <span class="calc-radio-price">$5,200</span>
+              </div>
+            </label>
+            <label class="calc-radio">
+              <input type="radio" name="web" value="7400" data-setup="7400" data-label="Presencia Pro">
+              <div class="calc-radio-box">
+                <div class="calc-radio-dot"></div>
+                <div class="calc-radio-info">
+                  <span class="calc-radio-name">Presencia Pro</span>
+                  <span class="calc-radio-desc">Hasta 6 secciones · Animaciones · Redes sociales</span>
+                </div>
+                <span class="calc-radio-price">$7,400</span>
+              </div>
+            </label>
+            <label class="calc-radio">
+              <input type="radio" name="web" value="10500" data-setup="10500" data-label="Premium E-commerce">
+              <div class="calc-radio-box">
+                <div class="calc-radio-dot"></div>
+                <div class="calc-radio-info">
+                  <span class="calc-radio-name">Premium · E-commerce</span>
+                  <span class="calc-radio-desc">Tienda WooCommerce · Pasarelas de pago · Analíticas</span>
+                </div>
+                <span class="calc-radio-price">$10,500</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category: IA -->
+        <div class="calc-cat">
+          <div class="calc-cat-head">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1CA0F4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+            <span>Inteligencia Artificial</span>
+            <small>Agrega lo que necesites</small>
+          </div>
+          <div class="calc-toggles">
+            <div class="calc-toggle">
+              <div class="calc-toggle-info">
+                <span class="calc-toggle-name">🤖 Chatbot IA (WhatsApp + Web)</span>
+                <span class="calc-toggle-desc">Atención 24/7 · Calificación de leads · 200 conversaciones/mes</span>
+              </div>
+              <div class="calc-toggle-right">
+                <div class="calc-toggle-prices">
+                  <span class="calc-toggle-setup">Setup: $4,999</span>
+                  <span class="calc-toggle-monthly">$2,999/mes</span>
+                </div>
+                <div class="calc-switch">
+                  <input type="checkbox" id="cb-chatbot" data-setup="4999" data-monthly="2999" data-label="Chatbot IA">
+                  <span class="calc-slider"></span>
+                </div>
+              </div>
+            </div>
+            <div class="calc-toggle">
+              <div class="calc-toggle-info">
+                <span class="calc-toggle-name">⚡ Automatización de procesos (×1)</span>
+                <span class="calc-toggle-desc">Cotizaciones automáticas · Follow-up inteligente</span>
+              </div>
+              <div class="calc-toggle-right">
+                <div class="calc-toggle-prices">
+                  <span class="calc-toggle-setup">Setup: $2,999</span>
+                  <span class="calc-toggle-monthly">$1,999/mes</span>
+                </div>
+                <div class="calc-switch">
+                  <input type="checkbox" id="cb-auto1" data-setup="2999" data-monthly="1999" data-label="Automatización ×1">
+                  <span class="calc-slider"></span>
+                </div>
+              </div>
+            </div>
+            <div class="calc-toggle">
+              <div class="calc-toggle-info">
+                <span class="calc-toggle-name">⚡ Automatizaciones adicionales (×2)</span>
+                <span class="calc-toggle-desc">Contenido automático · Análisis de datos · Integraciones</span>
+              </div>
+              <div class="calc-toggle-right">
+                <div class="calc-toggle-prices">
+                  <span class="calc-toggle-setup">Setup: $2,000</span>
+                  <span class="calc-toggle-monthly">$3,000/mes</span>
+                </div>
+                <div class="calc-switch">
+                  <input type="checkbox" id="cb-auto2" data-setup="2000" data-monthly="3000" data-label="Automatizaciones ×2 extra">
+                  <span class="calc-slider"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Marketing -->
+        <div class="calc-cat">
+          <div class="calc-cat-head">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2EE9B9" stroke-width="2"><path d="M3 20l4-8 4 4 4-6 4 2"/><circle cx="19" cy="12" r="2"/></svg>
+            <span>Marketing y Extras</span>
+            <small>Opcional</small>
+          </div>
+          <div class="calc-toggles">
+            <div class="calc-toggle">
+              <div class="calc-toggle-info">
+                <span class="calc-toggle-name">📈 Marketing Digital + SEO</span>
+                <span class="calc-toggle-desc">Google Ads · Meta Ads · SEO · Google Business Profile · Reportes</span>
+              </div>
+              <div class="calc-toggle-right">
+                <div class="calc-toggle-prices">
+                  <span class="calc-toggle-monthly">$4,500/mes</span>
+                </div>
+                <div class="calc-switch">
+                  <input type="checkbox" id="cb-mkt" data-setup="0" data-monthly="4500" data-label="Marketing + SEO">
+                  <span class="calc-slider"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Summary -->
+      <div class="calc-summary" id="calc-summary">
+        <div class="calc-summary-inner">
+          <div class="calc-summary-head">
+            <span class="overline">Tu cotización</span>
+            <h3>Resumen del plan</h3>
+          </div>
+
+          <div class="calc-summary-items" id="calc-items">
+            <div class="calc-empty" id="calc-empty">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="rgba(148,163,184,0.3)" stroke-width="1.5"><rect x="8" y="6" width="32" height="36" rx="4"/><path d="M16 16h16M16 24h10M16 32h14"/></svg>
+              <p>Selecciona al menos un servicio para ver tu cotización personalizada.</p>
+            </div>
+          </div>
+
+          <div class="calc-totals" id="calc-totals" style="display:none">
+            <div class="calc-total-row">
+              <span>Inversión inicial (una vez)</span>
+              <span class="calc-val" id="calc-setup-total">$0</span>
+            </div>
+            <div class="calc-total-row monthly">
+              <span>Inversión mensual</span>
+              <span class="calc-val" id="calc-monthly-total">$0</span>
+            </div>
+            <div class="calc-total-row grand">
+              <span>Total primer mes</span>
+              <span class="calc-val" id="calc-grand-total">$0</span>
+            </div>
+          </div>
+
+          <div class="calc-savings" id="calc-savings" style="display:none">
+            <span>💡</span>
+            <p id="calc-savings-text">Tip: El plan Transformación IA incluye web + chatbot + 1 automatización por menos.</p>
+          </div>
+
+          <a class="btn primary full calc-cta" id="calc-cta" href="https://wa.me/5215644645574" target="_blank" rel="noopener">
+            Cotizar por WhatsApp →
+          </a>
+          <a class="btn ghost full" href="contacto.html" style="margin-top:8px">
+            O envía un formulario →
+          </a>
+          <p class="calc-fine">Precios en MXN · IVA no incluido · Sin contratos forzosos</p>
+        </div>
       </div>
     </div>
   </div>
@@ -204,6 +406,212 @@
     <small>En línea</small>
   </div>
 </a>
+
+<script>
+/* ═══════════════════════════════════════════
+   COST CALCULATOR LOGIC
+   ═══════════════════════════════════════════ */
+(function(){
+  var WA = '5215644645574';
+  function fmt(n){ return '$' + n.toLocaleString('es-MX'); }
+
+  // Save empty element before it gets overwritten
+  var emptyHTML = document.getElementById('calc-empty').outerHTML;
+
+  function calc(){
+    var setupTotal = 0, monthlyTotal = 0;
+    var items = [];
+
+    // Web radio
+    var radios = document.querySelectorAll('input[name="web"]');
+    for(var i=0; i<radios.length; i++){
+      if(radios[i].checked){
+        var ws = parseInt(radios[i].getAttribute('data-setup')) || 0;
+        var wl = radios[i].getAttribute('data-label');
+        if(ws > 0){
+          setupTotal += ws;
+          items.push({ name: wl, price: fmt(ws) });
+        }
+        break;
+      }
+    }
+
+    // Checkboxes
+    var cbs = document.querySelectorAll('.calc-switch input[type="checkbox"]');
+    for(var j=0; j<cbs.length; j++){
+      var cb = cbs[j];
+      var toggle = cb.closest('.calc-toggle');
+      if(cb.checked){
+        if(toggle) toggle.classList.add('active');
+        var s = parseInt(cb.getAttribute('data-setup')) || 0;
+        var m = parseInt(cb.getAttribute('data-monthly')) || 0;
+        var label = cb.getAttribute('data-label');
+        setupTotal += s;
+        monthlyTotal += m;
+        var priceStr = '';
+        if(s > 0 && m > 0) priceStr = fmt(s) + ' + ' + fmt(m) + '/mes';
+        else if(m > 0) priceStr = fmt(m) + '/mes';
+        else priceStr = fmt(s);
+        items.push({ name: label, price: priceStr });
+      } else {
+        if(toggle) toggle.classList.remove('active');
+      }
+    }
+
+    // Smart savings tip & bundle discounts
+    var savingsEl = document.getElementById('calc-savings');
+    var savingsText = document.getElementById('calc-savings-text');
+    var chatbotOn = document.getElementById('cb-chatbot').checked;
+    var auto1On = document.getElementById('cb-auto1').checked;
+    var auto2On = document.getElementById('cb-auto2').checked;
+    var mktOn = document.getElementById('cb-mkt').checked;
+    
+    var webSetup = 0;
+    for(var r=0; r<radios.length; r++){
+      if(radios[r].checked){ webSetup = parseInt(radios[r].getAttribute('data-setup')) || 0; break; }
+    }
+
+    if(webSetup > 0 && chatbotOn && auto1On && auto2On && mktOn) {
+      // Escala Automática bundle
+      var discountSetup = 5199;
+      var discountMonthly = 5499;
+      setupTotal -= discountSetup;
+      monthlyTotal -= discountMonthly;
+      
+      items.push({ name: '🚀 Bonificación Plan Escala Automática', price: '-' + fmt(discountSetup) + ' (Setup) / -' + fmt(discountMonthly) + '/mes' });
+      
+      savingsEl.style.display = 'flex';
+      savingsText.textContent = '¡Felicidades! Se aplicó el descuento máximo de nuestro plan Escala Automática.';
+    } else if(webSetup > 0 && chatbotOn && auto1On) {
+      // Transformación IA bundle
+      var discountSetup = 7199;
+      var discountMonthly = 999;
+      setupTotal -= discountSetup;
+      monthlyTotal -= discountMonthly;
+      
+      items.push({ name: '🎁 Bonificación Plan Transformación IA', price: '-' + fmt(discountSetup) + ' (Setup) / -' + fmt(discountMonthly) + '/mes' });
+      
+      savingsEl.style.display = 'flex';
+      if (!auto2On && !mktOn) {
+         savingsText.textContent = '¡Felicidades! Se aplicó el precio especial del plan Transformación IA.';
+      } else {
+         savingsText.textContent = 'Se aplicó el descuento del plan Transformación IA. ¡Tip: Agrega Marketing y Automatizaciones extra para mayor impacto!';
+      }
+    } else if(items.length > 2){
+      savingsEl.style.display = 'flex';
+      savingsText.textContent = 'Tip: Si combinas página web + chatbot + automatización ahorras más de $7,000 MXN en tu setup inicial.';
+    } else {
+      savingsEl.style.display = 'none';
+    }
+
+    // Render items
+    var itemsEl = document.getElementById('calc-items');
+    var totalsEl = document.getElementById('calc-totals');
+
+    if(items.length === 0){
+      itemsEl.innerHTML = emptyHTML;
+      totalsEl.style.display = 'none';
+    } else {
+      var html = '';
+      for(var k=0; k<items.length; k++){
+        html += '<div class="calc-item"><span class="calc-item-name">' + items[k].name + '</span><span class="calc-item-price">' + items[k].price + '</span></div>';
+      }
+      itemsEl.innerHTML = html;
+      totalsEl.style.display = '';
+    }
+
+    // Update totals
+    document.getElementById('calc-setup-total').textContent = fmt(setupTotal);
+    document.getElementById('calc-monthly-total').textContent = monthlyTotal > 0 ? fmt(monthlyTotal) + '/mes' : '$0';
+    document.getElementById('calc-grand-total').textContent = fmt(setupTotal + monthlyTotal);
+
+    // Update WhatsApp CTA
+    var labels = [];
+    for(var l=0; l<items.length; l++) labels.push(items[l].name);
+    var msg = 'Hola, me interesa cotizar: ' + (labels.length > 0 ? labels.join(', ') : 'un plan personalizado') + '. ' +
+      (setupTotal > 0 ? 'Inversión inicial: ' + fmt(setupTotal) + '. ' : '') +
+      (monthlyTotal > 0 ? 'Mensual: ' + fmt(monthlyTotal) + '. ' : '') +
+      '¿Podemos platicar?';
+    document.getElementById('calc-cta').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+  }
+
+  // Listen on radio changes
+  var radios = document.querySelectorAll('input[name="web"]');
+  for(var i=0; i<radios.length; i++){
+    radios[i].addEventListener('change', calc);
+  }
+  
+  // Listen on checkbox changes  
+  var cbs = document.querySelectorAll('.calc-switch input[type="checkbox"]');
+  for(var j=0; j<cbs.length; j++){
+    cbs[j].addEventListener('change', calc);
+  }
+  
+  // Click anywhere on toggle div to toggle checkbox
+  var toggles = document.querySelectorAll('.calc-toggle');
+  for(var t=0; t<toggles.length; t++){
+    toggles[t].addEventListener('click', function(e){
+      if(e.target.closest('.calc-switch')) return;
+      var checkbox = this.querySelector('input[type="checkbox"]');
+      if(checkbox){
+        checkbox.checked = !checkbox.checked;
+        calc();
+      }
+    });
+  }
+
+  // Pre-fill helper from table buttons
+  window.seleccionarPlan = function(plan) {
+    // Reset
+    document.querySelector('input[name="web"][value="0"]').checked = true;
+    document.getElementById('cb-chatbot').checked = false;
+    document.getElementById('cb-auto1').checked = false;
+    document.getElementById('cb-auto2').checked = false;
+    document.getElementById('cb-mkt').checked = false;
+
+    if (plan === 'asistente') {
+      document.getElementById('cb-chatbot').checked = true;
+    } else if (plan === 'transformacion') {
+      document.querySelector('input[name="web"][value="5200"]').checked = true; // Impulso
+      document.getElementById('cb-chatbot').checked = true;
+      document.getElementById('cb-auto1').checked = true;
+    } else if (plan === 'escala') {
+      document.querySelector('input[name="web"][value="7400"]').checked = true; // Presencia Pro
+      document.getElementById('cb-chatbot').checked = true;
+      document.getElementById('cb-auto1').checked = true;
+      document.getElementById('cb-auto2').checked = true;
+      document.getElementById('cb-mkt').checked = true;
+    } else if (plan === 'impulso') {
+      document.querySelector('input[name="web"][value="5200"]').checked = true;
+    } else if (plan === 'presencia') {
+      document.querySelector('input[name="web"][value="7400"]').checked = true;
+    } else if (plan === 'premium') {
+      document.querySelector('input[name="web"][value="10500"]').checked = true;
+    }
+
+    calc();
+    
+    // Smooth scroll to calc
+    var calcSection = document.getElementById('calculadora');
+    if (calcSection) {
+      window.scrollTo({
+        top: calcSection.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Check URL params for pre-fill
+  var urlParams = new URLSearchParams(window.location.search);
+  var urlPlan = urlParams.get('plan');
+  if (urlPlan) {
+    window.seleccionarPlan(urlPlan);
+  } else {
+    // Initial calculation
+    calc();
+  }
+})();
+</script>
 
 <script src="site.js"></script>
 </body>
