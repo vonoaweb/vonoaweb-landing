@@ -223,34 +223,48 @@
 }
 .folio-strip-label { font-size:13px; color:rgba(255,255,255,.4); margin-top:6px; line-height:1.4; }
 
-/* Testimonials */
-.testi-card {
-  background:#0F2040; border:1px solid rgba(148,163,184,.1); border-radius:16px;
-  padding:28px; margin:0; display:flex; flex-direction:column; gap:14px;
-  position:relative; overflow:hidden;
+/* Google Review Cards */
+a.testi-card {
+  text-decoration:none; cursor:pointer;
+  background:#ffffff; border-radius:16px; padding:22px 22px 18px;
+  display:flex; flex-direction:column; gap:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  transition:box-shadow .2s, transform .2s;
 }
-.testi-card::before {
-  content:'"'; position:absolute; top:8px; right:18px;
-  font-size:80px; line-height:1; font-family:'Sora',sans-serif; font-weight:700;
-  background:linear-gradient(135deg,#2EE9B9,#1CA0F4);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  opacity:.13; pointer-events:none;
+a.testi-card:hover {
+  box-shadow:0 6px 24px rgba(0,0,0,.14);
+  transform:translateY(-3px);
 }
-.testi-stars { color:#2EE9B9; font-size:12px; letter-spacing:2px; }
-.testi-card p { font-size:15px; color:#D4DDEF; line-height:1.75; flex:1; }
-.testi-cite {
-  display:flex; align-items:center; gap:12px; padding-top:16px;
-  border-top:1px solid rgba(148,163,184,.08);
+.testi-header {
+  display:flex; align-items:center; justify-content:space-between;
 }
+.testi-profile { display:flex; align-items:center; gap:10px; }
 .testi-av {
-  width:38px; height:38px; border-radius:50%;
-  background:linear-gradient(135deg,#2EE9B9,#1CA0F4);
+  width:42px; height:42px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Sora',sans-serif; font-weight:700; color:#07102a;
-  font-size:14px; flex-shrink:0;
+  font-family:'Sora',sans-serif; font-weight:700; color:#fff;
+  font-size:16px; flex-shrink:0;
 }
-.testi-name { font-size:13.5px; font-weight:600; color:#D4DDEF; line-height:1.2; }
-.testi-role { font-size:11.5px; color:#5b6d8a; margin-top:2px; }
+.testi-av.av-fg { background:#4285F4; }
+.testi-av.av-pe { background:#A259FF; }
+.testi-av.av-hc { background:#E67E22; }
+.testi-meta-name { font-size:14px; font-weight:600; color:#202124; line-height:1.2; }
+.testi-meta-time { font-size:12px; color:#70757a; margin-top:1px; }
+.testi-google-logo svg { width:24px; height:24px; }
+.testi-rating { display:flex; align-items:center; gap:6px; }
+.testi-stars { color:#FBBC04; font-size:17px; letter-spacing:1px; line-height:1; }
+.testi-card p, a.testi-card p { font-size:14px; color:#3c4043; line-height:1.7; flex:1; margin:0; }
+.testi-gmaps-cta {
+  text-align:center; margin-top:36px;
+}
+.testi-gmaps-cta a {
+  display:inline-flex; align-items:center; gap:8px;
+  background:#fff; border:1.5px solid #dadce0; border-radius:8px;
+  padding:11px 22px; font-size:14px; font-weight:600; color:#3c4043;
+  text-decoration:none; transition:box-shadow .2s;
+}
+.testi-gmaps-cta a:hover { box-shadow:0 2px 8px rgba(0,0,0,.12); }
+.testi-gmaps-cta a svg { width:20px; height:20px; }
 
 /* Responsive */
 @media (max-width:900px) {
@@ -1396,42 +1410,92 @@
     </div>
     <div class="grid-3 reveal">
 
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p>"VonoaWeb transformó nuestra presencia digital por completo. Desde que lanzamos el nuevo sitio, los leads se triplicaron en menos de tres meses. El equipo entiende el negocio, no solo el diseño."</p>
-        <div class="testi-cite">
-          <div class="testi-av">CR</div>
-          <div>
-            <div class="testi-name">Carlos R.</div>
-            <div class="testi-role">Director, Inmobiliaria GDL</div>
+      <!-- Reseña real 1: Steve -->
+      <a class="testi-card" href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener">
+        <div class="testi-header">
+          <div class="testi-profile">
+            <div class="testi-av av-fg">S</div>
+            <div>
+              <div class="testi-meta-name">Steve</div>
+              <div class="testi-meta-time">hace 7 meses</div>
+            </div>
+          </div>
+          <div class="testi-google-logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
           </div>
         </div>
-      </div>
+        <div class="testi-rating">
+          <span class="testi-stars">★★★★★</span>
+        </div>
+        <p>Trabajo muy receptivo y muy profesional.</p>
+      </a>
 
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p>"El chatbot atiende a nuestros pacientes a las 3 AM. Antes perdíamos esos leads porque nadie podía responder fuera de horario. Ahora no se nos va ninguno y la agenda se llena sola."</p>
-        <div class="testi-cite">
-          <div class="testi-av">SM</div>
-          <div>
-            <div class="testi-name">Dra. Sofía M.</div>
-            <div class="testi-role">Directora, Clínica Dental Sonrisa</div>
+      <!-- Reseña real 2: Paulina Elizabeth Cruz -->
+      <a class="testi-card" href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener">
+        <div class="testi-header">
+          <div class="testi-profile">
+            <div class="testi-av av-pe">PE</div>
+            <div>
+              <div class="testi-meta-name">Paulina Elizabeth Cruz</div>
+              <div class="testi-meta-time">hace 8 meses</div>
+            </div>
+          </div>
+          <div class="testi-google-logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
           </div>
         </div>
-      </div>
+        <div class="testi-rating">
+          <span class="testi-stars">★★★★★</span>
+        </div>
+        <p>Vonoa es una buena opción para crecer un negocio ☺️ Muchas gracias, excelente servicio ♥️</p>
+      </a>
 
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p>"Profesionales, rápidos y con un diseño que sí representa nuestra marca. Nos entregaron el proyecto antes del plazo y el resultado superó todo lo que esperábamos. 100% recomendados."</p>
-        <div class="testi-cite">
-          <div class="testi-av">ME</div>
-          <div>
-            <div class="testi-name">María Elena</div>
-            <div class="testi-role">Fundadora, Boutique María Elena</div>
+      <!-- Reseña real 3: HARVY CRUZE -->
+      <a class="testi-card" href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener">
+        <div class="testi-header">
+          <div class="testi-profile">
+            <div class="testi-av av-hc">HC</div>
+            <div>
+              <div class="testi-meta-name">Harvy Cruze</div>
+              <div class="testi-meta-time">hace 8 meses</div>
+            </div>
+          </div>
+          <div class="testi-google-logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
           </div>
         </div>
-      </div>
+        <div class="testi-rating">
+          <span class="testi-stars">★★★★★</span>
+        </div>
+        <p>Excelente todo! Muchas gracias, quedé feliz! Recomendable.</p>
+      </a>
 
+    </div>
+    <div class="testi-gmaps-cta reveal">
+      <a href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <span style="color:#FBBC04;">★★★★★</span>&nbsp;<strong>5.0</strong>&nbsp;· Ver las 11 reseñas en Google
+      </a>
     </div>
   </div>
 </section>
