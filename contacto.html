@@ -87,7 +87,24 @@
         </select>
       </label>
       <label class="full"><span>Cuéntanos tu idea</span><textarea name="msg" rows="4" placeholder="¿Qué necesitas? ¿Tienes sitio web actualmente?"></textarea></label>
-      <label class="captcha"><span id="math-q"></span><input id="math-a" required placeholder="?"></label>
+      <!-- honeypot anti-spam -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="captcha-box full" id="captcha-box">
+        <button type="button" class="captcha-check" id="captcha-btn" aria-label="No soy un robot">
+          <svg id="captcha-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="20" height="20" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(148,163,184,0.3)" stroke-width="1.5"/>
+          </svg>
+        </button>
+        <span class="captcha-label">No soy un robot</span>
+        <div class="captcha-brand">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8L8 20v24l24 12 24-12V20L32 8z" fill="none" stroke="#2EE9B9" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M32 8v36M8 20l24 12 24-12" stroke="#2EE9B9" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <span>Vonoa<br><em>seguro</em></span>
+        </div>
+      </div>
       <p class="fine">Tus datos están protegidos. No spam, lo prometemos.</p>
       <button class="btn primary full" type="submit">Enviar solicitud →</button>
     </form>

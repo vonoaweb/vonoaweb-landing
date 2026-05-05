@@ -307,10 +307,16 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
 .form label.full{grid-column:1 / -1}
 .form input,.form textarea,.form select{background:rgba(7,15,33,.6);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;font-family:inherit;letter-spacing:normal;text-transform:none;transition:border-color .2s}
 .form input:focus,.form textarea:focus{outline:none;border-color:var(--vw-cyan);box-shadow:0 0 0 3px rgba(46,233,185,.18)}
-.captcha{display:flex;align-items:center;gap:12px;background:rgba(7,15,33,.5);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
-.captcha span{font-family:var(--font-display);font-size:15px;font-weight:600;color:#fff;white-space:nowrap}
-.captcha input{flex:1;background:transparent;border:0;padding:4px 8px;color:#fff}
-.captcha input:focus{outline:none}
+.captcha-box{display:flex;align-items:center;gap:14px;background:rgba(7,15,33,.5);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .2s}
+.captcha-box.verified{border-color:var(--vw-cyan);box-shadow:0 0 0 3px rgba(46,233,185,.12)}
+.captcha-check{width:26px;height:26px;border:none;background:transparent;cursor:pointer;padding:0;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.captcha-check svg{width:26px;height:26px;transition:transform .2s}
+.captcha-check:hover svg{transform:scale(1.1)}
+.captcha-label{flex:1;font-size:14px;font-weight:500;color:#D4DDEF;user-select:none}
+.captcha-brand{display:flex;align-items:center;gap:6px;opacity:.5;flex-shrink:0}
+.captcha-brand svg{width:20px;height:20px}
+.captcha-brand span{font-size:9px;line-height:1.3;color:#94a3b8;text-align:right}
+.captcha-brand em{font-style:normal;color:var(--vw-cyan)}
 .form .btn{grid-column:1 / -1;margin-top:4px}
 .form .fine{grid-column:1 / -1;font-size:12px;color:var(--fg-muted);margin:0;text-align:center}
 .form .fine a{color:var(--vw-cyan);text-decoration:underline}

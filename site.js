@@ -199,30 +199,77 @@
     statNums.forEach(el => counterObs.observe(el));
   }
 
-  // ── Captcha ──
-  const a = Math.floor(Math.random() * 20) + 5;
-  const b = Math.floor(Math.random() * 20) + 5;
-  const q = document.getElementById('math-q');
-  const ans = document.getElementById('math-a');
-  if (q) q.textContent = `${a} + ${b} =`;
+  // ── Captcha checkbox ──
+  let captchaOk = false;
+  const captchaBtn = document.getElementById('captcha-btn');
+  const captchaBox = document.getElementById('captcha-box');
+  if (captchaBtn) {
+    captchaBtn.addEventListener('click', () => {
+      captchaOk = true;
+      captchaBox.classList.add('verified');
+      captchaBtn.innerHTML = `
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+          <rect width="20" height="20" rx="4" fill="#2EE9B9"/>
+          <path d="M5 10.5l3.5 3.5 6.5-7" stroke="#07102a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+      captchaBtn.disabled = true;
+    });
+  }
 
   // ── Form ──
+  const WEB3_KEY = 'd020189e-7d19-48ea-a42f-d911acc2ff72';
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      if (ans && parseInt(ans.value, 10) !== a + b) {
-        ans.style.borderColor = '#F87171';
-        ans.focus();
+      if (!captchaOk) {
+        captchaBox && captchaBox.style.setProperty('border-color', '#F87171');
+        captchaBtn && captchaBtn.focus();
         return;
       }
-      const name = form.querySelector('[name=name]').value || 'amigo';
-      form.classList.add('sent');
-      form.innerHTML = `
-        <div class="check">✓</div>
-        <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">¡Gracias, ${name}!</h3>
-        <p style="color:var(--fg-muted);font-size:14px;">Recibimos tu mensaje. Te escribimos en menos de 24 horas.</p>
-      `;
+      if (form.querySelector('[name=_honey]')?.value) return;
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      const payload = {
+        access_key: WEB3_KEY,
+        subject: 'Nueva solicitud desde VonoaWeb',
+        from_name: 'VonoaWeb Contacto',
+        replyto: form.querySelector('[name=email]').value,
+        name:    form.querySelector('[name=name]').value,
+        email:   form.querySelector('[name=email]').value,
+        negocio: form.querySelector('[name=biz]').value,
+        servicio:form.querySelector('[name=service]').value,
+        presupuesto: form.querySelector('[name=budget]')?.value || '',
+        mensaje: form.querySelector('[name=msg]').value
+      };
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.success) {
+          const name = payload.name || 'amigo';
+          form.classList.add('sent');
+          form.innerHTML = `
+            <div class="check">✓</div>
+            <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">¡Gracias, ${name}!</h3>
+            <p style="color:var(--fg-muted);font-size:14px;">Recibimos tu mensaje. Te escribimos en menos de 24 horas.</p>
+          `;
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Enviar solicitud →';
+          alert('Hubo un problema al enviar. Intenta de nuevo.');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Enviar solicitud →';
+        alert('Error de conexión. Intenta de nuevo.');
+      }
     });
   }
 })();
