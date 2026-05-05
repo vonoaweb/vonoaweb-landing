@@ -45,12 +45,14 @@
       mouse.y = (e.clientY - r.top) / r.height;
     });
     hero.addEventListener('mouseleave', () => { mouse.x = 0.5; mouse.y = 0.4; });
-    hero.addEventListener('touchmove', e => {
-      if (!e.touches[0]) return;
-      const r = hero.getBoundingClientRect();
-      mouse.x = (e.touches[0].clientX - r.left) / r.width;
-      mouse.y = (e.touches[0].clientY - r.top) / r.height;
-    }, { passive: true });
+    if (window.innerWidth >= 768) {
+      hero.addEventListener('touchmove', e => {
+        if (!e.touches[0]) return;
+        const r = hero.getBoundingClientRect();
+        mouse.x = (e.touches[0].clientX - r.left) / r.width;
+        mouse.y = (e.touches[0].clientY - r.top) / r.height;
+      }, { passive: true });
+    }
 
     function frame() {
       mouse.sx += (mouse.x - mouse.sx) * 0.06;
@@ -63,7 +65,7 @@
         ring.style.setProperty('--rx', ((0.5 - mouse.sx) * 24).toFixed(1) + 'px');
         ring.style.setProperty('--ry', ((0.5 - mouse.sy) * 16).toFixed(1) + 'px');
       }
-      if (content) {
+      if (content && window.innerWidth >= 768) {
         content.style.transform = `translate3d(${((mouse.sx-0.5)*4).toFixed(2)}px, ${((mouse.sy-0.5)*2).toFixed(2)}px, 0)`;
       }
       ctx.clearRect(0, 0, W, H);

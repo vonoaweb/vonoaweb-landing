@@ -91,6 +91,7 @@ p{color:#B6C2D8;font-size:17px;line-height:1.65;margin:0;text-wrap:pretty}
 
 .chip{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 14px;border-radius:999px;background:rgba(46,233,185,.08);border:1px solid rgba(46,233,185,.3);color:var(--vw-cyan);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
 .chip i{width:6px;height:6px;border-radius:50%;background:var(--vw-cyan);box-shadow:0 0 0 0 rgba(46,233,185,.55);animation:pulse 2s infinite}
+.chip-short{display:none}
 @keyframes pulse{70%{box-shadow:0 0 0 7px rgba(46,233,185,0)}100%{box-shadow:0 0 0 0 rgba(46,233,185,0)}}
 
 /* NAV */
@@ -513,7 +514,7 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
   .hero-text .lede{font-size:16px}
 
   /* Hero chip / badge */
-  .hero-text .chip{font-size:11px!important;padding:6px 14px!important;line-height:1.4;white-space:normal;text-align:center}
+  .hero-text .chip{font-size:11px!important;padding:6px 14px!important;line-height:1.4;white-space:normal;text-align:left}
 
   /* Case study badge */
   .case-study-badge{font-size:12px!important;padding:12px!important}
@@ -538,6 +539,7 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
   /* Benefits vis */
   .benefits-vis{overflow:visible}
   .vono-stage.small{height:auto;padding:16px 0}
+  .vono-stage::before{width:90%;height:90%}
 
   /* WhatsApp FAB */
   .wa-float .wa-text{display:none}
@@ -591,8 +593,10 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
   h2{font-size:22px}
   h3{font-size:18px}
 
-  .section{padding:48px 0}
-  .hero{padding:40px 0 56px}
+  .section{padding:36px 0}
+  .hero{padding:28px 0 36px}
+  .chip-full{display:none}
+  .chip-short{display:inline}
 
   /* Stats → 1 column on very small */
   .why-stats{grid-template-columns:1fr}
