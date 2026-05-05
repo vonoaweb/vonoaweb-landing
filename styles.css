@@ -535,8 +535,8 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
   .stat{padding:18px 14px}
 
   /* Benefits vis */
-  .benefits-vis{max-height:320px;overflow:hidden}
-  .vono-stage.small{height:300px}
+  .benefits-vis{overflow:visible}
+  .vono-stage.small{height:auto;padding:16px 0}
 
   /* WhatsApp FAB */
   .wa-float .wa-text{display:none}
