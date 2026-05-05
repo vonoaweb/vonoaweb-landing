@@ -175,12 +175,13 @@
         if (!e.isIntersecting) return;
         const el = e.target;
         const text = el.textContent.trim();
-        // Extract number from text like "+80", "98", "<18d", "24/7"
+        // Extract number from text like "+80", "98", "<18d" — skip if number is embedded mid-text
         const match = text.match(/[\+<]?(\d+)/);
-        if (!match) return;
+        if (!match || match.index > 1) return;
         const target = parseInt(match[1], 10);
-        const prefix = text.match(/^[\+<]/) ? text.match(/^[\+<]/)[0] : '';
-        const suffix = text.replace(/^[\+<]?\d+/, '');
+        const sign = match[0].match(/^[\+<]/) ? match[0][0] : '';
+        const prefix = text.slice(0, match.index) + sign;
+        const suffix = text.slice(match.index + match[0].length);
         let current = 0;
         const duration = 1200;
         const start = performance.now();
