@@ -829,13 +829,9 @@
     </div>
   </footer>
 
-  <!-- ======= CHATBOT IA ======= -->
+  <!-- ======= CHATBOT IA (v2) ======= -->
   <style>
-    /* ── VONOA CHATBOT WIDGET ──────────────────────────────────
-   Pega este archivo completo en tu WordPress/Divi como
-   bloque de código HTML, o inclúyelo antes de </body>.
-   Cambia el número de WhatsApp en la variable WA_NUMBER.
-   ────────────────────────────────────────────────────── */
+    /* ── VONOA CHATBOT WIDGET v2 ─────────────────────────────── */
 
     #vonoa-root * {
       box-sizing: border-box;
@@ -844,695 +840,306 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    /* TOGGLE */
+    /* --- HINT TOOLTIP ----------------------------------------- */
+    #vonoa-hint {
+      position: fixed;
+      bottom: 38px;
+      right: 102px;
+      z-index: 99999;
+      background: #fff;
+      color: #1B2A4A;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 15px;
+      border-radius: 20px 20px 4px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.14);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(8px) scale(.94);
+      transition: opacity .3s, transform .3s;
+    }
+    #vonoa-hint.show { opacity: 1; transform: none; }
+
+    /* --- TOGGLE ----------------------------------------------- */
     #vonoa-toggle {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
+      bottom: 28px; right: 28px;
       z-index: 99999;
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      background: radial-gradient(circle at 40% 35%, #1a3a5c, #0b1e36);
-      box-shadow: 0 8px 32px rgba(29, 158, 117, .45), 0 2px 12px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s;
-      padding: 0;
-      overflow: hidden;
+      width: 62px; height: 62px;
+      border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(145deg, #1B2A4A 0%, #243563 100%);
+      box-shadow: 0 6px 28px rgba(27,42,74,.55), 0 2px 8px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+      padding: 0; overflow: hidden;
     }
-
     #vonoa-toggle:hover {
       transform: scale(1.1);
-      box-shadow: 0 14px 48px rgba(29, 158, 117, .65), 0 0 20px rgba(93, 202, 165, .2);
+      box-shadow: 0 10px 36px rgba(27,42,74,.7), 0 0 24px rgba(93,202,165,.2);
     }
+    #vonoa-toggle .vt-icon { position: absolute; transition: all .3s cubic-bezier(.34,1.56,.64,1); }
+    #vonoa-toggle .vt-icon.gone { opacity: 0; transform: rotate(80deg) scale(.4); }
+    #vonoa-toggle .vt-icon img { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
 
-    #vonoa-toggle .vt-icon {
-      position: absolute;
-      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
-    }
-
-    #vonoa-toggle .vt-icon.gone {
-      opacity: 0;
-      transform: rotate(80deg) scale(.4);
-    }
-
-    #vonoa-toggle .vt-icon img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .3));
-    }
-
+    /* --- PULSE ------------------------------------------------- */
     #vonoa-pulse {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 99998;
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      pointer-events: none;
-      border: 2px solid rgba(93, 202, 165, .4);
-      animation: vonoaRing 2.5s ease-out infinite;
+      position: fixed; bottom: 28px; right: 28px; z-index: 99998;
+      width: 62px; height: 62px; border-radius: 50%; pointer-events: none;
+      border: 2px solid rgba(93,202,165,.4);
+      animation: vonoaRing 2.6s ease-out infinite;
     }
+    @keyframes vonoaRing { 0% { transform: scale(1); opacity: .6 } 100% { transform: scale(1.9); opacity: 0 } }
 
-    @keyframes vonoaRing {
-      0% {
-        transform: scale(1);
-        opacity: .6
-      }
-
-      100% {
-        transform: scale(2);
-        opacity: 0
-      }
-    }
-
+    /* --- NOTIFICATION BADGE ------------------------------------ */
     #vonoa-notif {
-      position: absolute;
-      top: -1px;
-      right: -1px;
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: #E85D26;
-      border: 2.5px solid #fff;
-      font-size: 10px;
-      color: #fff;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      animation: vonoaPop .35s ease;
+      position: absolute; top: -2px; right: -2px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #E85D26; border: 2.5px solid #fff;
+      font-size: 10px; color: #fff; display: none;
+      align-items: center; justify-content: center; font-weight: 700;
+      animation: vonoaPop .35s ease; z-index: 1;
     }
+    @keyframes vonoaPop { from { transform: scale(0) } to { transform: scale(1) } }
 
-    @keyframes vonoaPop {
-      from {
-        transform: scale(0)
-      }
-
-      to {
-        transform: scale(1)
-      }
-    }
-
-    /* PANEL */
+    /* --- PANEL ------------------------------------------------- */
     #vonoa-panel {
-      position: fixed;
-      bottom: 110px;
-      right: 28px;
-      z-index: 99998;
-      width: 400px;
-      height: 640px;
-      background: linear-gradient(180deg, #0a1628 0%, #0d1f3a 40%, #0f2440 100%);
-      border-radius: 24px;
-      border: 1px solid rgba(93, 202, 165, .15);
-      box-shadow: 0 40px 100px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .03), 0 0 60px rgba(29, 158, 117, .08);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: translateY(24px) scale(.93);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), opacity .25s;
+      position: fixed; bottom: 108px; right: 28px; z-index: 99998;
+      width: 360px; height: 580px;
+      background: #f0f2f5; border-radius: 20px;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 24px 80px rgba(0,0,0,.22), 0 8px 32px rgba(0,0,0,.1);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: translateY(24px) scale(.95); opacity: 0; pointer-events: none;
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1), opacity .22s;
     }
-
-    #vonoa-panel.open {
-      transform: none;
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    /* Responsive móvil */
+    #vonoa-panel.open { transform: none; opacity: 1; pointer-events: all; }
     @media (max-width: 480px) {
-      #vonoa-panel {
-        width: calc(100vw - 24px);
-        right: 12px;
-        bottom: 90px;
-        height: 70vh;
-      }
-
-      #vonoa-toggle,
-      #vonoa-pulse {
-        right: 16px;
-        bottom: 16px;
-      }
+      #vonoa-panel { width: calc(100vw - 20px); right: 10px; bottom: 88px; height: 72vh; border-radius: 20px; }
+      #vonoa-toggle, #vonoa-pulse { right: 16px; bottom: 16px; }
+      #vonoa-hint { right: 88px; bottom: 30px; }
     }
 
-    /* HEADER */
+    /* --- HEADER ----------------------------------------------- */
     #vonoa-panel .vhdr {
-      padding: 16px 18px;
-      background: linear-gradient(180deg, rgba(10, 22, 40, .98) 0%, rgba(13, 31, 58, .95) 100%);
-      border-bottom: 1px solid rgba(93, 202, 165, .12);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      padding: 15px 18px 13px;
+      background: linear-gradient(160deg, #1B2A4A 0%, #243563 100%);
+      border-bottom: 1px solid rgba(93,202,165,.1);
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
-
     .vhdr .vav {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 35%, #1a3a5c, #0b1e36);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 2px rgba(93, 202, 165, .25), 0 4px 14px rgba(0, 0, 0, .4);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; overflow: hidden;
+      border: 2px solid rgba(93,202,165,.3);
     }
-
-    .vhdr .vav img {
-      width: 38px;
-      height: 38px;
-      object-fit: contain;
-    }
-
+    .vhdr .vav img { width: 36px; height: 36px; object-fit: contain; }
     .vhdr .vav-dot {
-      position: absolute;
-      bottom: 1px;
-      right: 1px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #5DCAA5;
-      border: 2.5px solid #0a1628;
-      animation: vBlink 2.8s ease-in-out infinite;
-      z-index: 2;
+      position: absolute; bottom: 1px; right: 1px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #4ade80; border: 2px solid #1B2A4A;
+      animation: vBlink 3s ease-in-out infinite; z-index: 2;
     }
-
-    @keyframes vBlink {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: .3
-      }
-    }
-
-    .vhdr .vinfo {
-      flex: 1;
-    }
-
-    .vhdr .vname {
-      font-family: 'DM Serif Display', serif;
-      font-size: 16px;
-      color: #F2EBD9;
-      line-height: 1.2;
-      letter-spacing: .02em;
-    }
-
-    .vhdr .vstatus {
-      font-size: 11px;
-      color: #5DCAA5;
-      margin-top: 3px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .vhdr .vstatus::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #5DCAA5;
-      box-shadow: 0 0 8px #5DCAA5;
-      animation: vBlink 2.8s ease-in-out infinite;
-    }
-
+    @keyframes vBlink { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+    .vhdr .vinfo { flex: 1; min-width: 0; }
+    .vhdr .vname { font-family: 'DM Serif Display', serif; font-size: 15px; color: #f0ebe0; letter-spacing: .02em; line-height: 1.2; }
+    .vhdr .vstatus { font-size: 11px; color: #4ade80; margin-top: 3px; display: flex; align-items: center; gap: 5px; }
+    .vhdr .vstatus::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px #4ade80; flex-shrink: 0; animation: vBlink 3s ease-in-out infinite; }
     .vhdr .vclose {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      background: rgba(242, 235, 217, .05);
-      color: rgba(242, 235, 217, .35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .18s;
+      width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+      background: rgba(255,255,255,.07); color: rgba(240,235,224,.35);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .18s; flex-shrink: 0;
     }
+    .vhdr .vclose:hover { background: rgba(255,255,255,.14); color: rgba(240,235,224,.9); transform: rotate(90deg); }
 
-    .vhdr .vclose:hover {
-      background: rgba(242, 235, 217, .12);
-      color: rgba(242, 235, 217, .85);
-      transform: rotate(90deg);
-    }
-
-    /* MESSAGES */
+    /* --- MESSAGES --------------------------------------------- */
     #vonoa-msgs {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      scroll-behavior: smooth;
+      flex: 1; overflow-y: auto; padding: 16px 12px 8px;
+      display: flex; flex-direction: column; gap: 10px;
+      scroll-behavior: smooth; background: #f0f2f5;
     }
-
-    #vonoa-msgs::-webkit-scrollbar {
-      width: 3px;
-    }
-
-    #vonoa-msgs::-webkit-scrollbar-thumb {
-      background: rgba(29, 158, 117, .22);
-      border-radius: 2px;
-    }
-
-    .vmrow {
-      display: flex;
-      gap: 7px;
-      align-items: flex-end;
-      animation: vFadeUp .22s ease;
-    }
-
-    .vmrow.vu {
-      flex-direction: row-reverse;
-    }
-
-    @keyframes vFadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(7px)
-      }
-
-      to {
-        opacity: 1;
-        transform: none
-      }
-    }
-
+    #vonoa-msgs::-webkit-scrollbar { width: 3px; }
+    #vonoa-msgs::-webkit-scrollbar-thumb { background: rgba(0,0,0,.1); border-radius: 3px; }
+    .vmrow { display: flex; gap: 7px; align-items: flex-end; animation: vFadeUp .22s ease; }
+    .vmrow.vu { flex-direction: row-reverse; }
+    @keyframes vFadeUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:none } }
     .vmav {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      background: radial-gradient(circle at 40% 35%, #1a3a5c, #0b1e36);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(145deg, #243563, #1B2A4A);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.15);
     }
+    .vmav img { width: 22px; height: 22px; object-fit: contain; }
+    .vmcol { display: flex; flex-direction: column; max-width: 78%; gap: 2px; }
+    .vmrow.vu .vmcol { align-items: flex-end; }
 
-    .vmav img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
-
-    .vmcol {
-      display: flex;
-      flex-direction: column;
-      max-width: 80%;
-      gap: 3px;
-    }
-
-    .vmrow.vu .vmcol {
-      align-items: flex-end;
-    }
-
-    .vbbl {
-      padding: 11px 15px;
-      border-radius: 18px;
-      font-size: 13.5px;
-      line-height: 1.6;
-      word-break: break-word;
-    }
-
+    /* --- BUBBLES ---------------------------------------------- */
+    .vbbl { padding: 10px 14px; border-radius: 18px; font-size: 13.5px; line-height: 1.6; word-break: break-word; }
     .vbbl.vb {
-      background: linear-gradient(135deg, #15263e, #192d46);
-      color: #d4cec2;
+      background: #ffffff; color: #374151;
       border-radius: 5px 18px 18px 18px;
-      border: 1px solid rgba(93, 202, 165, .08);
+      box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.04);
     }
-
+    .vbbl.vb strong { color: #111827; font-weight: 600; }
+    .vbbl.vb ul { padding-left: 14px; margin: 5px 0; display: flex; flex-direction: column; gap: 3px; }
+    .vbbl.vb li { line-height: 1.55; }
     .vbbl.vu2 {
-      background: linear-gradient(145deg, #1D9E75, #148a5a);
-      color: #F2EBD9;
-      border-radius: 18px 5px 18px 18px;
-      box-shadow: 0 4px 16px rgba(29, 158, 117, .2);
+      background: linear-gradient(145deg, #1D9E75, #148a5a); color: #f0faf5;
+      border-radius: 18px 5px 18px 18px; box-shadow: 0 3px 12px rgba(29,158,117,.25);
     }
+    .vmtime { font-size: 10px; color: rgba(55,65,81,.35); padding: 0 4px; }
+    .vmrow.vu .vmtime { color: rgba(55,65,81,.4); }
 
-    .vbbl strong {
-      color: #eae4d6;
-      font-weight: 600;
-    }
+    /* --- TYPING ----------------------------------------------- */
+    .vtypi { display: flex; gap: 5px; align-items: center; padding: 13px 16px; background: #ffffff; border-radius: 5px 18px 18px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .vtd { width: 7px; height: 7px; border-radius: 50%; background: #9ca3af; animation: vTd 1.1s ease-in-out infinite; }
+    .vtd:nth-child(2) { animation-delay: .16s }
+    .vtd:nth-child(3) { animation-delay: .32s }
+    @keyframes vTd { 0%,60%,100% { transform:translateY(0); opacity:.35 } 30% { transform:translateY(-5px); opacity:1 } }
 
-    .vbbl ul {
-      padding-left: 15px;
-      margin: 5px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .vbbl li {
-      line-height: 1.55;
-    }
-
-    .vmtime {
-      font-size: 10px;
-      color: rgba(242, 235, 217, .18);
-      padding: 0 3px;
-    }
-
-    /* TYPING */
-    .vtypi {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-      padding: 12px 15px;
-      background: #192d46;
-      border-radius: 5px 18px 18px 18px;
-      border: 1px solid rgba(29, 158, 117, .1);
-    }
-
-    .vtd {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #5DCAA5;
-      animation: vTd 1.2s ease-in-out infinite;
-    }
-
-    .vtd:nth-child(2) {
-      animation-delay: .15s
-    }
-
-    .vtd:nth-child(3) {
-      animation-delay: .3s
-    }
-
-    @keyframes vTd {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-        opacity: .35
-      }
-
-      30% {
-        transform: translateY(-5px);
-        opacity: 1
-      }
-    }
-
-    /* CHIPS */
-    #vonoa-chips {
-      padding: 3px 12px 9px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    /* --- CHIPS ------------------------------------------------- */
+    #vonoa-chips { padding: 4px 12px 10px; display: flex; flex-wrap: wrap; gap: 6px; background: #f0f2f5; }
     .vchp {
-      padding: 7px 13px;
-      border-radius: 20px;
-      font-size: 12px;
-      border: 1px solid rgba(29, 158, 117, .32);
-      background: rgba(29, 158, 117, .07);
-      color: #5DCAA5;
-      cursor: pointer;
-      transition: all .15s;
-      font-family: 'DM Sans', sans-serif;
+      padding: 7px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 500;
+      border: 1.5px solid rgba(27,42,74,.2); background: #ffffff; color: #1B2A4A;
+      cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
     }
+    .vchp:hover { background: #1B2A4A; border-color: #1B2A4A; color: #ffffff; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(27,42,74,.25); }
 
-    .vchp:hover {
-      background: rgba(29, 158, 117, .17);
-      border-color: #5DCAA5;
-      color: #7ddebf;
-    }
-
-    /* WA CTA */
+    /* --- WA CTA ----------------------------------------------- */
     .vwacta {
-      margin: 2px 12px 10px;
-      padding: 12px 14px;
-      border-radius: 13px;
-      background: rgba(37, 211, 102, .07);
-      border: 1px solid rgba(37, 211, 102, .2);
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all .18s;
-      animation: vFadeUp .22s ease;
+      margin: 2px 12px 10px; padding: 12px 14px; border-radius: 14px;
+      background: #ffffff; border: 1.5px solid rgba(37,211,102,.3);
+      display: flex; align-items: center; gap: 12px;
+      cursor: pointer; text-decoration: none; transition: all .18s;
+      animation: vFadeUp .22s ease; box-shadow: 0 2px 8px rgba(37,211,102,.1);
     }
+    .vwacta:hover { background: #f0fff4; border-color: #25D366; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,.2); }
+    .vwacta .vwat { font-size: 13px; color: #148a5a; font-weight: 600; }
+    .vwacta .vwas { font-size: 11px; color: #6b7280; margin-top: 2px; }
 
-    .vwacta:hover {
-      background: rgba(37, 211, 102, .15);
-    }
-
-    .vwacta .vwat {
-      font-size: 13px;
-      color: #7ddec0;
-      font-weight: 500;
-    }
-
-    .vwacta .vwas {
-      font-size: 11px;
-      color: rgba(125, 222, 192, .55);
-      margin-top: 2px;
-    }
-
-    /* INPUT */
-    #vonoa-inarea {
-      padding: 12px 14px 14px;
-      background: linear-gradient(180deg, rgba(10, 22, 40, .9) 0%, rgba(7, 17, 30, .95) 100%);
-      border-top: 1px solid rgba(93, 202, 165, .08);
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-      flex-shrink: 0;
-    }
-
+    /* --- INPUT AREA ------------------------------------------- */
+    #vonoa-inarea { padding: 10px 12px 12px; background: #ffffff; border-top: 1px solid rgba(0,0,0,.07); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
     #vonoa-inp {
-      flex: 1;
-      min-height: 42px;
-      max-height: 92px;
-      background: rgba(21, 38, 62, .85);
-      border: 1px solid rgba(93, 202, 165, .12);
-      border-radius: 14px;
-      padding: 11px 14px;
-      color: #F2EBD9;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px;
-      resize: none;
-      outline: none;
-      line-height: 1.45;
+      flex: 1; min-height: 40px; max-height: 88px;
+      background: #f3f4f6; border: 1.5px solid transparent; border-radius: 20px;
+      padding: 10px 14px; color: #1f2937; font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; resize: none; outline: none; line-height: 1.45;
       transition: border-color .2s, box-shadow .2s;
     }
-
-    #vonoa-inp::placeholder {
-      color: rgba(242, 235, 217, .22);
-    }
-
-    #vonoa-inp:focus {
-      border-color: rgba(93, 202, 165, .35);
-      box-shadow: 0 0 0 3px rgba(93, 202, 165, .08);
-    }
-
+    #vonoa-inp::placeholder { color: #9ca3af; }
+    #vonoa-inp:focus { border-color: rgba(27,42,74,.3); background: #ffffff; box-shadow: 0 0 0 3px rgba(27,42,74,.06); }
     #vonoa-send {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #1D9E75, #148a5a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all .18s;
-      box-shadow: 0 4px 14px rgba(29, 158, 117, .3);
+      width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, #1B2A4A, #2a3f6f);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all .18s; box-shadow: 0 3px 10px rgba(27,42,74,.35);
     }
+    #vonoa-send:hover:not(:disabled) { transform: scale(1.08); box-shadow: 0 5px 18px rgba(27,42,74,.5); }
+    #vonoa-send:disabled { background: #e5e7eb; cursor: not-allowed; box-shadow: none; }
+    #vonoa-send:disabled svg { stroke: #9ca3af; }
 
-    #vonoa-send:hover:not(:disabled) {
-      background: linear-gradient(135deg, #22b385, #1D9E75);
-      transform: scale(1.06);
-      box-shadow: 0 6px 20px rgba(29, 158, 117, .4);
-    }
+    /* --- FOOTER ----------------------------------------------- */
+    #vonoa-foot { text-align: center; padding: 6px; font-size: 10px; color: #d1d5db; letter-spacing: .4px; background: #ffffff; flex-shrink: 0; }
+    #vonoa-foot b { color: #9ca3af; font-weight: 400; }  </style>
 
-    #vonoa-send:disabled {
-      background: rgba(29, 158, 117, .15);
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    #vonoa-foot {
-      text-align: center;
-      padding: 7px;
-      font-size: 10px;
-      color: rgba(242, 235, 217, .08);
-      letter-spacing: .4px;
-      background: rgba(7, 17, 30, .95);
-      flex-shrink: 0;
-    }
-
-    #vonoa-foot b {
-      color: rgba(29, 158, 117, .25);
-      font-weight: 400;
-    }
-  </style>
-
-  <!-- ═══════════════════════════════════════════
-     VONOA CHATBOT – ESTRUCTURA HTML
-     ═══════════════════════════════════════════ -->
   <div id="vonoa-root">
 
     <div id="vonoa-pulse"></div>
+    <div id="vonoa-hint">¿En qué te puedo ayudar? 💬</div>
 
     <button id="vonoa-toggle" onclick="vonoaToggle()">
       <div id="vonoa-notif">1</div>
       <span class="vt-icon" id="vtic1">
-        <img src="assets/vona-icon.png" alt="Vona" width="54" height="54">
+        <img src="assets/vona-icon.png" alt="Vona" width="52" height="52">
       </span>
       <span class="vt-icon gone" id="vtic2">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#F2EBD9" stroke-width="2.5"
-          stroke-linecap="round">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2EBD9" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </span>
     </button>
 
     <div id="vonoa-panel">
       <div class="vhdr">
-        <div class="vav"><img src="assets/vona-icon.png" alt="Vona">
+        <div class="vav">
+          <img src="assets/vona-icon.png" alt="Vona">
           <div class="vav-dot"></div>
         </div>
         <div class="vinfo">
-          <div class="vname">Vona · VonoaWeb</div>
-          <div class="vstatus">Agente IA · En línea ahora</div>
+          <div class="vname">Vona &middot; VonoaWeb</div>
+          <div class="vstatus">Agente IA &middot; En línea</div>
         </div>
         <button class="vclose" onclick="vonoaToggle()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
       </div>
       <div id="vonoa-msgs"></div>
       <div id="vonoa-chips"></div>
       <div id="vonoa-inarea">
-        <textarea id="vonoa-inp" placeholder="Escribe tu pregunta..." rows="1" onkeydown="vonoaKey(event)"
-          oninput="vonoaRsz(this)"></textarea>
+        <textarea id="vonoa-inp" placeholder="Escribe tu mensaje..." rows="1"
+          onkeydown="vonoaKey(event)" oninput="vonoaRsz(this)"></textarea>
         <button id="vonoa-send" onclick="vonoaSend()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13" />
-            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
           </svg>
         </button>
       </div>
-      <div id="vonoa-foot">Agente IA de <b>VonoaWeb</b> · Powered by Claude</div>
+      <div id="vonoa-foot">Agente IA de <b>VonoaWeb</b> &middot; Powered by Claude</div>
     </div>
 
   </div>
 
   <script>
-    /* ═══════════════════════════════════════════
-       CONFIGURACIÓN — edita estos valores
-       ═══════════════════════════════════════════ */
-    const WA_NUMBER = '5215644645574';   // ← Tu número con código de país (52 = México)
+    const WA_NUMBER = '5215644645574';
     const WA_MSG = 'Hola, Vona me contactó desde vonoaweb.com. Me gustaría una consulta gratuita.';
-    const SHOW_NOTIF_AFTER = 2500;         // ms antes de mostrar el punto de notificación
+    const SHOW_NOTIF_AFTER = 2500;
 
-    /* ═══════════════════════════════════════════
-       SYSTEM PROMPT DEL AGENTE
-       ═══════════════════════════════════════════ */
-    const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e inteligencia artificial en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital con IA, y los guías hacia una consulta gratuita con un asesor humano de nuestro equipo.
+    const VONOA_SYS = 'Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e inteligencia artificial en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital con IA, y los guías hacia una consulta gratuita con un asesor humano de nuestro equipo.\n\nSOBRE VONOAWEB:\n- Pioneros en Jalisco integrando IA + diseño web para PYMES\n- Combinamos diseño web profesional + chatbots IA + automatización de procesos\n- Proyectos destacados: Moncatu (e-commerce joyería), Azul de Metileno (corporativo, SEO)\n\nPLANES DE IA:\n- Asistente IA: Setup $4,999 + $2,999/mes\n- Transformación IA (recomendado): Setup $5,999 + $3,999/mes\n- Escala Automática: Setup $9,999 + $6,999/mes\n\nPLANES DE DISEÑO WEB:\n- Plan Impulso: $5,200 MXN\n- Presencia Pro: $7,400 MXN\n- Premium: $10,500 MXN\n\nPERSONALIDAD: Amigable, directo, español mexicano informal (tuéalo), respuestas cortas 2-4 oraciones, emojis con moderación.\n\nFLUJO: Identifica necesidad > recomienda plan Transformación IA > pide nombre y giro > invita a consulta gratuita por WhatsApp.';
 
-SOBRE VONOAWEB:
-- Pioneros en Jalisco integrando IA + diseño web para PYMES — de las primeras agencias en México en implementar inteligencia artificial conversacional para negocios locales
-- Combinamos diseño web profesional + chatbots IA + automatización de procesos
-- Proyectos destacados: Moncatu (e-commerce joyería, WooCommerce + MercadoPago), Azul de Metileno (corporativo, SEO técnico)
-
-PLANES DE IA (nuestro diferenciador):
-- Asistente IA: Setup $4,999 + $2,999/mes — Chatbot IA en WhatsApp + Web, atención 24/7, calificación de leads
-- Transformación IA ★ (recomendado): Setup $5,999 + $3,999/mes — Web optimizada + Chatbot IA + 1 automatización
-- Escala Automática: Setup $9,999 + $6,999/mes — Todo lo anterior + hasta 3 automatizaciones + marketing inteligente
-
-PLANES DE DISEÑO WEB (pago único):
-- Plan Impulso: $5,200 MXN — hasta 3 secciones, responsivo, SEO básico
-- Presencia Pro: $7,400 MXN — hasta 6 secciones, animaciones, integración redes
-- Premium: $10,500 MXN — tienda WooCommerce, pasarelas de pago, analíticas
-
-OTROS SERVICIOS:
-- Marketing Digital + SEO: desde $4,500 MXN/mes
-- Automatización de procesos: desde $1,999 MXN/mes (setup $2,999)
-- Sistemas personalizados con IA: cotización a medida
-Integraciones: MercadoPago, WhatsApp Business, Meta Pixel, Google Analytics, CRMs.
-
-PERSONALIDAD:
-- Amigable, directo y profesional — no robótico
-- Español mexicano natural e informal (tutéalo)
-- Respuestas cortas (2-4 oraciones). Usa bullets si hay varios puntos
-- Emojis con moderación
-- Los precios son los publicados, pero aclara que el alcance final puede variar
-- Si no sabes algo: ofrece conectar con un asesor humano del equipo
-
-FLUJO:
-1. Identifica qué necesita el negocio
-2. Da info del servicio relevante y recomienda el plan Transformación IA como mejor opción
-3. Si hay interés real → pide nombre y giro del negocio
-4. Invítalo a consulta gratuita con un asesor humano por WhatsApp
-Responde siempre en el idioma del usuario. Nunca menciones nombres propios del equipo.`;
-
-    /* ═══════════════════════════════════════════
-       LÓGICA DEL WIDGET
-       ═══════════════════════════════════════════ */
     (function () {
-      let hist = [], busy = false, isOpen = false, greeted = false;
-      const panel = document.getElementById('vonoa-panel');
-      const msgs = document.getElementById('vonoa-msgs');
-      const inp = document.getElementById('vonoa-inp');
-      const sb = document.getElementById('vonoa-send');
-      const chps = document.getElementById('vonoa-chips');
-      const notif = document.getElementById('vonoa-notif');
-      const ic1 = document.getElementById('vtic1');
-      const ic2 = document.getElementById('vtic2');
+      var hist = [], busy = false, isOpen = false, greeted = false;
+      var panel = document.getElementById('vonoa-panel');
+      var msgs  = document.getElementById('vonoa-msgs');
+      var inp   = document.getElementById('vonoa-inp');
+      var sb    = document.getElementById('vonoa-send');
+      var chps  = document.getElementById('vonoa-chips');
+      var notif = document.getElementById('vonoa-notif');
+      var hint  = document.getElementById('vonoa-hint');
+      var ic1   = document.getElementById('vtic1');
+      var ic2   = document.getElementById('vtic2');
 
       window.vonoaToggle = function () {
         isOpen = !isOpen;
         panel.classList.toggle('open', isOpen);
         ic1.classList.toggle('gone', isOpen);
         ic2.classList.toggle('gone', !isOpen);
+        hint.classList.remove('show');
         if (isOpen) {
           notif.style.display = 'none';
           if (!greeted) { greeted = true; greet(); }
-          else inp.focus();
+          else setTimeout(function(){ inp.focus(); }, 300);
         }
       };
 
       function greet() {
-        const h = new Date().getHours();
-        const g = h < 12 ? '¡Buenos días' : h < 20 ? '¡Buenas tardes' : '¡Buenas noches';
-        addBot(`${g} 👋 Soy **Vona**, el asistente de VonoaWeb.\n\n¿Cómo puedo ayudarte hoy? Cuéntame sobre tu negocio.`);
-        setChips(['🌐 Servicios web', '💰 Precios', '🛒 Shopify', '📞 Hablar con un asesor']);
+        var h = new Date().getHours();
+        var g = h < 12 ? '¡Buenos días' : h < 20 ? '¡Buenas tardes' : '¡Buenas noches';
+        addBot(g + ' 👋 Soy **Vona**, la asistente IA de VonoaWeb.\n\n¿Cómo puedo ayudarte? Cuéntame de tu negocio y te oriento.');
+        setChips(['🌐 Servicios y precios', '🤖 ¿Cómo funciona el chatbot?', '🛒 Tienda en línea', '📞 Hablar con un asesor']);
       }
 
       function setChips(arr) {
         chps.innerHTML = '';
-        arr.forEach(t => {
-          const b = document.createElement('button');
+        arr.forEach(function(t) {
+          var b = document.createElement('button');
           b.className = 'vchp'; b.textContent = t;
-          b.onclick = () => { chps.innerHTML = ''; sendTxt(t); };
+          b.onclick = function() { chps.innerHTML = ''; sendTxt(t); };
           chps.appendChild(b);
         });
       }
@@ -1540,121 +1147,125 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
       function ts() { return new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }); }
 
       function md(t) {
-        let s = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.+?)\*/g, '<em>$1</em>');
-        const lines = s.split('\n');
-        let out = '', ul = false;
-        for (const l of lines) {
-          const m = l.match(/^[-•] (.+)/);
-          if (m) { if (!ul) { out += '<ul>'; ul = true; } out += `<li>${m[1]}</li>`; }
-          else { if (ul) { out += '</ul>'; ul = false; } out += l ? `<span style="display:block;margin-bottom:4px">${l}</span>` : ''; }
+        var s = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g,'<em>$1</em>');
+        var lines = s.split('\n'); var out = '', ul = false;
+        for (var i = 0; i < lines.length; i++) {
+          var l = lines[i];
+          var m = l.match(/^[\-\u2022] (.+)/);
+          if (m) { if (!ul) { out += '<ul>'; ul = true; } out += '<li>' + m[1] + '</li>'; }
+          else { if (ul) { out += '</ul>'; ul = false; } out += l ? '<span style="display:block;margin-bottom:4px">' + l + '</span>' : ''; }
         }
         if (ul) out += '</ul>';
         return out;
       }
 
       function addBot(txt, id) {
-        const r = document.createElement('div'); r.className = 'vmrow';
-        const bid = id || 'vb' + Date.now();
-        r.innerHTML = `<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div><div class="vmcol"><div class="vbbl vb" id="${bid}">${md(txt)}</div><div class="vmtime">${ts()}</div></div>`;
+        var r = document.createElement('div'); r.className = 'vmrow';
+        var bid = id || 'vb' + Date.now();
+        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div>'
+          + '<div class="vmcol"><div class="vbbl vb" id="' + bid + '">' + md(txt) + '</div>'
+          + '<div class="vmtime">' + ts() + '</div></div>';
         msgs.appendChild(r); sc(); return bid;
       }
-      function updBot(id, txt) { const el = document.getElementById(id); if (el) { el.innerHTML = md(txt); sc(); } }
+      function updBot(id, txt) { var el = document.getElementById(id); if (el) { el.innerHTML = md(txt); sc(); } }
       function addUser(txt) {
-        const r = document.createElement('div'); r.className = 'vmrow vu';
-        r.innerHTML = `<div class="vmcol"><div class="vbbl vu2">${txt.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div><div class="vmtime">${ts()}</div></div>`;
+        var r = document.createElement('div'); r.className = 'vmrow vu';
+        r.innerHTML = '<div class="vmcol"><div class="vbbl vu2">'
+          + txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          + '</div><div class="vmtime">' + ts() + '</div></div>';
         msgs.appendChild(r); sc();
       }
       function showTyp() {
-        const r = document.createElement('div'); r.className = 'vmrow'; r.id = 'vtyp';
-        r.innerHTML = `<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div><div class="vtypi"><div class="vtd"></div><div class="vtd"></div><div class="vtd"></div></div>`;
+        var r = document.createElement('div'); r.className = 'vmrow'; r.id = 'vtyp';
+        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div>'
+          + '<div class="vtypi"><div class="vtd"></div><div class="vtd"></div><div class="vtd"></div></div>';
         msgs.appendChild(r); sc();
       }
-      function hideTyp() { const t = document.getElementById('vtyp'); if (t) t.remove(); }
+      function hideTyp() { var t = document.getElementById('vtyp'); if (t) t.remove(); }
       function sc() { msgs.scrollTop = msgs.scrollHeight; }
 
-      window.vonoaRsz = function (el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 92) + 'px'; };
+      window.vonoaRsz = function (el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 88) + 'px'; };
       window.vonoaKey = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); vonoaSend(); } };
       window.vonoaSend = function () {
-        const t = inp.value.trim();
+        var t = inp.value.trim();
         if (!t || busy) return;
         inp.value = ''; inp.style.height = 'auto';
         chps.innerHTML = '';
         sendTxt(t);
       };
 
-      async function sendTxt(txt) {
+      function sendTxt(txt) {
         addUser(txt);
         hist.push({ role: 'user', content: txt });
-        await callAPI();
+        callAPI();
       }
 
-      async function callAPI() {
-        busy = true; sb.disabled = true;
-        showTyp();
-        try {
-          const res = await fetch('https://vonoa-api-proxy.vonoaweb.workers.dev', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              model: 'claude-sonnet-4-20250514',
-              max_tokens: 1024,
-              stream: true,
-              system: VONOA_SYS,
-              messages: hist
-            })
-          });
+      function callAPI() {
+        busy = true; sb.disabled = true; showTyp();
+        fetch('https://vonoa-api-126208883092.us-central1.run.app', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1024, stream: true, system: VONOA_SYS, messages: hist })
+        }).then(function(res) {
           hideTyp();
           if (!res.ok) throw new Error('err');
-          const rdr = res.body.getReader(), dec = new TextDecoder();
-          let buf = '', full = '';
-          const bid = addBot('▋');
-          while (true) {
-            const { done, value } = await rdr.read();
-            if (done) break;
-            buf += dec.decode(value, { stream: true });
-            const lines = buf.split('\n'); buf = lines.pop();
-            for (const ln of lines) {
-              if (!ln.startsWith('data: ')) continue;
-              const d = ln.slice(6).trim();
-              if (d === '[DONE]') continue;
-              try {
-                const j = JSON.parse(d);
-                if (j.type === 'content_block_delta' && j.delta?.type === 'text_delta') {
-                  full += j.delta.text;
-                  updBot(bid, full + '▋');
-                }
-              } catch { }
-            }
+          var rdr = res.body.getReader(), dec = new TextDecoder();
+          var buf = '', full = '', bid = addBot('▋');
+          function pump() {
+            return rdr.read().then(function(chunk) {
+              if (chunk.done) {
+                updBot(bid, full);
+                hist.push({ role: 'assistant', content: full });
+                var lo = full.toLowerCase();
+                if (lo.includes('whatsapp') || lo.includes('consulta') || lo.includes('asesor') || lo.includes('humano') || lo.includes('contac')) showWA();
+                else if (hist.length >= 4) setChips(['❓ Otra pregunta', '📞 Hablar con un asesor']);
+                busy = false; sb.disabled = false;
+                setTimeout(function(){ inp.focus(); }, 100);
+                return;
+              }
+              buf += dec.decode(chunk.value, { stream: true });
+              var lines = buf.split('\n'); buf = lines.pop();
+              for (var i = 0; i < lines.length; i++) {
+                var ln = lines[i];
+                if (!ln.startsWith('data: ')) continue;
+                var d = ln.slice(6).trim();
+                if (d === '[DONE]') continue;
+                try {
+                  var j = JSON.parse(d);
+                  if (j.type === 'content_block_delta' && j.delta && j.delta.type === 'text_delta') {
+                    full += j.delta.text; updBot(bid, full + '▋');
+                  }
+                } catch(e) {}
+              }
+              return pump();
+            });
           }
-          updBot(bid, full);
-          hist.push({ role: 'assistant', content: full });
-          const lo = full.toLowerCase();
-          if (lo.includes('whatsapp') || lo.includes('consulta') || lo.includes('asesor') || lo.includes('humano') || lo.includes('contac')) {
-            showWA();
-          } else if (hist.length >= 4) {
-            setChips(['❓ Otra pregunta', '📞 Hablar con un asesor']);
-          }
-        } catch {
+          return pump();
+        }).catch(function() {
           hideTyp();
-          addBot('Tuve un error de conexión 😅 Intenta de nuevo.');
-        }
-        busy = false; sb.disabled = false; inp.focus();
+          addBot('Tuve un error de conexión 😅 Intenta de nuevo o escríbenos por WhatsApp.');
+          showWA(); busy = false; sb.disabled = false;
+        });
       }
 
       function showWA() {
-        const d = document.createElement('a');
+        var d = document.createElement('a');
         d.className = 'vwacta';
-        d.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`;
-        d.target = '_blank';
-        d.rel = 'noopener noreferrer';
-        d.innerHTML = `<svg width="28" height="28" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.3 8.7A10.13 10.13 0 0 0 16 5.7C10.37 5.7 5.8 10.27 5.8 15.9c0 1.8.47 3.56 1.37 5.1L5.7 26.3l5.45-1.43a10.16 10.16 0 0 0 4.85 1.23c5.63 0 10.2-4.57 10.2-10.2 0-2.72-1.06-5.28-2.9-7.2zM16 25.38a8.44 8.44 0 0 1-4.3-1.18l-.31-.18-3.23.85.87-3.15-.2-.33A8.43 8.43 0 0 1 7.53 15.9c0-4.67 3.8-8.47 8.47-8.47a8.47 8.47 0 0 1 8.47 8.47c0 4.67-3.8 8.48-8.47 8.48zm4.65-6.35c-.26-.13-1.51-.74-1.74-.83-.23-.08-.4-.13-.57.13-.17.26-.65.83-.8 1-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.27-1.52-1.42-1.77-.15-.26-.02-.4.11-.52.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.32-.23.26-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.52.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.2-.58.2-1.08.14-1.19-.07-.1-.24-.17-.5-.3z" fill="#fff"/></svg>
-      <div><div class="vwat">Hablar con un asesor</div><div class="vwas">Consulta gratuita · Responde rápido 🚀</div></div>`;
+        d.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_MSG);
+        d.target = '_blank'; d.rel = 'noopener noreferrer';
+        d.innerHTML = '<svg width="30" height="30" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.3 8.7A10.13 10.13 0 0 0 16 5.7C10.37 5.7 5.8 10.27 5.8 15.9c0 1.8.47 3.56 1.37 5.1L5.7 26.3l5.45-1.43a10.16 10.16 0 0 0 4.85 1.23c5.63 0 10.2-4.57 10.2-10.2 0-2.72-1.06-5.28-2.9-7.2zM16 25.38a8.44 8.44 0 0 1-4.3-1.18l-.31-.18-3.23.85.87-3.15-.2-.33A8.43 8.43 0 0 1 7.53 15.9c0-4.67 3.8-8.47 8.47-8.47a8.47 8.47 0 0 1 8.47 8.47c0 4.67-3.8 8.48-8.47 8.48zm4.65-6.35c-.26-.13-1.51-.74-1.74-.83-.23-.08-.4-.13-.57.13-.17.26-.65.83-.8 1-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.27-1.52-1.42-1.77-.15-.26-.02-.4.11-.52.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.32-.23.26-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.52.6.19 1.15.16 1.58.1.48-.07 1.48-.6 1.69-1.19.2-.58.2-1.08.14-1.19-.07-.1-.24-.17-.5-.3z" fill="#fff"/></svg>'
+          + '<div><div class="vwat">Hablar con un asesor en WhatsApp</div>'
+          + '<div class="vwas">Consulta gratuita &middot; Responde rápido 🚀</div></div>';
         msgs.appendChild(d); sc();
       }
 
-      setTimeout(() => { notif.style.display = 'flex'; }, SHOW_NOTIF_AFTER);
+      setTimeout(function() {
+        notif.style.display = 'flex';
+        hint.classList.add('show');
+        setTimeout(function(){ hint.classList.remove('show'); }, 5000);
+      }, SHOW_NOTIF_AFTER);
     })();
   </script>
 
