@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nosotros — Conoce a VonoaWeb</title>
-<link rel="icon" type="image/png" href="assets/vona-icon.png">
-<link rel="apple-touch-icon" href="assets/vona-icon.png">
+<link rel="icon" type="image/webp" href="assets/vona-icon.webp">
+<link rel="apple-touch-icon" href="assets/vona-icon.webp">
 <meta name="description" content="Somos un equipo de diseño web y marketing digital en Guadalajara, Jalisco. Ayudamos a PYMES a crecer con tecnología e inteligencia artificial.">
 <link rel="canonical" href="https://vonoaweb.com/nosotros.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vonoaweb.com/nosotros.html">
 <meta property="og:title" content="Nosotros — Conoce a VonoaWeb">
 <meta property="og:description" content="Somos un equipo de diseño web y marketing digital en Guadalajara, Jalisco. Ayudamos a PYMES a crecer con tecnología e inteligencia artificial.">
-<meta property="og:image" content="https://vonoaweb.com/assets/og-cover.jpg">
+<meta property="og:image" content="https://vonoaweb.com/assets/og-cover.webp">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="VonoaWeb">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nosotros — Conoce a VonoaWeb">
 <meta name="twitter:description" content="Somos un equipo de diseño web y marketing digital en Guadalajara, Jalisco. Ayudamos a PYMES a crecer con IA.">
-<meta name="twitter:image" content="https://vonoaweb.com/assets/og-cover.jpg">
+<meta name="twitter:image" content="https://vonoaweb.com/assets/og-cover.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -314,7 +314,7 @@
   <button id="vonoa-toggle" onclick="vonoaToggle()">
     <div id="vonoa-notif">1</div>
     <span class="vt-icon" id="vtic1">
-      <img src="assets/vona-icon.png" alt="Vona" width="54" height="54">
+      <img src="assets/vona-icon.webp" alt="Vona" width="54" height="54">
     </span>
     <span class="vt-icon gone" id="vtic2">
       <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#F2EBD9" stroke-width="2.5" stroke-linecap="round">
@@ -325,7 +325,7 @@
 
   <div id="vonoa-panel">
     <div class="vhdr">
-      <div class="vav"><img src="assets/vona-icon.png" alt="Vona"><div class="vav-dot"></div></div>
+      <div class="vav"><img src="assets/vona-icon.webp" alt="Vona"><div class="vav-dot"></div></div>
       <div class="vinfo">
         <div class="vname">Vona · VonoaWeb</div>
         <div class="vstatus">Agente IA · En línea ahora</div>
@@ -465,7 +465,7 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
   function addBot(txt,id){
     const r=document.createElement('div');r.className='vmrow';
     const bid=id||'vb'+Date.now();
-    r.innerHTML=`<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div><div class="vmcol"><div class="vbbl vb" id="${bid}">${md(txt)}</div><div class="vmtime">${ts()}</div></div>`;
+    r.innerHTML=`<div class="vmav"><img src="assets/vona-icon.webp" alt="V"></div><div class="vmcol"><div class="vbbl vb" id="${bid}">${md(txt)}</div><div class="vmtime">${ts()}</div></div>`;
     msgs.appendChild(r);sc();return bid;
   }
   function updBot(id,txt){const el=document.getElementById(id);if(el){el.innerHTML=md(txt);sc();}}
@@ -476,7 +476,7 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
   }
   function showTyp(){
     const r=document.createElement('div');r.className='vmrow';r.id='vtyp';
-    r.innerHTML=`<div class="vmav"><img src="assets/vona-icon.png" alt="V"></div><div class="vtypi"><div class="vtd"></div><div class="vtd"></div><div class="vtd"></div></div>`;
+    r.innerHTML=`<div class="vmav"><img src="assets/vona-icon.webp" alt="V"></div><div class="vtypi"><div class="vtd"></div><div class="vtd"></div><div class="vtd"></div></div>`;
     msgs.appendChild(r);sc();
   }
   function hideTyp(){const t=document.getElementById('vtyp');if(t)t.remove();}
