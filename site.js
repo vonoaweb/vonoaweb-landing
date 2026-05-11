@@ -256,6 +256,13 @@
         });
         const result = await res.json();
         if (result.success) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'form_submit_contacto',
+            form_name: 'contacto_vonoaweb',
+            servicio: payload.servicio || '',
+            presupuesto: payload.presupuesto || ''
+          });
           const name = payload.name || 'amigo';
           form.classList.add('sent');
           form.innerHTML = `
