@@ -263,6 +263,12 @@
             servicio: payload.servicio || '',
             presupuesto: payload.presupuesto || ''
           });
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: payload.servicio || 'contacto_general' });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { servicio: payload.servicio || '' });
+          }
           const name = payload.name || 'amigo';
           form.classList.add('sent');
           form.innerHTML = `
