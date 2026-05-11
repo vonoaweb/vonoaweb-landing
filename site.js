@@ -268,6 +268,7 @@
           }
           if (typeof gtag === 'function') {
             gtag('event', 'generate_lead', { servicio: payload.servicio || '' });
+            gtag('event', 'conversion', { send_to: 'AW-10804436682' });
           }
           const name = payload.name || 'amigo';
           form.classList.add('sent');
