@@ -20,33 +20,15 @@
   </script>
   <!-- End Google Analytics 4 -->
 
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','823900389572284');
-  fbq('track','PageView');
-  </script>
   <noscript><img height="1" width="1" alt="" style="display:none"
   src="https://www.facebook.com/tr?id=823900389572284&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel -->
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window,document,"clarity","script","saa39f5odh");
-  </script>
-  <!-- End Microsoft Clarity -->
+  <!-- Meta Pixel & Clarity deferred to end of body for performance -->
 
   <!-- Google Search Console verification (reemplazar TU_CODIGO_AQUI con el código real) -->
   <!-- <meta name="google-site-verification" content="TU_CODIGO_AQUI"> -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1628">
 <title>Nosotros — Conoce a VonoaWeb</title>
 <link rel="icon" type="image/webp" href="assets/vona-icon.webp">
 <link rel="apple-touch-icon" href="assets/vona-icon.webp">
@@ -65,6 +47,9 @@
 <meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="dns-prefetch" href="https://www.clarity.ms">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css?v=5">
@@ -171,7 +156,26 @@
 <style>
 /* ── VONOA CHATBOT WIDGET ──────────────────────────────────
    Pega este archivo completo en tu WordPress/Divi como
-   bloque de código HTML, o inclúyelo antes de </body>.
+   bloque de código HTML, o inclúyelo antes de 
+  <!-- Deferred: Meta Pixel + Microsoft Clarity (loaded 2s after page for better FCP/LCP) -->
+  <script>
+  setTimeout(function(){
+    // Meta Pixel
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','823900389572284');
+    fbq('track','PageView');
+    // Microsoft Clarity
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","saa39f5odh");
+  }, 2000);
+  </script>
+</body>.
    Cambia el número de WhatsApp en la variable WA_NUMBER.
    ────────────────────────────────────────────────────── */
 
@@ -622,5 +626,24 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
 
 </div>
 <script src="site.js" defer></script>
+
+  <!-- Deferred: Meta Pixel + Microsoft Clarity (loaded 2s after page for better FCP/LCP) -->
+  <script>
+  setTimeout(function(){
+    // Meta Pixel
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','823900389572284');
+    fbq('track','PageView');
+    // Microsoft Clarity
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","saa39f5odh");
+  }, 2000);
+  </script>
 </body>
 </html>
