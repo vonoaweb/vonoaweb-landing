@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Matías cumple 6 años! - Super Mario Bros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --mario-red:#E52521;
+  --mario-red-dark:#B71C1C;
+  --mario-blue:#049CD8;
+  --mario-yellow:#FBD000;
+  --mario-green:#43B047;
+  --mario-green-dark:#2E7D32;
+  --mario-brown:#8B4513;
+  --mario-brick:#C84C09;
+  --mario-gold:#FFD700;
+  --mario-gold-light:#FFEA70;
+  --sky-top:#0B0E2E;
+  --sky-mid:#162252;
+  --sky-bot:#1A3070;
+  --coin-gold:#F5C518;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--sky-top);
+  color:#fff;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* === ANIMATED BACKGROUND === */
+.bg-gradient{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 40%, var(--sky-bot) 100%);
+  z-index:-3;
+}
+
+/* === STARS === */
+.stars{position:fixed;top:0;left:0;width:100%;height:50%;z-index:-2;pointer-events:none}
+.star{
+  position:absolute;
+  width:3px;height:3px;
+  background:#fff;
+  border-radius:50%;
+  animation:twinkle var(--d, 3s) ease-in-out infinite alternate;
+  opacity:0.3;
+}
+@keyframes twinkle{0%{opacity:0.2;transform:scale(1)}100%{opacity:1;transform:scale(1.5)}}
+
+/* === FLOATING COINS === */
+.floating-coins{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
+.fcoin{
+  position:absolute;
+  width:20px;height:24px;
+  background:var(--coin-gold);
+  border-radius:50%;
+  border:2px solid #DAA520;
+  animation:floatUp var(--dur, 12s) linear infinite;
+  opacity:0.15;
+  box-shadow:inset -3px -3px 0 #DAA520, inset 3px 3px 0 #FFE082;
+}
+@keyframes floatUp{
+  0%{transform:translateY(110vh) rotate(0deg);opacity:0}
+  10%{opacity:0.15}
+  90%{opacity:0.15}
+  100%{transform:translateY(-10vh) rotate(720deg);opacity:0}
+}
+
+/* === MAIN CONTAINER === */
+.invitation{
+  max-width:580px;
+  margin:0 auto;
+  padding:0;
+  position:relative;
+}
+
+/* === BRICK BORDERS === */
+.brick-border{
+  height:48px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--mario-brick) 0px, var(--mario-brick) 52px,
+      #5D2E0C 52px, #5D2E0C 54px
+    );
+  background-size:54px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.brick-border::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:24px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--mario-brick) 0px, var(--mario-brick) 52px,
+      #5D2E0C 52px, #5D2E0C 54px
+    );
+  background-size:54px 24px;
+}
+.brick-border::after{
+  content:'';position:absolute;bottom:0;left:27px;right:0;height:24px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--mario-brick) 0px, var(--mario-brick) 52px,
+      #5D2E0C 52px, #5D2E0C 54px
+    );
+  background-size:54px 24px;
+}
+
+/* === HERO SECTION === */
+.hero{
+  padding:50px 30px 30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:11px;
+  color:var(--mario-gold);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+  animation:fadeInDown 0.8s ease-out;
+}
+.hero-number{
+  font-family:'Fredoka',sans-serif;
+  font-size:180px;
+  font-weight:700;
+  color:var(--mario-red);
+  line-height:1;
+  text-shadow:
+    0 6px 0 var(--mario-red-dark),
+    0 10px 20px rgba(0,0,0,0.4),
+    0 0 60px rgba(229,37,33,0.3);
+  position:relative;
+  display:inline-block;
+  animation:bounceIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+}
+.hero-number::after{
+  content:'★';
+  position:absolute;
+  top:-20px;right:-30px;
+  font-size:40px;
+  color:var(--mario-gold);
+  animation:spin 4s linear infinite;
+  text-shadow:0 0 20px rgba(255,215,0,0.5);
+}
+@keyframes spin{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes bounceIn{
+  0%{opacity:0;transform:scale(0.3) translateY(40px)}
+  60%{transform:scale(1.05) translateY(-10px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes fadeInDown{
+  0%{opacity:0;transform:translateY(-20px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+.hero-anos{
+  font-family:'Fredoka',sans-serif;
+  font-size:36px;font-weight:600;
+  color:var(--mario-gold);
+  margin-top:-15px;
+  letter-spacing:8px;
+  text-shadow:0 2px 0 #B8860B;
+}
+.hero-name{
+  font-family:'Fredoka',sans-serif;
+  font-size:52px;font-weight:700;
+  color:#fff;
+  margin-top:15px;
+  text-shadow:0 3px 0 rgba(0,0,0,0.3);
+  animation:fadeInDown 0.8s ease-out 0.5s both;
+}
+.hero-sub{
+  font-family:'Fredoka',sans-serif;
+  font-size:22px;font-weight:500;
+  color:rgba(255,255,255,0.85);
+  margin-top:5px;
+  animation:fadeInDown 0.8s ease-out 0.7s both;
+}
+
+/* === QUESTION BLOCK DIVIDER === */
+.q-divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;padding:25px 0;
+}
+.q-block{
+  width:36px;height:36px;
+  background:linear-gradient(135deg, var(--mario-yellow) 0%, #E6A800 100%);
+  border:3px solid #8B6914;
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Press Start 2P',monospace;
+  font-size:14px;color:#8B4513;
+  box-shadow:inset 2px 2px 0 var(--mario-gold-light), inset -2px -2px 0 #B8860B,
+    0 3px 6px rgba(0,0,0,0.3);
+  animation:qBounce 2s ease-in-out infinite;
+  position:relative;
+}
+.q-block:nth-child(2){animation-delay:0.15s}
+.q-block:nth-child(3){animation-delay:0.3s}
+.q-block:nth-child(4){animation-delay:0.45s}
+.q-block:nth-child(5){animation-delay:0.6s}
+@keyframes qBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.q-line{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--mario-gold),transparent)}
+
+/* === INFO CARDS === */
+.info-section{padding:0 25px 30px}
+.info-card{
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,215,0,0.15);
+  border-radius:16px;
+  padding:28px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  animation:slideUp 0.6s ease-out both;
+}
+.info-card:nth-child(1){animation-delay:0.2s}
+.info-card:nth-child(2){animation-delay:0.4s}
+.info-card:nth-child(3){animation-delay:0.6s}
+@keyframes slideUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+.info-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--mario-red),var(--mario-yellow),var(--mario-green),var(--mario-blue));
+}
+.card-icon{
+  font-size:28px;margin-bottom:10px;display:block;
+}
+.card-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  color:var(--mario-gold);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.card-value{
+  font-family:'Fredoka',sans-serif;
+  font-size:28px;font-weight:600;
+}
+.card-detail{
+  color:rgba(255,255,255,0.7);
+  font-size:15px;margin-top:4px;
+}
+
+/* === DATE TIME FLEX === */
+.datetime-row{
+  display:flex;gap:15px;
+}
+.datetime-row .info-card{flex:1}
+
+/* === LOCATION === */
+.location-name{
+  font-family:'Fredoka',sans-serif;
+  font-size:24px;font-weight:600;
+  color:var(--mario-gold);
+  margin-bottom:8px;
+}
+.location-addr{color:rgba(255,255,255,0.75);font-size:15px;line-height:1.6}
+
+/* === MAP === */
+.map-container{
+  margin-top:18px;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid rgba(255,215,0,0.2);
+  position:relative;
+}
+.map-container iframe{
+  width:100%;height:220px;border:0;display:block;
+  filter:saturate(0.8) brightness(0.85);
+  transition:filter 0.3s;
+}
+.map-container:hover iframe{filter:saturate(1) brightness(1)}
+.map-link{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:14px;
+  padding:10px 20px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:25px;
+  color:#8AB4F8;
+  text-decoration:none;
+  font-size:14px;
+  transition:all 0.3s;
+}
+.map-link:hover{background:rgba(255,255,255,0.15);border-color:var(--mario-blue);color:#fff}
+
+/* === THEME BADGE === */
+.theme-section{
+  text-align:center;
+  padding:10px 25px 30px;
+}
+.theme-badge{
+  display:inline-block;
+  padding:14px 35px;
+  background:linear-gradient(135deg, var(--mario-red) 0%, var(--mario-red-dark) 100%);
+  border-radius:50px;
+  font-family:'Press Start 2P',monospace;
+  font-size:13px;
+  color:#fff;
+  letter-spacing:2px;
+  box-shadow:0 4px 15px rgba(229,37,33,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  animation:pulse 2s ease-in-out infinite;
+  position:relative;
+}
+.theme-badge::before{content:'🍄 '}
+.theme-badge::after{content:' ⭐'}
+@keyframes pulse{0%,100%{box-shadow:0 4px 15px rgba(229,37,33,0.4)}50%{box-shadow:0 4px 30px rgba(229,37,33,0.7)}}
+
+/* === FUN FACTS === */
+.facts-section{padding:0 25px 30px}
+.facts-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:10px;
+  color:var(--mario-gold);
+  text-align:center;
+  letter-spacing:3px;
+  margin-bottom:18px;
+}
+.facts-grid{display:flex;flex-direction:column;gap:12px}
+.fact-card{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(0,0,0,0.2);
+  border-radius:12px;
+  padding:16px 18px;
+  border-left:3px solid;
+  animation:slideUp 0.5s ease-out both;
+}
+.fact-card:nth-child(1){border-color:var(--mario-red);animation-delay:0.8s}
+.fact-card:nth-child(2){border-color:var(--mario-green);animation-delay:0.95s}
+.fact-card:nth-child(3){border-color:var(--mario-blue);animation-delay:1.1s}
+.fact-card:nth-child(4){border-color:var(--mario-yellow);animation-delay:1.25s}
+.fact-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.fact-text{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5}
+.fact-text strong{color:#fff;font-weight:600}
+
+/* === CTA SECTION === */
+.cta-section{
+  text-align:center;
+  padding:20px 25px 40px;
+}
+.cta-text{
+  font-family:'Fredoka',sans-serif;
+  font-size:32px;font-weight:700;
+  margin-bottom:20px;
+  text-shadow:0 2px 10px rgba(0,0,0,0.3);
+}
+.cta-text span{color:var(--mario-gold)}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:18px 45px;
+  background:linear-gradient(135deg, var(--mario-green) 0%, var(--mario-green-dark) 100%);
+  border:none;border-radius:50px;
+  color:#fff;
+  font-family:'Fredoka',sans-serif;
+  font-size:20px;font-weight:600;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 6px 0 #1B5E20, 0 8px 25px rgba(0,0,0,0.3);
+  transition:all 0.15s;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+}
+.cta-btn::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  transition:left 0.5s;
+}
+.cta-btn:hover::before{left:100%}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 #1B5E20, 0 12px 35px rgba(0,0,0,0.4)}
+.cta-btn:active{transform:translateY(2px);box-shadow:0 3px 0 #1B5E20, 0 4px 15px rgba(0,0,0,0.3)}
+
+/* === PIPE DECORATIONS === */
+.pipes-row{
+  display:flex;justify-content:space-between;
+  padding:0 30px;
+  margin:-10px 0 -5px;
+}
+.pipe{
+  width:50px;position:relative;
+}
+.pipe-cap{
+  width:60px;height:20px;
+  background:linear-gradient(180deg, #6ECF6E 0%, var(--mario-green) 30%, var(--mario-green-dark) 100%);
+  border-radius:4px 4px 0 0;
+  margin-left:-5px;
+  box-shadow:inset 3px 0 0 rgba(255,255,255,0.15);
+}
+.pipe-body{
+  width:50px;height:40px;
+  background:linear-gradient(90deg, #6ECF6E 0%, var(--mario-green) 25%, var(--mario-green) 75%, var(--mario-green-dark) 100%);
+  box-shadow:inset 3px 0 0 rgba(255,255,255,0.1);
+}
+
+/* === COIN ANIMATION ROW === */
+.coin-row{
+  display:flex;justify-content:center;gap:20px;
+  padding:20px 0;
+}
+.coin{
+  width:22px;height:26px;
+  background:var(--coin-gold);
+  border-radius:50%;
+  border:2px solid #DAA520;
+  box-shadow:inset -2px -2px 0 #DAA520, inset 2px 2px 0 #FFE082, 0 2px 8px rgba(255,215,0,0.3);
+  animation:coinSpin 1.5s ease-in-out infinite;
+}
+.coin:nth-child(1){animation-delay:0s}
+.coin:nth-child(2){animation-delay:0.15s}
+.coin:nth-child(3){animation-delay:0.3s}
+.coin:nth-child(4){animation-delay:0.45s}
+.coin:nth-child(5){animation-delay:0.6s}
+@keyframes coinSpin{
+  0%,100%{transform:scaleX(1) translateY(0)}
+  25%{transform:scaleX(0.3) translateY(-8px)}
+  50%{transform:scaleX(1) translateY(-12px)}
+  75%{transform:scaleX(0.3) translateY(-8px)}
+}
+
+/* === FOOTER === */
+.footer{
+  text-align:center;
+  padding:15px 25px 20px;
+  font-size:12px;
+  color:rgba(255,255,255,0.3);
+  font-family:'Press Start 2P',monospace;
+}
+
+/* === MUSHROOM FLOAT === */
+.mushroom-float{
+  position:absolute;
+  font-size:28px;
+  animation:mushroomBob 3s ease-in-out infinite;
+  opacity:0.6;
+  pointer-events:none;
+}
+.mushroom-float.left{left:15px;top:50%}
+.mushroom-float.right{right:15px;top:55%}
+@keyframes mushroomBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* === RESPONSIVE === */
+@media(max-width:600px){
+  .hero-number{font-size:140px}
+  .hero-name{font-size:40px}
+  .hero-anos{font-size:28px}
+  .datetime-row{flex-direction:column;gap:12px}
+  .cta-btn{padding:16px 35px;font-size:18px}
+  .theme-badge{font-size:11px;padding:12px 25px}
+  .map-container iframe{height:180px}
+}
+@media(max-width:400px){
+  .hero-number{font-size:110px}
+  .hero-name{font-size:34px}
+  .info-section,.facts-section,.cta-section,.theme-section{padding-left:15px;padding-right:15px}
+}
+
+/* === SCROLL ANIMATIONS === */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.6s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* === CHARACTER IMAGES === */
+.mario-hero-img{
+  position:absolute;
+  bottom:-10px;left:-10px;
+  width:140px;
+  filter:drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+  animation:marioJump 2.5s ease-in-out infinite;
+  z-index:2;
+}
+@keyframes marioJump{
+  0%,100%{transform:translateY(0)}
+  40%{transform:translateY(-18px)}
+  60%{transform:translateY(-18px)}
+}
+.star-hero-img{
+  position:absolute;
+  top:10px;right:-5px;
+  width:100px;
+  filter:drop-shadow(0 0 20px rgba(255,215,0,0.6));
+  animation:starFloat 3s ease-in-out infinite;
+  z-index:2;
+}
+@keyframes starFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-15px) rotate(10deg)}
+}
+.mario-starman-img{
+  width:160px;
+  margin:0 auto 10px;
+  display:block;
+  filter:drop-shadow(0 0 25px rgba(255,215,0,0.4)) drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+  animation:starmanGlow 2s ease-in-out infinite alternate;
+}
+@keyframes starmanGlow{
+  0%{filter:drop-shadow(0 0 15px rgba(255,215,0,0.3)) drop-shadow(0 5px 15px rgba(0,0,0,0.4))}
+  100%{filter:drop-shadow(0 0 35px rgba(255,215,0,0.7)) drop-shadow(0 5px 15px rgba(0,0,0,0.4))}
+}
+.characters-row{
+  display:flex;justify-content:center;
+  padding:5px 15px 0;
+  position:relative;
+}
+.characters-img{
+  width:min(90%, 420px);
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+  animation:fadeInDown 0.8s ease-out 0.4s both;
+}
+
+/* Mario popping out of pipe */
+.pipe-mario-wrap{
+  position:relative;
+  display:flex;justify-content:center;
+  margin:-25px 0 -15px;
+  z-index:2;
+}
+.pipe-mario-container{
+  position:relative;
+  width:180px;height:120px;
+  overflow:visible;
+}
+.pipe-mario-img{
+  position:absolute;
+  bottom:30px;left:50%;
+  transform:translateX(-50%);
+  width:120px;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  animation:pipePopUp 3s ease-in-out infinite;
+  z-index:3;
+}
+@keyframes pipePopUp{
+  0%,100%{transform:translateX(-50%) translateY(15px)}
+  50%{transform:translateX(-50%) translateY(-8px)}
+}
+.pipe-center{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  z-index:4;
+}
+.pipe-center .pipe-cap{
+  width:70px;margin-left:0;
+  transform:translateX(-50%);
+  position:absolute;bottom:40px;left:50%;
+}
+.pipe-center .pipe-body{
+  width:58px;height:42px;
+  position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+}
+
+@media(max-width:600px){
+  .mario-hero-img{width:110px;bottom:-5px;left:-5px}
+  .star-hero-img{width:75px;top:15px;right:0}
+  .mario-starman-img{width:130px}
+  .characters-img{width:min(95%, 350px)}
+  .pipe-mario-img{width:100px}
+}
+@media(max-width:400px){
+  .mario-hero-img{width:90px;left:0}
+  .star-hero-img{width:60px;right:5px}
+  .mario-starman-img{width:110px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Floating coins -->
+<div class="floating-coins" id="floatingCoins"></div>
+
+<div class="invitation">
+
+  <!-- Top Brick Border -->
+  <div class="brick-border"></div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="https://images.wikidexcdn.net/mwuploads/esssbwiki/thumb/c/cb/latest/20220530212008/Mario_Mario_Party_Superstars.png/800px-Mario_Mario_Party_Superstars.png"
+         alt="Mario" class="mario-hero-img" loading="eager">
+    <img src="https://png.pngtree.com/png-clipart/20240829/original/pngtree-smiling-cartoon-star-from-super-mario-bros-png-image_15878306.png"
+         alt="Super Star" class="star-hero-img" loading="eager">
+
+    <p class="hero-label">★ ¡Estás invitado! ★</p>
+    <div class="hero-number">6</div>
+    <div class="hero-anos">A Ñ O S</div>
+    <div class="hero-name">MATÍAS</div>
+    <p class="hero-sub">¡Cumple años y quiere celebrarlo contigo!</p>
+  </div>
+
+  <!-- Question Block Divider -->
+  <div class="q-divider">
+    <div class="q-line"></div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-line"></div>
+  </div>
+
+  <!-- Date & Time -->
+  <div class="info-section">
+    <div class="datetime-row">
+      <div class="info-card">
+        <span class="card-icon">📅</span>
+        <div class="card-label">Fecha</div>
+        <div class="card-value">21 de Junio</div>
+        <div class="card-detail">Sábado, 2026</div>
+      </div>
+      <div class="info-card">
+        <span class="card-icon">🕒</span>
+        <div class="card-label">Hora</div>
+        <div class="card-value">3:00 PM</div>
+        <div class="card-detail">¡No llegues tarde!</div>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="info-card">
+      <span class="card-icon">📍</span>
+      <div class="card-label">Ubicación</div>
+      <div class="location-name">Terraza El Gran Chaparral</div>
+      <div class="location-addr">
+        Lázaro Cárdenas 9, Lomas del Colli<br>
+        45010 Zapopan, Jal.
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1866.5!2d-103.4335!3d20.7095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428af4e1c1a2b0d%3A0x1!2sL%C3%A1zaro%20C%C3%A1rdenas%209%2C%20Lomas%20del%20Colli%2C%2045010%20Zapopan%2C%20Jal.!5e0!3m2!1ses!2smx!4v1"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <a href="https://maps.app.goo.gl/KWBfXincMeaupWLp7?g_st=afm" target="_blank" class="map-link">
+        🗺️ Abrir en Google Maps →
+      </a>
+    </div>
+  </div>
+
+  <!-- Pipes Decoration -->
+  <div class="pipes-row">
+    <div class="pipe"><div class="pipe-cap"></div><div class="pipe-body"></div></div>
+    <div class="pipe"><div class="pipe-cap"></div><div class="pipe-body"></div></div>
+  </div>
+
+  <!-- Theme Badge -->
+  <div class="theme-section">
+    <div class="theme-badge">SUPER MARIO BROS</div>
+  </div>
+
+  <!-- Characters Row -->
+  <div class="characters-row">
+    <img src="https://preview.redd.it/now-that-super-mario-bros-wonder-has-been-out-for-a-week-v0-yt6t0r9i3wwb1.png?width=1080&crop=smart&auto=webp&s=b055d18d3ec7c08e8a8412f24bdb8096934e45cc"
+         alt="Super Mario Bros Wonder Characters" class="characters-img" loading="lazy">
+  </div>
+
+  <!-- Coin Row -->
+  <div class="coin-row">
+    <div class="coin"></div>
+    <div class="coin"></div>
+    <div class="coin"></div>
+    <div class="coin"></div>
+    <div class="coin"></div>
+  </div>
+
+  <!-- Fun Facts -->
+  <div class="facts-section reveal">
+    <div class="facts-title">🎮 ¿Sabías que...? 🎮</div>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <span class="fact-icon">🍄</span>
+        <div class="fact-text"><strong>Mario</strong> apareció por primera vez en 1981 en el juego Donkey Kong, pero en ese entonces se llamaba <strong>"Jumpman"</strong>.</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon">🟢</span>
+        <div class="fact-text">Las <strong>tuberías verdes</strong> de Mario fueron inspiradas por el sistema de alcantarillado de <strong>Nueva York</strong>.</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon">⭐</span>
+        <div class="fact-text">Mario ha aparecido en más de <strong>200 videojuegos</strong>, convirtiéndolo en el personaje más famoso de la historia de los videojuegos.</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon">👨‍🔧</span>
+        <div class="fact-text">Mario es <strong>fontanero, doctor, piloto de carreras y hasta árbitro</strong>. ¡El trabajo más versátil del mundo!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Question Block Divider 2 -->
+  <div class="q-divider">
+    <div class="q-line"></div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-block">?</div>
+    <div class="q-line"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <img src="https://www.elmundotech.com/wp-content/uploads/2012/09/nsmb2_mario_starman_001.png"
+         alt="Mario Starman" class="mario-starman-img" loading="lazy">
+    <div class="cta-text"><span>¡Te esperamos</span> para esta aventura!</div>
+    <a href="https://wa.me/?text=¡Hola!%20Confirmo%20asistencia%20al%20cumpleaños%20de%20Matías%20🎂🍄"
+       target="_blank" class="cta-btn">
+      🎮 CONFIRMAR ASISTENCIA
+    </a>
+  </div>
+
+  <!-- Coin Row 2 -->
+  <div class="coin-row">
+    <div class="coin"></div>
+    <div class="coin"></div>
+    <div class="coin"></div>
+  </div>
+
+  <!-- Bottom Brick Border -->
+  <div class="brick-border"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    ★ WORLD 6-1 ★<br>
+    <span style="font-size:10px;opacity:0.5;font-family:'Outfit',sans-serif;margin-top:8px;display:block">
+      Matías te espera en esta aventura
+    </span>
+  </div>
+
+</div>
+
+<script>
+// Generate stars
+const starsEl = document.getElementById('stars');
+for(let i = 0; i < 50; i++){
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.setProperty('--d', (2 + Math.random() * 4) + 's');
+  star.style.animationDelay = Math.random() * 3 + 's';
+  starsEl.appendChild(star);
+}
+
+// Generate floating coins
+const coinsEl = document.getElementById('floatingCoins');
+for(let i = 0; i < 8; i++){
+  const coin = document.createElement('div');
+  coin.className = 'fcoin';
+  coin.style.left = (5 + Math.random() * 90) + '%';
+  coin.style.setProperty('--dur', (10 + Math.random() * 15) + 's');
+  coin.style.animationDelay = Math.random() * 15 + 's';
+  coinsEl.appendChild(coin);
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+}, {threshold: 0.15});
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

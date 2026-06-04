@@ -157,10 +157,11 @@
 /* ── VONOA CHATBOT WIDGET ──────────────────────────────────
    Pega este archivo completo en tu WordPress/Divi como
    bloque de código HTML, o inclúyelo antes de 
-  <!-- Deferred: Meta Pixel + Microsoft Clarity (loaded 2s after page for better FCP/LCP) -->
+  <!-- Deferred: Meta Pixel + Clarity (staggered via requestIdleCallback to avoid TBT spike) -->
   <script>
-  setTimeout(function(){
-    // Meta Pixel
+  function _dle(fn,ms){var r=window.requestIdleCallback||function(c){return setTimeout(c,ms)};r(fn,{timeout:ms});}
+  // Meta Pixel — load when idle, fallback 3s
+  _dle(function(){
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -168,12 +169,14 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','823900389572284');
     fbq('track','PageView');
-    // Microsoft Clarity
+  },3000);
+  // Microsoft Clarity — load when idle, fallback 5s (staggered to avoid TBT)
+  _dle(function(){
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window,document,"clarity","script","saa39f5odh");
-  }, 2000);
+  },5000);
   </script>
 </body>.
    Cambia el número de WhatsApp en la variable WA_NUMBER.
@@ -627,10 +630,11 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
 </div>
 <script src="site.js" defer></script>
 
-  <!-- Deferred: Meta Pixel + Microsoft Clarity (loaded 2s after page for better FCP/LCP) -->
+  <!-- Deferred: Meta Pixel + Clarity (staggered via requestIdleCallback to avoid TBT spike) -->
   <script>
-  setTimeout(function(){
-    // Meta Pixel
+  function _dle(fn,ms){var r=window.requestIdleCallback||function(c){return setTimeout(c,ms)};r(fn,{timeout:ms});}
+  // Meta Pixel — load when idle, fallback 3s
+  _dle(function(){
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -638,12 +642,14 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','823900389572284');
     fbq('track','PageView');
-    // Microsoft Clarity
+  },3000);
+  // Microsoft Clarity — load when idle, fallback 5s (staggered to avoid TBT)
+  _dle(function(){
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window,document,"clarity","script","saa39f5odh");
-  }, 2000);
+  },5000);
   </script>
 </body>
 </html>

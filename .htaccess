@@ -1,0 +1,79 @@
+# ============================================================
+#  VonoaWeb — .htaccess  (SiteGround / Apache / LiteSpeed)
+#  Resuelve problemas de indexación reportados en GSC
+# ============================================================
+
+# ── Activar motor de reescritura ──
+RewriteEngine On
+
+# ── 1. Forzar HTTPS ──
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# ── 2. Redirigir www → sin www (versión canónica) ──
+RewriteCond %{HTTP_HOST} ^www\.vonoaweb\.com [NC]
+RewriteRule ^(.*)$ https://vonoaweb.com/$1 [R=301,L]
+
+# ── 3. Redirigir /index.html → / (evita duplicado de home) ──
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ── 4. Bloquear acceso a archivos que NO son parte del sitio ──
+#    (evita 404/403 en archivos basura que Google descubrió)
+<FilesMatch "\.(py|ps1|exe|stl|bgcode|md|txt)$">
+    # Permitir robots.txt explícitamente
+    <Files "robots.txt">
+        Require all granted
+    </Files>
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Bloquear archivos específicos que no deben ser accesibles
+<FilesMatch "^(add_|fix_|pivot|update_|read_|take_|convert_)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── 5. Bloquear acceso a config de email ──
+<Files "config-v1.1.xml">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# ── 6. Encabezados de seguridad y SEO ──
+<IfModule mod_headers.c>
+    # Evitar sniffing de MIME type
+    Header set X-Content-Type-Options "nosniff"
+    # Clickjacking protection
+    Header set X-Frame-Options "SAMEORIGIN"
+    # XSS protection
+    Header set X-XSS-Protection "1; mode=block"
+    # Referrer policy (ayuda a SEO y privacidad)
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── 7. Cache de assets estáticos (mejora Core Web Vitals) ──
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# ── 8. Compresión GZIP (mejora PageSpeed) ──
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/xml
+</IfModule>
+
+# ── 9. Página 404 personalizada ──
+ErrorDocument 404 /404.html
