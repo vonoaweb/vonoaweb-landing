@@ -1,0 +1,25 @@
+# Non-web files
+*.py
+*.ps1
+*.exe
+*.stl
+*.bgcode
+*.csv
+*.zip
+*.pdf
+*.md
+!README.md
+config-v1.1.xml
+.htaccess
+vona.png
+eye.stl
+viewer.html
+viewer (1).html
+invitacion_matias.html
+invitacion_matias_wp.html
+add_main.py
+read_site.py
+take_screenshots.py
+convert_webp.py
+table-*.csv
+image (2).jpeg
