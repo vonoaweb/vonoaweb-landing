@@ -1,5 +1,22 @@
 User-agent: *
 Allow: /
 
-# Sitemap principal
+# Bloquear archivos que no son contenido web
+Disallow: /*.py$
+Disallow: /*.ps1$
+Disallow: /*.exe$
+Disallow: /*.stl$
+Disallow: /*.bgcode$
+Disallow: /*.css$
+Disallow: /config-v1.1.xml
+Disallow: /add_*
+Disallow: /fix_*
+Disallow: /pivot*
+Disallow: /update_*
+Disallow: /read_*
+Disallow: /take_*
+Disallow: /convert_*
+
+# Sitemaps
 Sitemap: https://vonoaweb.com/sitemap.xml
+Sitemap: https://blog.vonoaweb.com/sitemap.xml

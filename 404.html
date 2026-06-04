@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada | VonoaWeb</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://vonoaweb.com/">
+  <link rel="icon" type="image/webp" href="assets/vona-icon.webp">
+  <script>
+  (function(){
+    var p = window.location.pathname.replace(/\/+$/,'');
+    var redirects = {
+      '/blog': 'https://blog.vonoaweb.com/',
+      '/contacto': '/contacto.html',
+      '/servicios': '/servicios.html',
+      '/precios': '/precios.html',
+      '/nosotros': '/nosotros.html',
+      '/portafolio': '/portafolio.html'
+    };
+    if (redirects[p]) { window.location.replace(redirects[p]); return; }
+    if (/^\/wp-/.test(p) || /^\/category\//.test(p) || /^\/(520-2|feed|search)/.test(p)) {
+      window.location.replace('/'); return;
+    }
+    if (window.location.search.indexOf('s=') !== -1 || window.location.search.indexOf('et_blog') !== -1) {
+      window.location.replace('/'); return;
+    }
+    if (/estrategia|visibilidad|disenador|razones|motivos|pagina-web|sitio-web|diseno-web|cuanto-cuesta/.test(p)) {
+      window.location.replace('https://blog.vonoaweb.com/'); return;
+    }
+  })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Sora',system-ui,sans-serif;
+      background:#0a1628;
+      color:#e2e8f0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:2rem;
+    }
+    .wrap{max-width:520px}
+    .code{
+      font-size:8rem;
+      font-weight:700;
+      background:linear-gradient(135deg,#2EE9B9,#1CA0F4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      line-height:1;
+      margin-bottom:.5rem;
+    }
+    h1{font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:#fff}
+    p{color:#94a3b8;margin-bottom:2rem;line-height:1.7}
+    .btn{
+      display:inline-block;
+      padding:14px 32px;
+      background:linear-gradient(135deg,#2EE9B9,#1CA0F4);
+      color:#0a1628;
+      font-weight:600;
+      font-size:.95rem;
+      border-radius:10px;
+      text-decoration:none;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(46,233,185,.3)}
+    .links{margin-top:2rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+    .links a{color:#1CA0F4;text-decoration:none;font-size:.9rem}
+    .links a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404</div>
+    <h1>Esta pagina no existe</h1>
+    <p>La pagina que buscas fue movida, eliminada o nunca existio. Pero no te preocupes, te llevamos de vuelta.</p>
+    <a class="btn" href="/">Ir al inicio</a>
+    <div class="links">
+      <a href="/servicios.html">Servicios</a>
+      <a href="/precios.html">Precios</a>
+      <a href="/contacto.html">Contacto</a>
+      <a href="/portafolio.html">Portafolio</a>
+    </div>
+  </div>
+</body>
+</html>
