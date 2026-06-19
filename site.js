@@ -290,3 +290,23 @@
     });
   }
 })();
+
+/* ── WhatsApp click tracking for ALL buttons (not just the chatbot) ──
+   Delegated listener: fires a GA4 'whatsapp_click' event on any wa.me /
+   WhatsApp link click anywhere on the site (calculator CTA, footer, etc.).
+   Chatbot links (.vwacta) already fire their own event, so they are excluded
+   here to avoid double counting. Next step (GA4 + Ads): mark 'whatsapp_click'
+   as a key event in GA4 and import it into Google Ads as a PRIMARY conversion. */
+(() => {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest(
+      'a[href*="wa.me"]:not(.vwacta), a[href*="api.whatsapp"]:not(.vwacta), a[href*="whatsapp.com/send"]:not(.vwacta)'
+    );
+    if (!a) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'whatsapp_click', source: 'site_link' });
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', { source: 'site_link' });
+    }
+  }, true);
+})();
