@@ -310,3 +310,36 @@
     }
   }, true);
 })();
+
+/* ── Sticky WhatsApp button (all pages) ──
+   Always-visible green WhatsApp CTA so any visitor has a one-tap path to message
+   a human. Bottom-left to avoid the Vona chatbot launcher (bottom-right). Its
+   wa.me click is picked up by the whatsapp_click tracker above, so it counts
+   toward the WhatsApp conversion automatically. */
+(() => {
+  if (document.getElementById('wa-fab')) return;
+  var WA = '5215644645574';
+  var MSG = 'Hola, vengo de vonoaweb.com 👋 Me interesa una página web. ¿Me pasas información?';
+  var css = document.createElement('style');
+  css.textContent =
+    '#wa-fab{position:fixed;left:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:9px;' +
+    'background:#25D366;color:#fff;text-decoration:none;padding:12px 18px 12px 13px;border-radius:50px;' +
+    'font-family:inherit;font-weight:700;font-size:15px;line-height:1;box-shadow:0 6px 20px rgba(37,211,102,.45);' +
+    'transition:transform .2s ease,box-shadow .2s ease;animation:waPulse 2.6s infinite}' +
+    '#wa-fab:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.6)}' +
+    '#wa-fab svg{width:26px;height:26px;flex:0 0 auto}' +
+    '@keyframes waPulse{0%{box-shadow:0 6px 20px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}' +
+    '70%{box-shadow:0 6px 20px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}' +
+    '100%{box-shadow:0 6px 20px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}' +
+    '@media(max-width:600px){#wa-fab span{display:none}#wa-fab{padding:14px;border-radius:50%}}';
+  document.head.appendChild(css);
+  var a = document.createElement('a');
+  a.id = 'wa-fab';
+  a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(MSG);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.setAttribute('aria-label', 'Escríbenos por WhatsApp');
+  a.innerHTML = '<svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.5 2 7.8L.4 31.6l8.1-2.1a15.4 15.4 0 0 0 7.5 1.9c8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5a12.7 12.7 0 0 1-2-6.8C3.2 8.8 8.9 3.2 16 3.2c3.4 0 6.6 1.3 9 3.7a12.6 12.6 0 0 1 3.7 9c0 7.1-5.7 12.8-12.7 12.8zm7-9.5c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.6-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.4 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>' +
+    '<span>Escríbenos</span>';
+  document.body.appendChild(a);
+})();
