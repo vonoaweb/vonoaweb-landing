@@ -268,7 +268,8 @@
           }
           if (typeof gtag === 'function') {
             gtag('event', 'generate_lead', { servicio: payload.servicio || '' });
-            gtag('event', 'conversion', { send_to: 'AW-10804436682' });
+            // Google Ads conversion "Contacto WhatsApp" (primary) — a form submit is a contact lead too
+            gtag('event', 'conversion', { send_to: 'AW-10804436682/0icSCKGEqtUcEMq9-p8o' });
           }
           const name = payload.name || 'amigo';
           form.classList.add('sent');
@@ -295,8 +296,9 @@
    Delegated listener: fires a GA4 'whatsapp_click' event on any wa.me /
    WhatsApp link click anywhere on the site (calculator CTA, footer, etc.).
    Chatbot links (.vwacta) already fire their own event, so they are excluded
-   here to avoid double counting. Next step (GA4 + Ads): mark 'whatsapp_click'
-   as a key event in GA4 and import it into Google Ads as a PRIMARY conversion. */
+   here to avoid double counting. It also fires the Google Ads conversion
+   "Contacto WhatsApp" (AW-10804436682/0icSCKGEqtUcEMq9-p8o), set as a PRIMARY
+   conversion in Ads so the campaign optimizes toward people who message us. */
 (() => {
   document.addEventListener('click', (e) => {
     const a = e.target.closest && e.target.closest(
@@ -307,6 +309,8 @@
     window.dataLayer.push({ event: 'whatsapp_click', source: 'site_link' });
     if (typeof gtag === 'function') {
       gtag('event', 'whatsapp_click', { source: 'site_link' });
+      // Google Ads conversion "Contacto WhatsApp" (primary) — fires when a visitor taps any WhatsApp link
+      gtag('event', 'conversion', { send_to: 'AW-10804436682/0icSCKGEqtUcEMq9-p8o' });
     }
   }, true);
 })();
