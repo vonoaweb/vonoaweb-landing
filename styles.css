@@ -736,3 +736,12 @@ a.gr-card p{font-size:14px;color:#3c4043;line-height:1.7;flex:1;margin:0}
   .calc-summary-inner{padding:20px}
 }
 
+
+/* ===== BLOG · ÚLTIMOS ARTÍCULOS (feed de blog.vonoaweb.com) ===== */
+.blog-card{background:var(--vw-midnight);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .24s cubic-bezier(.22,1,.36,1)}
+.blog-card:hover{transform:translateY(-4px);border-color:rgba(46,233,185,.25);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.blog-card a{display:flex;flex-direction:column;height:100%;min-height:172px;padding:26px 24px}
+.blog-card .b-meta{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted)}
+.blog-card h3{font-size:21px;line-height:1.3;color:#fff;margin:12px 0 0}
+.blog-card .b-more{margin-top:auto;padding-top:18px;font-size:14px;font-weight:600;background:var(--vw-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.blog-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px}

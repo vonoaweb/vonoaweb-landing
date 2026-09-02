@@ -113,6 +113,7 @@
         <a href="servicios.html">Servicios</a>
         <a href="portafolio.html">Portafolio</a>
         <a href="precios.html">Precios</a>
+        <a href="https://blog.vonoaweb.com/">Blog</a>
         <a href="contacto.html">Contacto</a>
       </div>
       <a class="cta-sm" href="contacto.html">Cotiza gratis →</a>
@@ -127,6 +128,7 @@
     <a href="servicios.html">Servicios</a>
     <a href="portafolio.html">Portafolio</a>
     <a href="precios.html">Precios</a>
+    <a href="https://blog.vonoaweb.com/">Blog</a>
     <a href="contacto.html">Contacto</a>
     <a class="cta-mobile" href="contacto.html">Cotiza gratis →</a>
   </div>
@@ -636,6 +638,48 @@
     </div>
   </section>
 
+
+  <!-- ======= BLOG - ULTIMOS ARTICULOS (feed en vivo de blog.vonoaweb.com) ======= -->
+  <section class="section alt" id="blog">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="overline">Blog</span>
+        <h2>Guías para hacer crecer tu negocio en internet</h2>
+        <p class="lede-sec">Publicamos cada semana sobre diseño web, SEO local, chatbots e IA para PYMEs en Guadalajara.</p>
+      </div>
+
+      <div class="grid-3 blog-grid reveal" id="blog-feed">
+        <!-- Contenido inicial: se reemplaza con los articulos mas recientes del RSS -->
+        <article class="blog-card">
+          <a href="https://blog.vonoaweb.com/posts/crm-con-ia-para-pequenos-negocios-en-guadalajara/">
+            <span class="b-meta">31 ago 2026</span>
+            <h3>CRM con IA para pequeños negocios en Guadalajara</h3>
+            <span class="b-more">Leer artículo →</span>
+          </a>
+        </article>
+        <article class="blog-card">
+          <a href="https://blog.vonoaweb.com/posts/landing-page-vs-sitio-web-completo-que-necesita-tu-pyme/">
+            <span class="b-meta">29 ago 2026</span>
+            <h3>Landing page vs sitio web completo: qué necesita tu PYME</h3>
+            <span class="b-more">Leer artículo →</span>
+          </a>
+        </article>
+        <article class="blog-card">
+          <a href="https://blog.vonoaweb.com/posts/rediseno-web-cuando-vale-la-pena-renovar-tu-sitio/">
+            <span class="b-meta">28 ago 2026</span>
+            <h3>Rediseño web: cuándo vale la pena renovar tu sitio</h3>
+            <span class="b-more">Leer artículo →</span>
+          </a>
+        </article>
+      </div>
+
+      <div class="blog-cta reveal">
+        <a class="btn primary" href="https://blog.vonoaweb.com/">Ver todos los artículos →</a>
+        <a class="btn ghost" href="https://blog.vonoaweb.com/tags/">Explorar por tema →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ======= CTA BAND - GUADALAJARA ======= -->
   <section class="cta-band">
     <div class="container cta-band-inner">
@@ -864,6 +908,7 @@
             <a href="nosotros.html">Nosotros</a>
             <a href="portafolio.html">Portafolio</a>
             <a href="https://blog.vonoaweb.com/">Blog</a>
+            <a href="https://blog.vonoaweb.com/tags/">Temas del blog</a>
             <a href="contacto.html">Contacto</a>
           </div>
           <div>
@@ -1435,6 +1480,87 @@
     setTimeout(loadTracking,3000);
   })();
   </script>
+
+  <!-- ======= FEED DEL BLOG: trae los 3 articulos mas recientes de blog.vonoaweb.com ======= -->
+  <script>
+  (function(){
+    var grid = document.getElementById('blog-feed');
+    if (!grid || !window.fetch || !window.DOMParser || !('IntersectionObserver' in window)) return;
+
+    var FEED  = 'https://blog.vonoaweb.com/index.xml';
+    var BASE  = 'https://blog.vonoaweb.com/';
+    var MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+    function fecha(txt){
+      var d = new Date(txt);
+      if (isNaN(d.getTime())) return '';
+      return d.getUTCDate() + ' ' + MESES[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+    }
+
+    function tarjeta(item){
+      var q = function(t){ var n = item.querySelector(t); return n ? (n.textContent || '').trim() : ''; };
+      var titulo = q('title'), link = q('link');
+      // Solo aceptamos enlaces al propio blog
+      if (!titulo || link.indexOf(BASE) !== 0) return null;
+
+      var art = document.createElement('article');
+      art.className = 'blog-card';
+      var a = document.createElement('a');
+      a.href = link;
+
+      var meta = document.createElement('span');
+      meta.className = 'b-meta';
+      meta.textContent = fecha(q('pubDate'));
+
+      var h3 = document.createElement('h3');
+      h3.textContent = titulo;
+
+      var more = document.createElement('span');
+      more.className = 'b-more';
+      more.textContent = 'Leer artículo →';
+
+      a.appendChild(meta); a.appendChild(h3); a.appendChild(more);
+      art.appendChild(a);
+      return art;
+    }
+
+    var hecho = false;
+    function cargar(){
+      if (hecho) return;
+      hecho = true;
+      fetch(FEED, { mode: 'cors' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(xml){
+          var doc = new DOMParser().parseFromString(xml, 'application/xml');
+          if (doc.querySelector('parsererror')) throw new Error('xml');
+          var items = doc.querySelectorAll('item');
+          var frag = document.createDocumentFragment(), n = 0;
+          for (var i = 0; i < items.length && n < 3; i++) {
+            var card = tarjeta(items[i]);
+            if (card) { frag.appendChild(card); n++; }
+          }
+          // Si el feed falla o viene vacio, se queda el contenido estatico ya renderizado
+          if (n === 3) { grid.textContent = ''; grid.appendChild(frag); }
+        })
+        .catch(function(){ /* silencio: el contenido estatico sigue visible */ });
+    }
+
+    // Pedimos el feed cuando la seccion esta por entrar en pantalla...
+    var obs = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) { obs.disconnect(); cargar(); return; }
+      }
+    }, { rootMargin: '400px' });
+    obs.observe(grid);
+
+    // ...y como respaldo, al primer gesto del visitante o a los 4s, igual que el tracking.
+    ['scroll','click','touchstart','keydown'].forEach(function(ev){
+      document.addEventListener(ev, cargar, { once: true, passive: true });
+    });
+    setTimeout(cargar, 4000);
+  })();
+  </script>
+
 </body>
 
 </html>
