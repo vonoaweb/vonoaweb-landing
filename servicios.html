@@ -37,6 +37,14 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css?v=6">
+  <style>
+    /* Enlace al sitio en ingles. Solo a partir de 1000px: por debajo la nav va
+       justa (870px de contenido y el burger entra a los 900). */
+    .nav-en{display:none;color:#B6C2D8;font-size:13px;font-weight:600;
+      letter-spacing:.4px;white-space:nowrap;transition:color .18s}
+    .nav-en:hover{color:#fff}
+    @media(min-width:1000px){.nav-en{display:inline}}
+  </style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -59,7 +67,8 @@
       <a href="precios.html">Precios</a>
       <a href="https://blog.vonoaweb.com/">Blog</a>
       <a href="contacto.html">Contacto</a>
-    </div>
+    <a class="nav-en" href="/en/" hreflang="en" title="English site">EN</a>
+      </div>
     <a class="cta-sm" href="contacto.html">Cotiza gratis →</a>
     <button class="burger" aria-label="Menú" id="burger"><span></span><span></span><span></span></button>
   </nav>
@@ -72,6 +81,7 @@
   <a href="precios.html">Precios</a>
   <a href="https://blog.vonoaweb.com/">Blog</a>
   <a href="contacto.html">Contacto</a>
+  <a href="/en/" hreflang="en">English site</a>
   <a class="cta-mobile" href="contacto.html">Cotiza gratis →</a>
 </div>
 
@@ -272,7 +282,8 @@
           <a href="https://blog.vonoaweb.com/">Blog</a>
           <a href="https://blog.vonoaweb.com/tags/">Temas del blog</a>
           <a href="contacto.html">Contacto</a>
-        </div>
+        <a href="/en/" hreflang="en">English site</a>
+          </div>
         <div>
           <span class="overline">Legal</span>
           <a href="aviso-privacidad.html">Aviso de privacidad</a>
