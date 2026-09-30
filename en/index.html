@@ -191,11 +191,13 @@
         <div class="trust">
           <div
             style="text-align:left;background:rgba(15,32,64,.6);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;color:var(--fg-muted);line-height:1.6;margin-top:16px;max-width:480px;">
-            <strong style="color:#fff;display:block;margin-bottom:8px;font-size:14px;">Real client: a neighborhood
-              restaurant</strong>
-            <span style="color:#ff6b6b">&#10007; Before:</span> about 5 missed calls a day, most of them after closing<br>
-            <span style="color:#2EE9B9">&#10003; After the AI assistant:</span> 89% of inquiries answered, day or night<br>
-            <span style="color:#1CA0F4">&#8599; Result:</span> +32 reservations a month, booked without anyone picking up the phone
+            <strong style="color:#fff;display:block;margin-bottom:8px;font-size:14px;">Real clients in the US, Canada
+              and Mexico</strong>
+            Live sites for Ye6 Otay (San Diego, CA), Jesas Cleaning Service (Canada), LuBlend, CIAPSA and more.<br>
+            <a href="#work" style="color:#1CA0F4;text-decoration:none;">See the work &rarr;</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener"
+              style="color:#1CA0F4;text-decoration:none;">5.0 &#9733; on Google</a>
           </div>
         </div>
       </div>
@@ -215,15 +217,15 @@
           </div>
         </div>
         <div class="chip-float c1">
-          <div class="label">Local SEO</div>
-          <div class="val">Top 3</div>
+          <div class="label">Google rating</div>
+          <div class="val">5.0<small>&#9733;</small></div>
           <div class="bar">
-            <div style="width:78%"></div>
+            <div style="width:100%"></div>
           </div>
         </div>
         <div class="chip-float c2">
-          <div class="label">PageSpeed</div>
-          <div class="val">98<small>/100</small></div>
+          <div class="label">Websites from</div>
+          <div class="val">$900</div>
         </div>
         <div class="chip-float c3">
           <div class="label">AI replies</div>
@@ -248,16 +250,16 @@
       </div>
       <div class="why-stats">
         <div class="stat">
-          <div class="num">30+</div>
-          <div class="lbl">Businesses shipped</div>
+          <div class="num">3</div>
+          <div class="lbl">Countries with client sites: US, Canada and Mexico</div>
         </div>
         <div class="stat">
           <div class="num">10+</div>
           <div class="lbl">Years in digital design</div>
         </div>
         <div class="stat">
-          <div class="num">98<small>/100</small></div>
-          <div class="lbl">Average PageSpeed score</div>
+          <div class="num">5.0<small>&#9733;</small></div>
+          <div class="lbl">Google rating</div>
         </div>
         <div class="stat">
           <div class="num">From 7 days</div>
@@ -1376,7 +1378,7 @@
 
       function callAPI() {
         busy = true; sb.disabled = true; showTyp();
-        fetch('https://vonoa-api-126208883092.us-central1.run.app', {
+        fetch('https://vonoa-api-proxy.vonoaweb.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1024, stream: true, system: VONOA_SYS, messages: hist })

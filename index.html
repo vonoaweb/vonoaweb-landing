@@ -261,11 +261,14 @@
         <div class="trust">
           <div class="case-study-badge"
             style="text-align: left; background: rgba(15, 32, 64, 0.6); border: 1px solid var(--border); border-radius: 12px; padding: 16px; font-size: 13px; color: var(--fg-muted); line-height: 1.6; margin-top: 16px; max-width: 480px;">
-            <strong style="color: #fff; display: block; margin-bottom: 8px; font-size: 14px;">CASO REAL: Restaurante en
-              Zapopan</strong>
-            <span style="color:#ff6b6b">❌ Antes:</span> 5 llamadas perdidas al día = 150 clientes/mes perdidos<br>
-            <span style="color:#2EE9B9">✅ Después con chatbot IA:</span> 89% de consultas atendidas 24/7<br>
-            <span style="color:#1CA0F4">📈 Resultado:</span> +32 reservas mensuales = +$48,000 MXN/mes
+            <strong style="color: #fff; display: block; margin-bottom: 8px; font-size: 14px;">Clientes reales en México,
+              Estados Unidos y Canadá</strong>
+            Sitios en línea para Ye6 Otay (San Diego), Jesas Cleaning Service (Canadá), LuBlend, CIAPSA y Reciclaje
+            de la Costa, entre otros.<br>
+            <a href="portafolio.html" style="color:#1CA0F4;text-decoration:none;">Ver los proyectos →</a>
+            &nbsp;·&nbsp;
+            <a href="https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8" target="_blank" rel="noopener"
+              style="color:#1CA0F4;text-decoration:none;">5.0 ★ en Google</a>
           </div>
         </div>
       </div>
@@ -285,19 +288,19 @@
           </div>
         </div>
         <div class="chip-float c1">
-          <div class="label">SEO · Google</div>
-          <div class="val">Top 3</div>
+          <div class="label">Reseñas Google</div>
+          <div class="val">5.0<small>★</small></div>
           <div class="bar">
-            <div style="width:78%"></div>
+            <div style="width:100%"></div>
           </div>
         </div>
         <div class="chip-float c2">
-          <div class="label">PageSpeed</div>
-          <div class="val">98<small>/100</small></div>
+          <div class="label">Páginas desde</div>
+          <div class="val">$5,200</div>
         </div>
         <div class="chip-float c3">
-          <div class="label">Conversiones</div>
-          <div class="val">+3.4×</div>
+          <div class="label">Chatbot IA</div>
+          <div class="val">24/7</div>
         </div>
       </div>
     </div>
@@ -315,16 +318,16 @@
       </div>
       <div class="why-stats">
         <div class="stat">
-          <div class="num">+30</div>
-          <div class="lbl">Negocios transformados</div>
+          <div class="num">3</div>
+          <div class="lbl">Países con clientes: México, EE.UU. y Canadá</div>
         </div>
         <div class="stat">
           <div class="num">+10</div>
           <div class="lbl">Años en diseño digital</div>
         </div>
         <div class="stat">
-          <div class="num">98<small>/100</small></div>
-          <div class="lbl">PageSpeed promedio</div>
+          <div class="num">5.0<small>★</small></div>
+          <div class="lbl">Calificación en Google</div>
         </div>
         <div class="stat">
           <div class="num">Desde 7 días</div>
@@ -1515,7 +1518,7 @@
 
       function callAPI() {
         busy = true; sb.disabled = true; showTyp();
-        fetch('https://vonoa-api-126208883092.us-central1.run.app', {
+        fetch('https://vonoa-api-proxy.vonoaweb.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1024, stream: true, system: VONOA_SYS, messages: hist })
