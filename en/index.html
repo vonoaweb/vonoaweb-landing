@@ -1195,7 +1195,7 @@
     <div id="vonoa-pulse"></div>
     <div id="vonoa-hint">Questions? Ask me &#128172;</div>
 
-    <button id="vonoa-toggle" onclick="vonoaToggle()">
+    <button id="vonoa-toggle" onclick="vonoaToggle()" aria-label="Open chat with Vona">
       <div id="vonoa-notif">1</div>
       <span class="vt-icon" id="vtic1">
         <img src="../assets/vona-icon-104.webp" alt="Vona" width="52" height="52">
@@ -1217,7 +1217,7 @@
           <div class="vname">Vona &middot; VonoaWeb</div>
           <div class="vstatus">AI assistant &middot; Online</div>
         </div>
-        <button class="vclose" onclick="vonoaToggle()">
+        <button class="vclose" onclick="vonoaToggle()" aria-label="Close chat">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
@@ -1228,7 +1228,7 @@
       <div id="vonoa-inarea">
         <textarea id="vonoa-inp" placeholder="Type your message..." rows="1"
           onkeydown="vonoaKey(event)" oninput="vonoaRsz(this)"></textarea>
-        <button id="vonoa-send" onclick="vonoaSend()">
+        <button id="vonoa-send" onclick="vonoaSend()" aria-label="Send message">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
           </svg>
@@ -1472,7 +1472,7 @@
     })();
   </script>
 
-  <script src="../site.js?v=2" defer></script>
+  <script src="../site.js?v=3" defer></script>
 
   <script>
     /* ── Captcha + contact form (English) ───────────────────────────
@@ -1553,9 +1553,31 @@
             + '<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">Thanks, ' + name.replace(/[<>&]/g, '') + '!</h3>'
             + '<p style="color:var(--fg-muted);font-size:14px;">Got it. You will hear back from us within one business day &mdash; usually the same day.</p>';
         }).catch(function () {
+          // If sending fails (offline, Web3Forms down, or blocked by the site's
+          // CSP as happened in Sep 2026) the lead is not lost: offer the same
+          // details as a ready-to-send email.
           btn.disabled = false;
           btn.textContent = 'Send request →';
-          alert('Something went wrong sending that. Please try again, or email hola@vonoaweb.com directly.');
+          var body = ['Name: ' + payload.name, 'Business: ' + payload.business,
+            payload.current_site ? 'Current site: ' + payload.current_site : '',
+            payload.service ? 'Service: ' + payload.service : '',
+            payload.budget_usd ? 'Budget: ' + payload.budget_usd : '',
+            'Email: ' + payload.email, payload.message ? 'Message: ' + payload.message : '']
+            .filter(Boolean).join('\n');
+          var old = form.querySelector('.form-planb'); if (old) old.remove();
+          var box = document.createElement('div');
+          box.className = 'form-planb';
+          box.style.cssText = 'margin-top:14px;';
+          var p = document.createElement('p');
+          p.style.cssText = 'color:var(--fg-muted);font-size:14px;margin-bottom:10px;';
+          p.textContent = "We couldn't send the form from here. Your details are ready: send them by email in one click and we'll reply the same day.";
+          var a = document.createElement('a');
+          a.className = 'btn primary full';
+          a.href = 'mailto:hola@vonoaweb.com?subject=' + encodeURIComponent('[EN] Quote request from vonoaweb.com/en')
+            + '&body=' + encodeURIComponent(body);
+          a.textContent = 'Send by email →';
+          box.appendChild(p); box.appendChild(a);
+          btn.insertAdjacentElement('afterend', box);
         });
       });
     })();

@@ -1761,7 +1761,7 @@ a.testi-card:hover {
 
 <div id="vonoa-root">
   <div id="vonoa-pulse"></div>
-  <button id="vonoa-toggle" onclick="vonoaToggle()">
+  <button id="vonoa-toggle" onclick="vonoaToggle()" aria-label="Abrir el chat con Vona">
     <div id="vonoa-notif">1</div>
     <span class="vt-icon" id="vtic1">
       <img src="assets/vona-icon-104.webp" alt="Vona" width="54" height="54">
@@ -1779,7 +1779,7 @@ a.testi-card:hover {
         <div class="vname">Vona · VonoaWeb</div>
         <div class="vstatus">Agente IA · En línea ahora</div>
       </div>
-      <button class="vclose" onclick="vonoaToggle()">
+      <button class="vclose" onclick="vonoaToggle()" aria-label="Cerrar el chat">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
@@ -1790,7 +1790,7 @@ a.testi-card:hover {
     <div id="vonoa-inarea">
       <textarea id="vonoa-inp" placeholder="Escribe tu pregunta..." rows="1"
         onkeydown="vonoaKey(event)" oninput="vonoaRsz(this)"></textarea>
-      <button id="vonoa-send" onclick="vonoaSend()">
+      <button id="vonoa-send" onclick="vonoaSend()" aria-label="Enviar mensaje">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13"/>
           <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -2047,7 +2047,7 @@ function switchImg(mainId, src, thumbEl) {
 })();
 </script>
 
-<script src="site.js?v=2" defer></script>
+<script src="site.js?v=3" defer></script>
 
   <!-- All tracking: loads on first user interaction OR after 3s (whichever first) -->
   <script>

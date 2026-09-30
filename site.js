@@ -112,8 +112,10 @@
     }
 
     // Un cuadro estatico enseguida, asi el hero se ve igual desde el primer
-    // pintado. La animacion arranca hasta que la pagina termino de cargar (en
-    // celular competia con el primer pintado) y se pausa fuera de pantalla.
+    // pintado. La animacion arranca con el primer gesto del visitante (mover
+    // el mouse, tocar, hacer scroll): en celular competia con la carga y
+    // PageSpeed la contaba como pagina que nunca termina de pintarse.
+    // Se pausa fuera de pantalla.
     let running = false, rafId = 0, heroVisible = true, started = false;
     frame();
     function setRunning(on) {
@@ -124,12 +126,14 @@
     }
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion) {
-      const start = () => { started = true; setRunning(heroVisible); };
-      const whenIdle = () => ('requestIdleCallback' in window)
-        ? requestIdleCallback(start, { timeout: 2000 })
-        : setTimeout(start, 200);
-      if (document.readyState === 'complete') whenIdle();
-      else window.addEventListener('load', whenIdle, { once: true });
+      const GESTOS = ['pointermove', 'pointerdown', 'touchstart', 'scroll', 'keydown'];
+      const start = () => {
+        if (started) return;
+        started = true;
+        GESTOS.forEach(ev => window.removeEventListener(ev, start));
+        setRunning(heroVisible);
+      };
+      GESTOS.forEach(ev => window.addEventListener(ev, start, { passive: true }));
       new IntersectionObserver(entries => {
         heroVisible = entries[0].isIntersecting;
         if (started) setRunning(heroVisible);
@@ -274,6 +278,39 @@
         mensaje: form.querySelector('[name=msg]').value
       };
 
+      // Si el envio falla (sin conexion, Web3Forms caido o bloqueado por la CSP
+      // de Cloudflare, como paso en sep-2026) el prospecto no se pierde: se le
+      // ofrece mandar los mismos datos por WhatsApp con un clic.
+      const planB = () => {
+        const numero = typeof WA_NUMBER !== 'undefined' ? WA_NUMBER : '5215644645574';
+        const texto = [
+          'Hola, les escribo desde vonoaweb.com (el formulario no se envió).',
+          'Nombre: ' + payload.name,
+          payload.negocio ? 'Negocio: ' + payload.negocio : '',
+          payload.servicio ? 'Servicio: ' + payload.servicio : '',
+          payload.presupuesto ? 'Presupuesto: ' + payload.presupuesto : '',
+          'Correo: ' + payload.email,
+          payload.mensaje ? 'Mensaje: ' + payload.mensaje : ''
+        ].filter(Boolean).join('\n');
+        const box = document.createElement('div');
+        box.className = 'form-planb';
+        box.style.cssText = 'margin-top:14px;';
+        const p = document.createElement('p');
+        p.style.cssText = 'color:var(--fg-muted);font-size:14px;margin-bottom:10px;';
+        p.textContent = 'No pudimos enviar el formulario desde aquí. Tus datos ya están listos: mándalos por WhatsApp con un clic y te respondemos.';
+        const a = document.createElement('a');
+        a.className = 'btn primary full';
+        a.href = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Enviar por WhatsApp →';
+        box.append(p, a);
+        form.querySelector('.form-planb')?.remove();
+        btn.disabled = false;
+        btn.textContent = 'Enviar solicitud →';
+        btn.insertAdjacentElement('afterend', box);
+      };
+
       try {
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -305,14 +342,10 @@
             <p style="color:var(--fg-muted);font-size:14px;">Recibimos tu mensaje. Te escribimos en menos de 24 horas.</p>
           `;
         } else {
-          btn.disabled = false;
-          btn.textContent = 'Enviar solicitud →';
-          alert('Hubo un problema al enviar. Intenta de nuevo.');
+          planB();
         }
       } catch {
-        btn.disabled = false;
-        btn.textContent = 'Enviar solicitud →';
-        alert('Error de conexión. Intenta de nuevo.');
+        planB();
       }
     });
   }
