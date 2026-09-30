@@ -16,7 +16,9 @@
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     }
     resize();
-    new ResizeObserver(resize).observe(hero);
+    // Cambiar el tamano del canvas lo borra: si la animacion esta en pausa se
+    // repinta un cuadro. (El callback corre despues de iniciar `running`.)
+    new ResizeObserver(() => { resize(); if (!running) frame(); }).observe(hero);
 
     const COLORS = ['#ffffff','#ffffff','#ffffff','#2EE9B9','#1CA0F4'];
     const STARS = Array.from({length:110},()=>({
@@ -106,9 +108,33 @@
         ctx.moveTo(px, py-p.s/2); ctx.lineTo(px, py+p.s/2);
         ctx.stroke();
       }
-      requestAnimationFrame(frame);
+      if (running) rafId = requestAnimationFrame(frame);
     }
+
+    // Un cuadro estatico enseguida, asi el hero se ve igual desde el primer
+    // pintado. La animacion arranca hasta que la pagina termino de cargar (en
+    // celular competia con el primer pintado) y se pausa fuera de pantalla.
+    let running = false, rafId = 0, heroVisible = true, started = false;
     frame();
+    function setRunning(on) {
+      if (on === running) return;
+      running = on;
+      if (running) rafId = requestAnimationFrame(frame);
+      else cancelAnimationFrame(rafId);
+    }
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      const start = () => { started = true; setRunning(heroVisible); };
+      const whenIdle = () => ('requestIdleCallback' in window)
+        ? requestIdleCallback(start, { timeout: 2000 })
+        : setTimeout(start, 200);
+      if (document.readyState === 'complete') whenIdle();
+      else window.addEventListener('load', whenIdle, { once: true });
+      new IntersectionObserver(entries => {
+        heroVisible = entries[0].isIntersecting;
+        if (started) setRunning(heroVisible);
+      }).observe(hero);
+    }
   }
 
   // ── Nav active section tracking ──

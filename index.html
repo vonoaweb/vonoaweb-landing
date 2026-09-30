@@ -38,9 +38,13 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="icon" type="image/webp" href="assets/vona-icon.webp">
+  <link rel="icon" type="image/webp" href="assets/vona-icon-104.webp">
   <link rel="apple-touch-icon" href="assets/vona-icon.webp">
-  <link rel="preload" as="image" href="assets/voni-cut.webp">
+  <!-- La mascota solo se ve a partir de 901px (.hero-vis{display:none} abajo de
+       900px): en celular no se precarga ni se descarga. -->
+  <link rel="preload" as="image" href="assets/voni-cut-800.webp"
+    imagesrcset="assets/voni-cut-400.webp 400w, assets/voni-cut-800.webp 800w" imagesizes="380px"
+    media="(min-width: 901px)">
   <link rel="stylesheet" href="styles.css?v=6">
   <style>
     /* Enlace al sitio en ingles. Solo a partir de 1000px: por debajo la nav
@@ -281,7 +285,9 @@
               <span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
             <div class="vono-wrap">
-              <img src="assets/voni-cut.webp" class="vono-img" alt="Voni — mascota VonoaWeb" width="400" height="400" fetchpriority="high">
+              <img src="assets/voni-cut-800.webp"
+                srcset="assets/voni-cut-400.webp 400w, assets/voni-cut-800.webp 800w" sizes="380px"
+                class="vono-img" alt="Voni — mascota VonoaWeb" width="400" height="400" loading="lazy" decoding="async">
               <div class="vono-sparkle s1">✨</div>
               <div class="vono-sparkle s2">✨</div>
             </div>
@@ -492,7 +498,10 @@
         <div class="vono-stage small">
           <div class="vono-shadow"></div>
           <div class="vono-wrap">
-            <img src="assets/robot_chatgpt.webp" class="vono-img" alt="Robot trabajando" width="400" height="400"
+            <img src="assets/robot_chatgpt-800.webp"
+              srcset="assets/robot_chatgpt-400.webp 400w, assets/robot_chatgpt-800.webp 800w"
+              sizes="(max-width: 900px) 80vw, 400px" loading="lazy" decoding="async"
+              class="vono-img" alt="Robot trabajando" width="400" height="400"
               style="border-radius: 50%; object-fit: cover; transform: scale(1.1);">
           </div>
         </div>
@@ -1360,7 +1369,7 @@
     <button id="vonoa-toggle" onclick="vonoaToggle()">
       <div id="vonoa-notif">1</div>
       <span class="vt-icon" id="vtic1">
-        <img src="assets/vona-icon.webp" alt="Vona" width="52" height="52">
+        <img src="assets/vona-icon-104.webp" alt="Vona" width="52" height="52">
       </span>
       <span class="vt-icon gone" id="vtic2">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2EBD9" stroke-width="2.5" stroke-linecap="round">
@@ -1372,7 +1381,7 @@
     <div id="vonoa-panel">
       <div class="vhdr">
         <div class="vav">
-          <img src="assets/vona-icon.webp" alt="Vona">
+          <img src="assets/vona-icon-104.webp" alt="Vona">
           <div class="vav-dot"></div>
         </div>
         <div class="vinfo">
@@ -1480,7 +1489,7 @@
       function addBot(txt, id) {
         var r = document.createElement('div'); r.className = 'vmrow';
         var bid = id || 'vb' + Date.now();
-        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon.webp" alt="V"></div>'
+        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon-104.webp" alt="V"></div>'
           + '<div class="vmcol"><div class="vbbl vb" id="' + bid + '">' + md(txt) + '</div>'
           + '<div class="vmtime">' + ts() + '</div></div>';
         msgs.appendChild(r); sc(); return bid;
@@ -1495,7 +1504,7 @@
       }
       function showTyp() {
         var r = document.createElement('div'); r.className = 'vmrow'; r.id = 'vtyp';
-        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon.webp" alt="V"></div>'
+        r.innerHTML = '<div class="vmav"><img src="assets/vona-icon-104.webp" alt="V"></div>'
           + '<div class="vtypi"><div class="vtd"></div><div class="vtd"></div><div class="vtd"></div></div>';
         msgs.appendChild(r); sc();
       }
@@ -1600,7 +1609,7 @@
   </div>
 
 
-  <script src="site.js" defer></script>
+  <script src="site.js?v=2" defer></script>
 
   <!-- All tracking: loads on first user interaction OR after 3s (whichever first) -->
   <script>
