@@ -1,0 +1,55 @@
+# VonoaWeb
+
+> Agencia de diseño web e inteligencia artificial para PYMEs en Guadalajara, México (Zapopan, Jalisco). Hace páginas web, tiendas en línea y asistentes con IA para WhatsApp y para la web, con precios publicados en pesos mexicanos: páginas web desde $5,200 MXN en un solo pago.
+
+- Nombre: VonoaWeb (también escrito "Vonoa Web").
+- Ubicación: Zapopan, en la zona metropolitana de Guadalajara, Jalisco, México. Atiende Guadalajara, Zapopan, Tlaquepaque, Tonalá y, a distancia, el resto de México. Para Estados Unidos y Canadá tiene un sitio en inglés con precios en dólares: https://vonoaweb.com/en/
+- Contacto: hola@vonoaweb.com · WhatsApp +52 56 4464 5574 · formulario en https://vonoaweb.com/contacto.html
+- Horario: lunes a viernes, de 9:00 a 18:00 (hora del centro de México).
+- Tiempo de entrega: desde 7 días.
+- Perfil de Google con reseñas de clientes: https://maps.app.goo.gl/Y2wPEb7ftgD3ym1R8
+
+## Precios
+
+En pesos mexicanos (MXN), IVA no incluido, sin contratos forzosos. Los precios vigentes siempre son los de https://vonoaweb.com/precios.html; si no coinciden con esta lista, manda esa página.
+
+Páginas web (pago único; incluyen hosting y dominio, o instalación en el del cliente):
+
+- Plan Impulso, $5,200 MXN: hasta 3 secciones, diseño responsivo, botón de WhatsApp y SEO básico.
+- Plan Presencia Pro, $7,400 MXN: hasta 6 secciones, animaciones, integración con redes sociales y SEO técnico inicial.
+- Premium (tienda en línea), $10,500 MXN: tienda WooCommerce, pasarelas de pago, carga de hasta 10 productos y analíticas.
+
+Inteligencia artificial (instalación más mensualidad):
+
+- Asistente IA, $4,999 de instalación + $2,999 al mes: chatbot con IA para WhatsApp y para la web, atención 24/7, calificación de prospectos, 200 conversaciones al mes. Pensado para negocios que ya tienen página.
+- Transformación IA, $5,999 de instalación + $3,999 al mes: página web + chatbot con IA + calificación de prospectos + 1 automatización.
+- Escala Automática, $9,999 de instalación + $6,999 al mes: todo lo anterior + hasta 3 automatizaciones, contenido automático, análisis de datos y marketing (SEO y anuncios).
+- Automatización de procesos, $2,999 de instalación + $1,999 al mes por automatización: cotizaciones automáticas y seguimiento a prospectos.
+- Marketing digital + SEO, $4,500 al mes: Google Ads, Meta Ads, SEO, Perfil de Negocio de Google y reportes.
+
+## Páginas
+
+- [Inicio](https://vonoaweb.com/): qué hace VonoaWeb y para quién.
+- [Servicios](https://vonoaweb.com/servicios.html): diseño web, chatbots con IA, automatización, marketing y SEO.
+- [Precios](https://vonoaweb.com/precios.html): planes y cotizador interactivo.
+- [Preguntas frecuentes](https://vonoaweb.com/#preguntas): cuánto cuesta, en cuánto tiempo se entrega, si incluye hosting y dominio, zona de servicio y contratos.
+- [Portafolio](https://vonoaweb.com/portafolio.html): proyectos con enlace al sitio en vivo de cada cliente.
+- [Nosotros](https://vonoaweb.com/nosotros.html)
+- [Contacto](https://vonoaweb.com/contacto.html)
+- [Blog](https://blog.vonoaweb.com/): artículos sobre páginas web, IA y marketing para PYMEs de Guadalajara.
+
+## Sitios de clientes en línea
+
+- [Ye6 Otay](https://ye6otay.com/): almacenaje, estacionamiento de tráileres y cross-docking en Otay Mesa, San Diego. Sitio bilingüe.
+- [LuBlend](https://lublend.com/): tienda en línea de mezclas gourmet para bebidas (WooCommerce).
+- [Reciclaje de la Costa](https://reciclajedelacosta.com/): gestión integral de residuos para empresas.
+- [Desazolves de la Costa](https://desazolvesdelacosta.com/): desazolves, fosas sépticas y pipas para clientes públicos y privados.
+- [Pipas de la Costa](https://pipasdelacosta.com/): suministro de agua en pipas, llenado de cisternas y riego industrial.
+- [Fundación BDW](https://fundacionbdw.org/): fundación del método BreatheDance.
+- [CIAPSA](https://ciapsa.com/): impresión offset y acabados en Guadalajara.
+- [Jesas Cleaning Service](https://jesascleaningservice.ca/): limpieza residencial y de Airbnb en Canadá. Sitio en inglés.
+- [Tu Gran Evento](https://tugranevento.com/): invitaciones digitales.
+
+## English
+
+- [English site](https://vonoaweb.com/en/): web design and AI chat assistants for small businesses in the US and Canada. Nearshore studio in Mexico working on US Central Time. Prices in USD: websites from $900 (one-time), AI chat assistant from $1,200 setup + $299/month, website + AI assistant from $2,900, workflow automation from $600 per workflow, local SEO from $450/month.

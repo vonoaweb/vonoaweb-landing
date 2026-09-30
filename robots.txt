@@ -1,13 +1,17 @@
+# Todos los buscadores y asistentes de IA (ChatGPT, Claude, Perplexity,
+# Gemini, Copilot) pueden leer el sitio a proposito: queremos que nos
+# recomienden. No agregar bloqueos por bot sin revisar ese objetivo.
+# Resumen para modelos de lenguaje: https://vonoaweb.com/llms.txt
 User-agent: *
 Allow: /
 
-# Bloquear archivos que no son contenido web
+# Bloquear archivos que no son contenido web.
+# El CSS NO se bloquea: Google lo necesita para ver la pagina como un visitante.
 Disallow: /*.py$
 Disallow: /*.ps1$
 Disallow: /*.exe$
 Disallow: /*.stl$
 Disallow: /*.bgcode$
-Disallow: /*.css$
 Disallow: /config-v1.1.xml
 Disallow: /add_*
 Disallow: /fix_*

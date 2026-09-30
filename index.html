@@ -49,24 +49,46 @@
       letter-spacing:.4px;white-space:nowrap;transition:color .18s}
     .nav-en:hover{color:#fff}
     @media(min-width:1000px){.nav-en{display:inline}}
+
+    /* Preguntas frecuentes: mismo diseno que el FAQ de /en/. Vive aqui y no en
+       styles.css para no mover el cache-buster (?v=6) de las 8 paginas. */
+    .faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .faq-list details{background:var(--vw-midnight);border:1px solid var(--border);
+      border-radius:14px;padding:18px 22px;transition:border-color .2s}
+    .faq-list details[open]{border-color:rgba(46,233,185,.28)}
+    .faq-list summary{cursor:pointer;font-family:var(--font-display);font-weight:600;
+      font-size:16px;color:#fff;list-style:none;display:flex;
+      justify-content:space-between;align-items:center;gap:16px}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{content:"+";color:#2EE9B9;font-size:22px;line-height:1;flex:0 0 auto}
+    .faq-list details[open] summary::after{content:"\2013"}
+    .faq-list p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--fg-muted)}
+    .faq-list a{color:#1CA0F4}
   </style>
+  <!-- Ficha del negocio para Google y para los asistentes de IA (ChatGPT, Gemini,
+       Perplexity, Claude). Los precios salen de precios.html: si cambian alla,
+       cambiarlos aqui y en /llms.txt, o la IA va a citar precios viejos. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
+    "@id": "https://vonoaweb.com/#negocio",
     "name": "VonoaWeb",
+    "alternateName": ["Vonoa Web", "Vonoa"],
     "description": "Agencia de diseño web con inteligencia artificial para PYMEs en Guadalajara, Jalisco. Sitios profesionales con chatbot WhatsApp incluido.",
-    "url": "https://vonoaweb.com",
+    "url": "https://vonoaweb.com/",
     "logo": "https://vonoaweb.com/assets/vona-icon.webp",
     "image": "https://vonoaweb.com/assets/og-voni.png",
     "email": "hola@vonoaweb.com",
-    "telephone": "+5215644645574",
+    "telephone": "+52 56 4464 5574",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Zapopan",
       "addressRegion": "Jalisco",
+      "postalCode": "45110",
       "addressCountry": "MX"
     },
+    "hasMap": "https://maps.google.com/maps?cid=4412517992162439600",
     "areaServed": [
       {"@type": "City", "name": "Guadalajara"},
       {"@type": "City", "name": "Zapopan"},
@@ -75,21 +97,93 @@
       {"@type": "Country", "name": "México"}
     ],
     "openingHours": "Mo-Fr 09:00-18:00",
-    "priceRange": "$$",
+    "priceRange": "$5,200 - $10,500 MXN",
+    "currenciesAccepted": "MXN",
+    "knowsAbout": ["Diseño web", "Tiendas en línea", "Chatbots con IA para WhatsApp", "Automatización de procesos", "SEO local", "Diseño UX/UI"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Servicios de Diseño Web e IA",
+      "name": "Planes de diseño web e IA (MXN, IVA no incluido)",
       "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diseño Web con IA", "description": "Sitios web profesionales con chatbot inteligente para PYMEs en Guadalajara"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Chatbot WhatsApp para negocios", "description": "Atención automática 24/7 por WhatsApp Business con inteligencia artificial"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Automatización de Procesos", "description": "Automatización de cotizaciones, follow-up y procesos repetitivos"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketing Digital y SEO Guadalajara", "description": "Posicionamiento en Google y redes sociales para negocios locales"}}
+        {"@type": "Offer", "name": "Plan Impulso", "description": "Página web de hasta 3 secciones, responsiva, con botón de WhatsApp y SEO básico. Pago único.", "price": 5200, "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "itemOffered": {"@type": "Service", "name": "Diseño de página web"}},
+        {"@type": "Offer", "name": "Plan Presencia Pro", "description": "Página web de hasta 6 secciones con animaciones, integración con redes y SEO técnico inicial. Pago único.", "price": 7400, "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "itemOffered": {"@type": "Service", "name": "Diseño de página web"}},
+        {"@type": "Offer", "name": "Premium (tienda en línea)", "description": "Tienda WooCommerce con pasarelas de pago, hasta 10 productos cargados y analíticas. Pago único.", "price": 10500, "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "itemOffered": {"@type": "Service", "name": "Tienda en línea"}},
+        {"@type": "Offer", "name": "Asistente IA", "description": "Chatbot con IA para WhatsApp y web: atención 24/7, calificación de prospectos y 200 conversaciones al mes. $4,999 de instalación + $2,999 al mes.", "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "priceSpecification": [{"@type": "UnitPriceSpecification", "name": "Instalación", "price": 4999, "priceCurrency": "MXN", "valueAddedTaxIncluded": false}, {"@type": "UnitPriceSpecification", "name": "Mensualidad", "price": 2999, "priceCurrency": "MXN", "unitCode": "MON", "valueAddedTaxIncluded": false}], "itemOffered": {"@type": "Service", "name": "Chatbot con IA para WhatsApp y web"}},
+        {"@type": "Offer", "name": "Transformación IA", "description": "Página web + chatbot con IA para WhatsApp y web + calificación de prospectos + 1 automatización. $5,999 de instalación + $3,999 al mes.", "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "priceSpecification": [{"@type": "UnitPriceSpecification", "name": "Instalación", "price": 5999, "priceCurrency": "MXN", "valueAddedTaxIncluded": false}, {"@type": "UnitPriceSpecification", "name": "Mensualidad", "price": 3999, "priceCurrency": "MXN", "unitCode": "MON", "valueAddedTaxIncluded": false}], "itemOffered": {"@type": "Service", "name": "Página web con chatbot de IA"}},
+        {"@type": "Offer", "name": "Escala Automática", "description": "Todo lo de Transformación IA + hasta 3 automatizaciones, contenido automático, análisis de datos y marketing (SEO/Ads). $9,999 de instalación + $6,999 al mes.", "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "priceSpecification": [{"@type": "UnitPriceSpecification", "name": "Instalación", "price": 9999, "priceCurrency": "MXN", "valueAddedTaxIncluded": false}, {"@type": "UnitPriceSpecification", "name": "Mensualidad", "price": 6999, "priceCurrency": "MXN", "unitCode": "MON", "valueAddedTaxIncluded": false}], "itemOffered": {"@type": "Service", "name": "Automatización con IA y marketing"}},
+        {"@type": "Offer", "name": "Automatización de procesos", "description": "Cotizaciones automáticas y seguimiento a prospectos. $2,999 de instalación + $1,999 al mes por automatización.", "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "priceSpecification": [{"@type": "UnitPriceSpecification", "name": "Instalación", "price": 2999, "priceCurrency": "MXN", "valueAddedTaxIncluded": false}, {"@type": "UnitPriceSpecification", "name": "Mensualidad", "price": 1999, "priceCurrency": "MXN", "unitCode": "MON", "valueAddedTaxIncluded": false}], "itemOffered": {"@type": "Service", "name": "Automatización de procesos"}},
+        {"@type": "Offer", "name": "Marketing digital + SEO", "description": "Google Ads, Meta Ads, SEO, Perfil de Negocio de Google y reportes. $4,500 al mes.", "priceCurrency": "MXN", "url": "https://vonoaweb.com/precios.html", "priceSpecification": {"@type": "UnitPriceSpecification", "name": "Mensualidad", "price": 4500, "priceCurrency": "MXN", "unitCode": "MON", "valueAddedTaxIncluded": false}, "itemOffered": {"@type": "Service", "name": "Marketing digital y SEO local"}}
       ]
     },
     "sameAs": [
+      "https://maps.google.com/maps?cid=4412517992162439600",
       "https://www.facebook.com/people/Vonoa-Web/100077799369586/",
       "https://www.instagram.com/vonoa_web/",
       "https://www.linkedin.com/company/vonoaweb"
+    ]
+  }
+  </script>
+  <!-- FAQPage: copia exacta de la seccion #preguntas del body. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta una página web en Guadalajara con VonoaWeb?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Desde $5,200 MXN en un solo pago con el Plan Impulso: hasta 3 secciones, diseño responsivo, botón de WhatsApp y SEO básico. El Plan Presencia Pro, de hasta 6 secciones, cuesta $7,400 MXN, y una tienda en línea, $10,500 MXN. Precios en pesos, IVA no incluido. Ver todos los planes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En cuánto tiempo está lista mi página?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Desde 7 días. El tiempo exacto depende del plan y de qué tan pronto nos compartes tus textos y fotos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El precio incluye hosting y dominio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Todos los paquetes incluyen hosting y dominio, o la instalación en el tuyo si ya tienes uno."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Atienden solo en Guadalajara?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estamos en Zapopan y atendemos negocios de Guadalajara, Zapopan, Tlaquepaque y Tonalá. También trabajamos a distancia con clientes del resto de México, de Estados Unidos y de Canadá."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué hace el chatbot con IA y cuánto cuesta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contesta a tus clientes en WhatsApp y en tu sitio las 24 horas, califica a los prospectos y te los pasa listos para cotizar. El plan Asistente IA cuesta $4,999 MXN de instalación más $2,999 MXN al mes e incluye 200 conversaciones al mes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Tengo que firmar un contrato forzoso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Ningún plan tiene contrato forzoso."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿También hacen tiendas en línea?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. El plan Premium, de $10,500 MXN, es una tienda WooCommerce con pasarelas de pago, carga de hasta 10 productos y analíticas. Un ejemplo es LuBlend, la tienda de mezclas gourmet para bebidas que hicimos."
+        }
+      }
     ]
   }
   </script>
@@ -689,6 +783,55 @@
       <div class="blog-cta reveal">
         <a class="btn primary" href="https://blog.vonoaweb.com/">Ver todos los artículos →</a>
         <a class="btn ghost" href="https://blog.vonoaweb.com/tags/">Explorar por tema →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= PREGUNTAS FRECUENTES =======
+       Las respuestas salen de precios.html. El FAQPage del <head> repite este
+       bloque palabra por palabra: si cambias una respuesta aqui, cambiala alla. -->
+  <section class="section" id="preguntas">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="overline">Antes de empezar</span>
+        <h2>Preguntas frecuentes sobre tu página web en Guadalajara</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details>
+          <summary>¿Cuánto cuesta una página web en Guadalajara con VonoaWeb?</summary>
+          <p>Desde $5,200 MXN en un solo pago con el Plan Impulso: hasta 3 secciones, diseño responsivo, botón de
+            WhatsApp y SEO básico. El Plan Presencia Pro, de hasta 6 secciones, cuesta $7,400 MXN, y una tienda en
+            línea, $10,500 MXN. Precios en pesos, IVA no incluido. <a href="precios.html">Ver todos los planes</a>.</p>
+        </details>
+        <details>
+          <summary>¿En cuánto tiempo está lista mi página?</summary>
+          <p>Desde 7 días. El tiempo exacto depende del plan y de qué tan pronto nos compartes tus textos y fotos.</p>
+        </details>
+        <details>
+          <summary>¿El precio incluye hosting y dominio?</summary>
+          <p>Sí. Todos los paquetes incluyen hosting y dominio, o la instalación en el tuyo si ya tienes uno.</p>
+        </details>
+        <details>
+          <summary>¿Atienden solo en Guadalajara?</summary>
+          <p>Estamos en Zapopan y atendemos negocios de Guadalajara, Zapopan, Tlaquepaque y Tonalá. También trabajamos
+            a distancia con clientes del resto de México, de Estados Unidos y de Canadá.</p>
+        </details>
+        <details>
+          <summary>¿Qué hace el chatbot con IA y cuánto cuesta?</summary>
+          <p>Contesta a tus clientes en WhatsApp y en tu sitio las 24 horas, califica a los prospectos y te los pasa
+            listos para cotizar. El plan Asistente IA cuesta $4,999 MXN de instalación más $2,999 MXN al mes e incluye
+            200 conversaciones al mes.</p>
+        </details>
+        <details>
+          <summary>¿Tengo que firmar un contrato forzoso?</summary>
+          <p>No. Ningún plan tiene contrato forzoso.</p>
+        </details>
+        <details>
+          <summary>¿También hacen tiendas en línea?</summary>
+          <p>Sí. El plan Premium, de $10,500 MXN, es una tienda WooCommerce con pasarelas de pago, carga de hasta 10
+            productos y analíticas. Un ejemplo es <a href="https://lublend.com/" target="_blank" rel="noopener">LuBlend</a>,
+            la tienda de mezclas gourmet para bebidas que hicimos.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -1416,7 +1559,7 @@
           return pump();
         }).catch(function() {
           hideTyp();
-          addBot('Tuve un error de conexión 😅 Intenta de nuevo o escríbenos por WhatsApp.');
+          addBot('En este momento no puedo contestarte por aquí 🙏 Escríbenos por WhatsApp y te responde una persona del equipo.');
           showWA(); busy = false; sb.disabled = false;
         });
       }
