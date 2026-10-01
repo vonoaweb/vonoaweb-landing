@@ -228,6 +228,7 @@
     '#vonoa-root .vbbl ul{margin:2px 0 7px;padding-left:18px}',
     '#vonoa-root .vbbl ul:last-child{margin-bottom:0}',
     '#vonoa-root .vbbl li{margin:0 0 3px}',
+    '#vonoa-root .vbbl li.sub{margin-left:16px;list-style:circle}',
     '#vonoa-root .vtypi{display:inline-flex;gap:5px;align-items:center;padding:14px 16px;background:#fff;border-radius:18px 18px 18px 6px;box-shadow:0 1px 3px rgba(15,23,42,.08)}',
     '#vonoa-root .vtd{width:7px;height:7px;border-radius:50%;background:#94A3B8;animation:vonaTd 1.1s ease-in-out infinite}',
     '#vonoa-root .vtd:nth-child(2){animation-delay:.18s}#vonoa-root .vtd:nth-child(3){animation-delay:.36s}',
@@ -320,15 +321,27 @@
 
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-  /* Markdown minimo: **negritas**, *cursivas*, listas con "- " y parrafos. */
+  /* Markdown minimo. Llama escribe listas con "-", "*", "+" o "•" (a veces
+     anidadas con "+" o con sangria) y titulos con "###"; todo eso se convierte
+     aqui, si no se ven los simbolos sueltos en la burbuja. */
+  function inline(s) {
+    return s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*(?!\s)([^*]+?)\*(?!\*)/g, '$1<em>$2</em>');
+  }
   function md(t) {
-    var s = esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
     var out = '', ul = false;
-    s.split('\n').forEach(function (l) {
-      var m = l.match(/^\s*[-•] (.+)/);
-      if (m) { if (!ul) { out += '<ul>'; ul = true; } out += '<li>' + m[1] + '</li>'; return; }
+    esc(t).split('\n').forEach(function (l) {
+      var m = l.match(/^(\s*)([-*+•])\s+(.+)/);
+      if (m) {
+        if (!ul) { out += '<ul>'; ul = true; }
+        var sub = m[1].length >= 2 || m[2] === '+';
+        out += '<li' + (sub ? ' class="sub"' : '') + '>' + inline(m[3]) + '</li>';
+        return;
+      }
       if (ul) { out += '</ul>'; ul = false; }
-      if (l.trim()) out += '<p>' + l + '</p>';
+      var h = l.match(/^\s*#{1,4}\s+(.+)/);
+      if (h) out += '<p><strong>' + inline(h[1]) + '</strong></p>';
+      else if (l.trim()) out += '<p>' + inline(l.trim()) + '</p>';
     });
     if (ul) out += '</ul>';
     return out;
