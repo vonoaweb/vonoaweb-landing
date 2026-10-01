@@ -50,7 +50,7 @@
     @media(min-width:1000px){.nav-en{display:inline}}
 
     /* Quien esta detras */
-    .founders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1000px;margin:0 auto}
+    .founders{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1120px;margin:0 auto}
     .founder{display:flex;flex-direction:column;gap:6px;background:var(--vw-midnight);border:1px solid var(--border);
       border-radius:16px;padding:32px}
     .founder-photo{position:relative;width:120px;height:120px;border-radius:50%;padding:3px;margin-bottom:14px;
@@ -101,17 +101,19 @@
   </div>
 </section>
 
-<!-- Quien esta detras: los datos de Fernando salen de su LinkedIn y de fergonz.com; los de Robert,
-     de su LinkedIn (Co-founder en Vonoaweb, ITESO, Guadalajara). Solo datos comprobables.
+<!-- Quien esta detras: los datos de Fernando salen de su LinkedIn y de fergonz.com; los de Robert y
+     Karina, de sus LinkedIn (Robert: Co-founder en Vonoaweb, ITESO; Karina: Director de cuentas clave
+     desde ene-2026, vendedora desde nov-2024, Citibanamex 2015-2023). Solo datos comprobables.
      Faltan sus fotos: cuando las manden, agregar dentro de cada .founder-photo
      <img src="assets/fernando.webp" alt="Fernando González, cofundador de VonoaWeb" width="120" height="120">
      <img src="assets/robert.webp" alt="Robert Lint, cofundador de VonoaWeb" width="120" height="120">
+     <img src="assets/karina.webp" alt="Karina Cruz, directora de cuentas clave de VonoaWeb" width="120" height="120">
      (el CSS ya la coloca encima de las iniciales). -->
 <section class="section">
   <div class="container reveal">
     <div class="section-head">
       <span class="overline">Quién está detrás</span>
-      <h2>Los fundadores de VonoaWeb</h2>
+      <h2>El equipo de VonoaWeb</h2>
     </div>
     <div class="founders">
       <article class="founder">
@@ -133,6 +135,17 @@
         <p>Robert es cofundador de VonoaWeb y egresado del ITESO. Trabaja desde Guadalajara con el resto del equipo.</p>
         <div class="founder-links">
           <a href="https://www.linkedin.com/in/robert-lint-312a6222b/" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </article>
+      <article class="founder">
+        <div class="founder-photo"><span aria-hidden="true">KC</span></div>
+        <h3>Karina Cruz</h3>
+        <p class="founder-role">Directora de cuentas clave</p>
+        <p>Karina atiende a los clientes de VonoaWeb desde 2024 y hoy lleva la relación con las cuentas clave.
+          Es licenciada en Administración de Empresas y antes trabajó más de 7 años en Citibanamex, donde llegó a
+          gerente de oficina.</p>
+        <div class="founder-links">
+          <a href="https://www.linkedin.com/in/karina-cruz-87110320b/" target="_blank" rel="noopener">LinkedIn →</a>
         </div>
       </article>
     </div>
