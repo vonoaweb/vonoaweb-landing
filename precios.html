@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://vonoaweb.com/precios.html">
 <meta property="og:title" content="Precios — Planes de Diseño Web e IA | VonoaWeb">
 <meta property="og:description" content="Planes transparentes desde $3,999 MXN/mes. Chatbots IA, diseño web y automatización para PYMES. Sin costos ocultos.">
-<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.jpg">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="VonoaWeb">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Precios — Planes de Diseño Web e IA | VonoaWeb">
 <meta name="twitter:description" content="Planes transparentes desde $3,999 MXN/mes. Sin costos ocultos.">
-<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.jpg">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -213,6 +213,9 @@
         <span>✓ Hosting y dominio (o instalación en el tuyo)</span>
         <span>✓ Soporte durante el desarrollo</span>
         <span>✓ Manual básico para actualizar tu sitio</span>
+        <span>✓ El dominio, el código y el contenido son tuyos</span>
+        <span>✓ Pagas la mitad al empezar y la mitad al publicar</span>
+        <span>✓ Ajustes pequeños gratis los primeros 30 días</span>
       </div>
     </div>
   </div>
@@ -745,9 +748,9 @@ const SHOW_NOTIF_AFTER = 2500;         // ms antes de mostrar el punto de notifi
 const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e inteligencia artificial en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital con IA, y los guías hacia una consulta gratuita con un asesor humano de nuestro equipo.
 
 SOBRE VONOAWEB:
-- Pioneros en Jalisco integrando IA + diseño web para PYMES — de las primeras agencias en México en implementar inteligencia artificial conversacional para negocios locales
+- Agencia de diseño web e inteligencia artificial para PYMES en Guadalajara (Zapopan, Jalisco)
 - Combinamos diseño web profesional + chatbots IA + automatización de procesos
-- Proyectos destacados: Moncatu (e-commerce joyería, WooCommerce + MercadoPago), Azul de Metileno (corporativo, SEO técnico)
+- Sitios de clientes en línea: Ye6 Otay (logística, San Diego), Jesas Cleaning Service (limpieza, Canadá), CIAPSA (impresión), Fundación BDW, LuBlend (tienda en línea), Reciclaje de la Costa y el rediseño del e-commerce farmacéutico Azul de Metileno. No inventes otros clientes ni cifras de resultados
 
 PLANES DE IA (nuestro diferenciador):
 - Asistente IA: Setup $4,999 + $2,999/mes — Chatbot IA en WhatsApp + Web, atención 24/7, calificación de leads
@@ -880,7 +883,7 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
     busy=true;sb.disabled=true;
     showTyp();
     try{
-      const res=await fetch('https://vonoa-api-proxy.vonoaweb.workers.dev',{
+      const res=await fetch('/api/vona',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({

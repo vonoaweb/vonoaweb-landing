@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanks for reaching out | VonoaWeb</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://vonoaweb.com/en/">
+  <link rel="icon" type="image/webp" href="/assets/vona-icon-104.webp">
+  <style>
+    @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/sora-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Sora',system-ui,sans-serif;background:#0a1628;color:#e2e8f0;min-height:100vh;
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem}
+    .wrap{max-width:520px}
+    .check{width:84px;height:84px;margin:0 auto 1.5rem;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;font-size:2.4rem;font-weight:700;color:#0a1628;
+      background:linear-gradient(135deg,#2EE9B9,#1CA0F4)}
+    h1{font-size:1.6rem;font-weight:600;margin-bottom:1rem;color:#fff}
+    p{color:#94a3b8;margin-bottom:2rem;line-height:1.7}
+    .btn{display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#2EE9B9,#1CA0F4);color:#0a1628;
+      font-weight:600;font-size:.95rem;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(46,233,185,.3)}
+  </style>
+</head>
+<body>
+  <!-- Web3Forms redirects here when the /en/ form is sent the classic way. The
+       lead is recorded only after a real submission ('vw_lead_en' in sessionStorage).
+       No Google Ads conversion on purpose: it would skew the Mexican campaign. -->
+  <div class="wrap">
+    <div class="check" aria-hidden="true">&#10003;</div>
+    <h1>Thanks! We got your request</h1>
+    <p>You will hear back from us within one business day &mdash; usually the same day. If it is urgent, email us at
+      hola@vonoaweb.com.</p>
+    <a class="btn" href="/en/">Back to the site</a>
+  </div>
+
+  <script>
+  (function () {
+    var lead = null;
+    try { lead = JSON.parse(sessionStorage.getItem('vw_lead_en') || 'null'); sessionStorage.removeItem('vw_lead_en'); } catch (e) {}
+
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WGD4B5F5');
+    var gs = document.createElement('script'); gs.async = true;
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-3KN5E8EFG2'; document.head.appendChild(gs);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+    gtag('js', new Date()); gtag('config', 'G-3KN5E8EFG2');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '823900389572284'); fbq('track', 'PageView');
+
+    if (!lead) return;
+    dataLayer.push({ event: 'form_submit_en', form_name: 'contact_en', service: lead.service || '',
+      budget: lead.budget || '', via: 'classic_post' });
+    fbq('track', 'Lead', { content_name: lead.service || 'en_general' });
+    gtag('event', 'generate_lead', { service: lead.service || '', page_lang: 'en' });
+  })();
+  </script>
+</body>
+</html>

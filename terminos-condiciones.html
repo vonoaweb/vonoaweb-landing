@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://vonoaweb.com/terminos-condiciones.html">
 <meta property="og:title" content="Términos y Condiciones — VonoaWeb">
 <meta property="og:description" content="Conoce los términos y condiciones que rigen la contratación de servicios con VonoaWeb.">
-<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.jpg">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="VonoaWeb">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Términos y Condiciones — VonoaWeb">
 <meta name="twitter:description" content="Conoce los términos y condiciones que rigen la contratación de servicios con VonoaWeb.">
-<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.jpg">
 <meta name="robots" content="noindex, follow">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
@@ -589,7 +589,7 @@ const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e
   async function callAPI(){
     busy=true;sb.disabled=true;showTyp();
     try{
-      const res=await fetch('https://vonoa-api-proxy.vonoaweb.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1024,stream:true,system:VONOA_SYS,messages:hist})});
+      const res=await fetch('/api/vona',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1024,stream:true,system:VONOA_SYS,messages:hist})});
       hideTyp();if(!res.ok)throw new Error('err');
       const rdr=res.body.getReader(),dec=new TextDecoder();let buf='',full='';const bid=addBot('▋');
       while(true){const{done,value}=await rdr.read();if(done)break;buf+=dec.decode(value,{stream:true});const lines=buf.split('\n');buf=lines.pop();for(const ln of lines){if(!ln.startsWith('data: '))continue;const d=ln.slice(6).trim();if(d==='[DONE]')continue;try{const j=JSON.parse(d);if(j.type==='content_block_delta'&&j.delta?.type==='text_delta'){full+=j.delta.text;updBot(bid,full+'▋');}}catch{}}}

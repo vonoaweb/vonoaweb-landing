@@ -311,6 +311,31 @@
         btn.insertAdjacentElement('afterend', box);
       };
 
+      // La CSP de Cloudflare bloquea fetch() hacia Web3Forms, pero no los envios
+      // normales de formulario (no define form-action). Si fetch falla, se manda
+      // como formulario tradicional y Web3Forms regresa al visitante a /gracias.html,
+      // que es donde se registran las conversiones en ese caso.
+      const envioTradicional = () => {
+        const f = document.createElement('form');
+        f.method = 'POST';
+        f.action = 'https://api.web3forms.com/submit';
+        f.style.display = 'none';
+        const campos = Object.assign({}, payload, { redirect: location.origin + '/gracias.html' });
+        Object.keys(campos).forEach(k => {
+          const i = document.createElement('input');
+          i.type = 'hidden';
+          i.name = k;
+          i.value = campos[k] == null ? '' : String(campos[k]);
+          f.appendChild(i);
+        });
+        try {
+          sessionStorage.setItem('vw_lead', JSON.stringify({ servicio: payload.servicio || '', presupuesto: payload.presupuesto || '' }));
+        } catch (e) { /* sin sessionStorage: /gracias.html no registra la conversion */ }
+        document.body.appendChild(f);
+        btn.textContent = 'Enviando…';
+        f.submit();
+      };
+
       try {
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -345,7 +370,7 @@
           planB();
         }
       } catch {
-        planB();
+        try { envioTradicional(); } catch (e) { planB(); }
       }
     });
   }

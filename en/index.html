@@ -19,14 +19,14 @@
   <meta property="og:url" content="https://vonoaweb.com/en/">
   <meta property="og:title" content="Small Business Web Design + AI Assistants | VonoaWeb">
   <meta property="og:description" content="Modern websites with a built-in AI assistant that answers customers 24/7. Nearshore studio working US hours. Sites from $900.">
-  <meta property="og:image" content="https://vonoaweb.com/assets/og-en.png">
+  <meta property="og:image" content="https://vonoaweb.com/assets/og-en.jpg">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="es_MX">
   <meta property="og:site_name" content="VonoaWeb">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Small Business Web Design + AI Assistants | VonoaWeb">
   <meta name="twitter:description" content="Websites with a built-in AI assistant that answers customers 24/7. Nearshore studio, US hours. From $900.">
-  <meta name="twitter:image" content="https://vonoaweb.com/assets/og-en.png">
+  <meta name="twitter:image" content="https://vonoaweb.com/assets/og-en.jpg">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -55,7 +55,7 @@
     "description": "Web design studio building fast small-business websites with built-in AI chat assistants. Based in Mexico, working US business hours.",
     "url": "https://vonoaweb.com/en/",
     "logo": "https://vonoaweb.com/assets/vona-icon.webp",
-    "image": "https://vonoaweb.com/assets/og-en.png",
+    "image": "https://vonoaweb.com/assets/og-en.jpg",
     "email": "hola@vonoaweb.com",
     "inLanguage": ["en", "es"],
     "address": {
@@ -538,8 +538,7 @@
               <div class="overline">E-commerce &middot; WooCommerce</div>
               <h3>Azul de Metileno</h3>
               <p class="small">A pharmaceutical store rebuilt around one question: why were people leaving before
-                checkout? Redesigned the flow, fixed technical SEO, and pushed it into Google's top 3 for its core
-                terms.</p>
+                checkout? Redesigned the flow and fixed the technical SEO.</p>
               <div class="tags"><span>E-commerce</span><span>UX redesign</span><span>Technical SEO</span><span>CRO</span></div>
             </div>
             <span class="arrow">&#8599;</span>
@@ -1256,7 +1255,7 @@
       '',
       'ABOUT VONOAWEB:',
       '- A small studio based in Mexico, working US Central Time year round, so there is a six-hour-plus overlap with any US workday',
-      '- 10+ years in digital design, 30+ businesses shipped',
+      '- 10+ years in digital design; live client sites in the US (Ye6 Otay, San Diego), Canada (Jesas Cleaning Service) and Mexico',
       '- We build websites, AI chat assistants, workflow automation and local SEO',
       '- Clients talk directly to the person building the site, not an account manager',
       '- Clients own the domain, the code and every login. Nothing is locked in.',
@@ -1393,7 +1392,7 @@
 
       function callAPI() {
         busy = true; sb.disabled = true; showTyp();
-        fetch('https://vonoa-api-proxy.vonoaweb.workers.dev', {
+        fetch('/api/vona', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1024, stream: true, system: VONOA_SYS, messages: hist })
@@ -1553,9 +1552,27 @@
             + '<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">Thanks, ' + name.replace(/[<>&]/g, '') + '!</h3>'
             + '<p style="color:var(--fg-muted);font-size:14px;">Got it. You will hear back from us within one business day &mdash; usually the same day.</p>';
         }).catch(function () {
-          // If sending fails (offline, Web3Forms down, or blocked by the site's
-          // CSP as happened in Sep 2026) the lead is not lost: offer the same
-          // details as a ready-to-send email.
+          // Cloudflare's CSP blocks fetch() to Web3Forms but not a classic form
+          // POST (it sets no form-action), so send it the classic way; Web3Forms
+          // then redirects to /en/thanks.html, which records the lead.
+          try {
+            var f = document.createElement('form');
+            f.method = 'POST';
+            f.action = 'https://api.web3forms.com/submit';
+            f.style.display = 'none';
+            var fields = Object.assign({}, payload, { redirect: location.origin + '/en/thanks.html' });
+            Object.keys(fields).forEach(function (k) {
+              var i = document.createElement('input');
+              i.type = 'hidden'; i.name = k; i.value = fields[k] == null ? '' : String(fields[k]);
+              f.appendChild(i);
+            });
+            try { sessionStorage.setItem('vw_lead_en', JSON.stringify({ service: payload.service || '', budget: payload.budget_usd || '' })); } catch (e) {}
+            document.body.appendChild(f);
+            f.submit();
+            return;
+          } catch (e) { /* fall through to the email option below */ }
+          // If even that fails (offline, Web3Forms down), the lead is still not
+          // lost: offer the same details as a ready-to-send email.
           btn.disabled = false;
           btn.textContent = 'Send request →';
           var body = ['Name: ' + payload.name, 'Business: ' + payload.business,

@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://vonoaweb.com/nosotros.html">
 <meta property="og:title" content="Nosotros — Conoce a VonoaWeb">
 <meta property="og:description" content="Somos un equipo de diseño web y marketing digital en Guadalajara, Jalisco. Ayudamos a PYMES a crecer con tecnología e inteligencia artificial.">
-<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.jpg">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="VonoaWeb">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nosotros — Conoce a VonoaWeb">
 <meta name="twitter:description" content="Somos un equipo de diseño web y marketing digital en Guadalajara, Jalisco. Ayudamos a PYMES a crecer con IA.">
-<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.png">
+<meta name="twitter:image" content="https://vonoaweb.com/assets/og-voni.jpg">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -48,6 +48,27 @@
       letter-spacing:.4px;white-space:nowrap;transition:color .18s}
     .nav-en:hover{color:#fff}
     @media(min-width:1000px){.nav-en{display:inline}}
+
+    /* Quien esta detras */
+    .founder{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:center;max-width:920px}
+    .founder-photo{position:relative;width:220px;height:220px;border-radius:50%;padding:4px;
+      background:linear-gradient(135deg,#2EE9B9,#1CA0F4)}
+    .founder-photo span{display:flex;width:100%;height:100%;border-radius:50%;align-items:center;justify-content:center;
+      background:var(--vw-midnight,#0F2040);font-family:var(--font-display);font-weight:700;font-size:64px;
+      letter-spacing:2px;color:#fff}
+    .founder-photo img{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);border-radius:50%;
+      object-fit:cover}
+    .founder h2{margin:6px 0 4px}
+    .founder-role{color:#2EE9B9;font-weight:600;font-size:15px;margin-bottom:14px}
+    .founder p{color:var(--fg-muted)}
+    .founder-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px}
+    .founder-links a{color:#1CA0F4;font-weight:600;font-size:15px}
+    @media(max-width:760px){
+      .founder{grid-template-columns:1fr;text-align:center;justify-items:center;gap:28px}
+      .founder-photo{width:170px;height:170px}
+      .founder-photo span{font-size:50px}
+      .founder-links{justify-content:center}
+    }
   </style>
 </head>
 <body>
@@ -78,6 +99,31 @@
     <h1>Tecnología + diseño para <span class="g">PYMES</span> que quieren crecer</h1>
     <p class="lede">Somos un equipo de diseño web, marketing digital e inteligencia artificial basado en Guadalajara, Jalisco.</p>
   </div>
+</section>
+
+<!-- Quien esta detras: los datos salen del LinkedIn y de fergonz.com de Fernando.
+     Falta su foto: cuando la mande, agregar dentro de .founder-photo
+     <img src="assets/fernando.webp" alt="Fernando González, cofundador de VonoaWeb" width="220" height="220">
+     (el CSS ya la coloca encima de las iniciales). -->
+<section class="section">
+  <div class="container founder reveal">
+    <div class="founder-photo">
+      <span aria-hidden="true">FG</span>
+    </div>
+    <div>
+      <span class="overline">Quién está detrás</span>
+      <h2>Fernando González</h2>
+      <p class="founder-role">Cofundador de VonoaWeb · Diseñador UX/UI</p>
+      <p>Fernando lleva 11 años diseñando productos digitales. Es egresado del ITESO y diseñó la tienda en línea de
+        Grupo Urrea (urreaonline.com), con más de 10,000 productos. En VonoaWeb lleva esa experiencia a las páginas
+        de PYMES de Guadalajara: sitios rápidos, claros y pensados para vender.</p>
+      <div class="founder-links">
+        <a href="https://www.linkedin.com/in/fergonz/" target="_blank" rel="noopener">LinkedIn →</a>
+        <a href="https://fergonz.com" target="_blank" rel="noopener">Portafolio personal →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Visión, Misión, Valores -->
 <section class="section">
@@ -118,9 +164,9 @@
       <a class="btn primary" href="contacto.html">Contactar →</a>
     </div>
     <div class="why-stats">
-      <div class="stat"><div class="num">+30</div><div class="lbl">Negocios transformados</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl">Países con clientes: México, EE.UU. y Canadá</div></div>
       <div class="stat"><div class="num">+10</div><div class="lbl">Años en diseño digital</div></div>
-      <div class="stat"><div class="num">98<small>/100</small></div><div class="lbl">PageSpeed promedio</div></div>
+      <div class="stat"><div class="num">99<small>/100</small></div><div class="lbl">PageSpeed de este sitio en computadora</div></div>
       <div class="stat"><div class="num">desde&nbsp;7d</div><div class="lbl">Tiempo de entrega</div></div>
     </div>
   </div>
@@ -443,9 +489,9 @@ const SHOW_NOTIF_AFTER = 2500;         // ms antes de mostrar el punto de notifi
 const VONOA_SYS = `Eres Vona, el agente IA de VonoaWeb, agencia de diseño web e inteligencia artificial en Zapopan, Jalisco, México. Ayudas a PyMEs y emprendedores a entender cómo VonoaWeb puede mejorar su presencia digital con IA, y los guías hacia una consulta gratuita con un asesor humano de nuestro equipo.
 
 SOBRE VONOAWEB:
-- Pioneros en Jalisco integrando IA + diseño web para PYMES — de las primeras agencias en México en implementar inteligencia artificial conversacional para negocios locales
+- Agencia de diseño web e inteligencia artificial para PYMES en Guadalajara (Zapopan, Jalisco)
 - Combinamos diseño web profesional + chatbots IA + automatización de procesos
-- Proyectos destacados: Moncatu (e-commerce joyería, WooCommerce + MercadoPago), Azul de Metileno (corporativo, SEO técnico)
+- Sitios de clientes en línea: Ye6 Otay (logística, San Diego), Jesas Cleaning Service (limpieza, Canadá), CIAPSA (impresión), Fundación BDW, LuBlend (tienda en línea), Reciclaje de la Costa y el rediseño del e-commerce farmacéutico Azul de Metileno. No inventes otros clientes ni cifras de resultados
 
 PLANES DE IA (nuestro diferenciador):
 - Asistente IA: Setup $4,999 + $2,999/mes — Chatbot IA en WhatsApp + Web, atención 24/7, calificación de leads
@@ -578,7 +624,7 @@ Responde siempre en el idioma del usuario. Nunca menciones nombres propios del e
     busy=true;sb.disabled=true;
     showTyp();
     try{
-      const res=await fetch('https://vonoa-api-proxy.vonoaweb.workers.dev',{
+      const res=await fetch('/api/vona',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
