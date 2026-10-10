@@ -165,7 +165,9 @@
         if (typeof fbq === 'function') fbq('track', 'Contact');
         if (typeof gtag === 'function') {
           gtag('event', 'whatsapp_click', { source: 'chatbot_vonoa' });
-          gtag('event', 'conversion', { send_to: 'AW-10804436682', event_category: 'whatsapp', event_label: 'chatbot' });
+          // Misma conversion "Contacto WhatsApp" que site.js. Sin la etiqueta
+          // (/0icS...) Google Ads no la atribuye a ninguna accion y no se cuenta.
+          gtag('event', 'conversion', { send_to: 'AW-10804436682/0icSCKGEqtUcEMq9-p8o' });
         }
       },
       closes: false
