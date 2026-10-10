@@ -1,0 +1,32 @@
+name: Avisar a IndexNow
+
+# Despues de cada push a master, le avisa a IndexNow (Bing; ChatGPT y Copilot
+# buscan en su indice) que paginas cambiaron. Las paginas con noindex no se
+# mandan. La llave vive en /52228c04413911c45ee983da854c55ef.txt.
+on:
+  push:
+    branches: [master]
+    paths: ['**.html']
+  # Manual: avisa de las paginas cambiadas desde el commit "desde".
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: 'SHA del commit desde el cual avisar (vacio = solo el ultimo commit)'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # GitHub Pages tarda alrededor de un minuto en publicar: se espera para
+      # que Bing encuentre la version nueva cuando venga a revisar.
+      - name: Esperar a que GitHub Pages publique
+        run: sleep 120
+      - name: Avisar a IndexNow
+        run: python3 .github/indexnow.py landing "${{ github.event.before || inputs.desde }}"
