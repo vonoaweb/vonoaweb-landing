@@ -32,6 +32,8 @@
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preload" href="assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   /* Sora y DM Sans (licencia OFL) servidas desde el propio sitio: en celular se
      ahorran las dos conexiones a Google Fonts. Son los mismos archivos de Google. */
@@ -39,8 +41,14 @@
   @font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/dmsans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  /* Respaldo con las medidas de Sora y DM Sans: mientras carga la fuente, el texto ocupa
+     casi lo mismo y la pagina no brinca (CLS). size-adjust medido contra Arial. */
+  @font-face{font-family:'Sora Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:113%;ascent-override:86%;descent-override:26%;line-gap-override:0%}
+  @font-face{font-family:'Sora Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:108%;ascent-override:90%;descent-override:27%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:104%;ascent-override:95%;descent-override:30%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:102%;ascent-override:97%;descent-override:30%;line-gap-override:0%}
 </style>
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
   <style>
     /* Enlace al sitio en ingles. Solo a partir de 1000px: por debajo la nav va
        justa (870px de contenido y el burger entra a los 900). */
@@ -124,7 +132,7 @@
   margin-left:8px; flex:1; max-width:240px; height:20px;
   background:rgba(255,255,255,.06); border-radius:4px;
   display:flex; align-items:center; padding:0 10px;
-  font-size:11px; color:rgba(255,255,255,.28); font-family:monospace;
+  font-size:11px; color:rgba(255,255,255,.55); font-family:monospace;
   overflow:hidden; white-space:nowrap;
 }
 .cs-bscreen {
@@ -188,7 +196,7 @@
 .cs-block { margin-bottom:20px; }
 .cs-label {
   font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
-  color:#5b6d8a; margin-bottom:7px; display:flex; align-items:center; gap:8px;
+  color:#8494AE; margin-bottom:7px; display:flex; align-items:center; gap:8px;
 }
 .cs-label::before {
   content:''; width:3px; height:12px; border-radius:2px; flex-shrink:0;
@@ -208,7 +216,7 @@
   background:linear-gradient(135deg,#2EE9B9,#1CA0F4);
   -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1;
 }
-.cs-rlabel { font-size:10.5px; color:#5b6d8a; margin-top:5px; line-height:1.4; }
+.cs-rlabel { font-size:10.5px; color:#8494AE; margin-top:5px; line-height:1.4; }
 .cs-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:24px; }
 .cs-tag {
   display:inline-flex; align-items:center; height:28px; padding:0 12px;
@@ -415,7 +423,7 @@ a.testi-card:hover {
 <section class="page-hero">
   <div class="container">
     <span class="overline">Portafolio</span>
-    <h1>Resultados reales, <span class="g">clientes satisfechos</span></h1>
+    <h1>Proyectos reales de <span class="g">diseño web</span></h1>
     <p class="lede">Cada proyecto tiene una historia. Aquí te mostramos el reto, la solución que construimos y los resultados que logramos para empresas en México.</p>
   </div>
 </section>
@@ -451,21 +459,21 @@ a.testi-card:hover {
             </div>
             <!-- Phone frontal (activo, cambia con thumbnails) -->
             <div class="cs-phone cs-phone-front" id="cs1-main">
-              <img src="assets/urrea-app-1.webp" alt="Grupo Urrea App Expo Virtual">
+              <img src="assets/urrea-app-1.webp" alt="Grupo Urrea App Expo Virtual" fetchpriority="high">
             </div>
           </div>
           <div class="cs-thumb-row cs-thumb-port">
             <div class="cs-thumb active" onclick="switchImg('cs1-main', 'assets/urrea-app-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-app-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-app-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs1-main', 'assets/urrea-app-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-app-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-app-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs1-main', 'assets/urrea-app-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-app-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-app-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs1-main', 'assets/urrea-app-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-app-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-app-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -521,16 +529,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs2-main', 'assets/urrea-web-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-web-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-web-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs2-main', 'assets/urrea-web-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-web-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-web-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs2-main', 'assets/urrea-web-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-web-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-web-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs2-main', 'assets/urrea-web-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/urrea-web-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/urrea-web-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -587,10 +595,10 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs3-main', 'assets/flujo-dashboard.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/flujo-dashboard.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/flujo-dashboard.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs3-main', 'assets/ux-wireframes.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/ux-wireframes.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/ux-wireframes.webp" alt="">
             </div>
           </div>
         </div>
@@ -646,16 +654,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs4-main', 'assets/tallermetro-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/tallermetro-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/tallermetro-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs4-main', 'assets/tallermetro-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/tallermetro-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/tallermetro-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs4-main', 'assets/tallermetro-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/tallermetro-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/tallermetro-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs4-main', 'assets/tallermetro-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/tallermetro-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/tallermetro-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -711,16 +719,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs9-main', 'assets/fundacion-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/fundacion-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/fundacion-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs9-main', 'assets/fundacion-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/fundacion-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/fundacion-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs9-main', 'assets/fundacion-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/fundacion-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/fundacion-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs9-main', 'assets/fundacion-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/fundacion-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/fundacion-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -775,10 +783,10 @@ a.testi-card:hover {
             </div>
           </div>
           <div class="cs-thumb-row">
-            <div class="cs-thumb active" onclick="switchImg('cs11-main', 'assets/ciapsa-1.webp', this)"><img loading="lazy" decoding="async" src="assets/ciapsa-1.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-2.webp', this)"><img loading="lazy" decoding="async" src="assets/ciapsa-2.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-3.webp', this)"><img loading="lazy" decoding="async" src="assets/ciapsa-3.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-4.webp', this)"><img loading="lazy" decoding="async" src="assets/ciapsa-4.webp" alt=""></div>
+            <div class="cs-thumb active" onclick="switchImg('cs11-main', 'assets/ciapsa-1.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/ciapsa-1.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-2.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/ciapsa-2.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-3.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/ciapsa-3.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs11-main', 'assets/ciapsa-4.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/ciapsa-4.webp" alt=""></div>
           </div>
         </div>
         <div class="cs-content">
@@ -823,10 +831,10 @@ a.testi-card:hover {
             </div>
           </div>
           <div class="cs-thumb-row">
-            <div class="cs-thumb active" onclick="switchImg('cs12-main', 'assets/jesas-1.webp', this)"><img loading="lazy" decoding="async" src="assets/jesas-1.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-2.webp', this)"><img loading="lazy" decoding="async" src="assets/jesas-2.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-3.webp', this)"><img loading="lazy" decoding="async" src="assets/jesas-3.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-4.webp', this)"><img loading="lazy" decoding="async" src="assets/jesas-4.webp" alt=""></div>
+            <div class="cs-thumb active" onclick="switchImg('cs12-main', 'assets/jesas-1.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/jesas-1.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-2.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/jesas-2.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-3.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/jesas-3.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs12-main', 'assets/jesas-4.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/jesas-4.webp" alt=""></div>
           </div>
         </div>
         <div class="cs-content">
@@ -872,16 +880,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs8-main', 'assets/desazolve-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/desazolve-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/desazolve-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs8-main', 'assets/desazolve-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/desazolve-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/desazolve-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs8-main', 'assets/desazolve-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/desazolve-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/desazolve-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs8-main', 'assets/desazolve-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/desazolve-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/desazolve-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -937,16 +945,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs7-main', 'assets/reciclaje-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/reciclaje-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/reciclaje-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs7-main', 'assets/reciclaje-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/reciclaje-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/reciclaje-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs7-main', 'assets/reciclaje-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/reciclaje-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/reciclaje-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs7-main', 'assets/reciclaje-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/reciclaje-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/reciclaje-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -1001,10 +1009,10 @@ a.testi-card:hover {
             </div>
           </div>
           <div class="cs-thumb-row">
-            <div class="cs-thumb active" onclick="switchImg('cs10-main', 'assets/pipas-1.webp', this)"><img loading="lazy" decoding="async" src="assets/pipas-1.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-2.webp', this)"><img loading="lazy" decoding="async" src="assets/pipas-2.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-3.webp', this)"><img loading="lazy" decoding="async" src="assets/pipas-3.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-4.webp', this)"><img loading="lazy" decoding="async" src="assets/pipas-4.webp" alt=""></div>
+            <div class="cs-thumb active" onclick="switchImg('cs10-main', 'assets/pipas-1.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/pipas-1.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-2.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/pipas-2.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-3.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/pipas-3.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs10-main', 'assets/pipas-4.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/pipas-4.webp" alt=""></div>
           </div>
         </div>
         <div class="cs-content">
@@ -1050,16 +1058,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs5-main', 'assets/ye6otay-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/ye6otay-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/ye6otay-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs5-main', 'assets/ye6otay-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/ye6otay-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/ye6otay-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs5-main', 'assets/ye6otay-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/ye6otay-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/ye6otay-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs5-main', 'assets/ye6otay-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/ye6otay-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/ye6otay-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -1116,16 +1124,16 @@ a.testi-card:hover {
           </div>
           <div class="cs-thumb-row">
             <div class="cs-thumb active" onclick="switchImg('cs6-main', 'assets/lublend-1.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/lublend-1.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/lublend-1.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs6-main', 'assets/lublend-2.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/lublend-2.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/lublend-2.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs6-main', 'assets/lublend-3.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/lublend-3.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/lublend-3.webp" alt="">
             </div>
             <div class="cs-thumb" onclick="switchImg('cs6-main', 'assets/lublend-4.webp', this)">
-              <img loading="lazy" decoding="async" src="assets/lublend-4.webp" alt="">
+              <img loading="lazy" decoding="async" src="assets/thumbs/lublend-4.webp" alt="">
             </div>
           </div>
         </div>
@@ -1180,10 +1188,10 @@ a.testi-card:hover {
             </div>
           </div>
           <div class="cs-thumb-row">
-            <div class="cs-thumb active" onclick="switchImg('cs13-main', 'assets/tugranevento-1.webp', this)"><img loading="lazy" decoding="async" src="assets/tugranevento-1.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-2.webp', this)"><img loading="lazy" decoding="async" src="assets/tugranevento-2.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-3.webp', this)"><img loading="lazy" decoding="async" src="assets/tugranevento-3.webp" alt=""></div>
-            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-4.webp', this)"><img loading="lazy" decoding="async" src="assets/tugranevento-4.webp" alt=""></div>
+            <div class="cs-thumb active" onclick="switchImg('cs13-main', 'assets/tugranevento-1.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/tugranevento-1.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-2.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/tugranevento-2.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-3.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/tugranevento-3.webp" alt=""></div>
+            <div class="cs-thumb" onclick="switchImg('cs13-main', 'assets/tugranevento-4.webp', this)"><img loading="lazy" decoding="async" src="assets/thumbs/tugranevento-4.webp" alt=""></div>
           </div>
         </div>
         <div class="cs-info">
@@ -1646,13 +1654,50 @@ a.testi-card:hover {
     </div>
     <div class="f-bot">
       <span>© 2026 VonoaWeb · Zapopan, Jalisco · MX</span>
-      <span>hola@vonoaweb.com</span>
+      <span><!--email_off-->hola@vonoaweb.com<!--/email_off--></span>
     </div>
   </div>
 </footer>
 
 <!-- ======= CHATBOT IA: vive en /vona-chat.js (una sola version para todo el sitio) ======= -->
 <script src="/vona-chat.js?v=2" defer></script>
+
+<!-- Galeria (miniaturas) y filtros del portafolio. Se habian ido junto con el chatbot viejo
+     el 30-sep-2026 (commit 7df8cb8): las miniaturas y los filtros dejaron de responder. -->
+<script>
+/* -- Image gallery switcher -- */
+function switchImg(mainId, src, thumbEl) {
+  const mainImg = document.querySelector('#' + mainId + ' img');
+  if (mainImg) mainImg.src = src;
+  const row = thumbEl.closest('.cs-thumb-row');
+  row.querySelectorAll('.cs-thumb').forEach(t => t.classList.remove('active'));
+  thumbEl.classList.add('active');
+}
+
+/* -- Portfolio filter -- */
+(function(){
+  const pills = document.querySelectorAll('.filter-pill');
+  const csItems = document.querySelectorAll('.cs-item');
+  const pjCards = document.querySelectorAll('.pj-card');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.dataset.filter;
+
+      csItems.forEach(item => {
+        const cats = item.dataset.cat.split(',');
+        item.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+      });
+      pjCards.forEach(card => {
+        const cats = card.dataset.cat.split(',');
+        card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+      });
+    });
+  });
+})();
+</script>
 
 <script src="site.js?v=4" defer></script>
 

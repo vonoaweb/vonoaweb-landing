@@ -33,6 +33,8 @@
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preload" href="assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   /* Sora y DM Sans (licencia OFL) servidas desde el propio sitio: en celular se
      ahorran las dos conexiones a Google Fonts. Son los mismos archivos de Google. */
@@ -40,8 +42,14 @@
   @font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/dmsans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  /* Respaldo con las medidas de Sora y DM Sans: mientras carga la fuente, el texto ocupa
+     casi lo mismo y la pagina no brinca (CLS). size-adjust medido contra Arial. */
+  @font-face{font-family:'Sora Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:113%;ascent-override:86%;descent-override:26%;line-gap-override:0%}
+  @font-face{font-family:'Sora Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:108%;ascent-override:90%;descent-override:27%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:104%;ascent-override:95%;descent-override:30%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:102%;ascent-override:97%;descent-override:30%;line-gap-override:0%}
 </style>
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
   <style>
     /* Enlace al sitio en ingles. Solo a partir de 1000px: por debajo la nav va
        justa (870px de contenido y el burger entra a los 900). */
@@ -226,7 +234,7 @@
       <ul>
         <li><strong>Denominación:</strong> VonoaWeb</li>
         <li><strong>Domicilio:</strong> Zapopan, Jalisco, México</li>
-        <li><strong>Correo electrónico:</strong> <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a></li>
+        <li><strong>Correo electrónico:</strong> <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off--></li>
         <li><strong>Sitio web:</strong> <a href="https://vonoaweb.com" target="_blank" rel="noopener">vonoaweb.com</a></li>
       </ul>
       <p>El presente Aviso de Privacidad se emite en cumplimiento de la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</strong> (LFPDPPP), su Reglamento y los Lineamientos del Aviso de Privacidad publicados por el INAI.</p>
@@ -261,7 +269,7 @@
         <li>Mostrarte publicidad personalizada en redes sociales o plataformas de terceros.</li>
         <li>Analizar patrones de navegación para mejorar la experiencia en nuestro sitio web.</li>
       </ul>
-      <p>Si no deseas que tus datos sean tratados para las finalidades secundarias, puedes manifestarlo enviando un correo a <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a> con el asunto <em>"Oposición a finalidades secundarias"</em>.</p>
+      <p>Si no deseas que tus datos sean tratados para las finalidades secundarias, puedes manifestarlo enviando un correo a <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off--> con el asunto <em>"Oposición a finalidades secundarias"</em>.</p>
 
       <h2 id="transferencias">4. Transferencias de datos</h2>
       <p>VonoaWeb puede compartir tus datos personales con los siguientes terceros, en los términos que indica la LFPDPPP:</p>
@@ -302,7 +310,7 @@
         </tbody>
       </table>
       <p><strong>¿Cómo ejercer tus derechos?</strong></p>
-      <p>Envía tu solicitud a <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a> con el asunto <em>"Solicitud de Derechos ARCO"</em>. Tu solicitud debe incluir:</p>
+      <p>Envía tu solicitud a <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off--> con el asunto <em>"Solicitud de Derechos ARCO"</em>. Tu solicitud debe incluir:</p>
       <ol>
         <li>Nombre completo y correo electrónico registrado.</li>
         <li>Descripción clara del derecho que deseas ejercer y los datos a los que se refiere.</li>
@@ -313,7 +321,7 @@
 
       <h2 id="consentimiento">6. Consentimiento y revocación</h2>
       <p>Al completar cualquiera de nuestros formularios de contacto o cotización, proporcionar tus datos por correo electrónico, WhatsApp u otro medio, o al contratar nuestros servicios, manifiestas tu consentimiento para el tratamiento de tus datos conforme a lo establecido en este Aviso de Privacidad.</p>
-      <p>Puedes <strong>revocar tu consentimiento</strong> en cualquier momento para las finalidades secundarias enviando un correo a <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a> con el asunto <em>"Revocación de consentimiento"</em>. La revocación de consentimiento no tendrá efectos retroactivos y no implica la cancelación automática de contratos vigentes.</p>
+      <p>Puedes <strong>revocar tu consentimiento</strong> en cualquier momento para las finalidades secundarias enviando un correo a <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off--> con el asunto <em>"Revocación de consentimiento"</em>. La revocación de consentimiento no tendrá efectos retroactivos y no implica la cancelación automática de contratos vigentes.</p>
       <p>Para las finalidades primarias vinculadas a la ejecución de un contrato, el consentimiento es necesario; por lo que su revocación puede imposibilitar la prestación del servicio.</p>
 
       <h2 id="cookies">7. Cookies y tecnologías de rastreo</h2>
@@ -328,7 +336,7 @@
 
       <h2 id="menores">8. Datos de menores de edad</h2>
       <p>Nuestros servicios están dirigidos exclusivamente a personas mayores de 18 años o a personas jurídicas representadas por adultos. <strong>No recabamos intencionalmente datos personales de menores de edad.</strong> Si detectamos que hemos recopilado datos de un menor sin consentimiento parental verificable, procederemos a eliminarlos de manera inmediata.</p>
-      <p>Si eres padre, madre o tutor y consideras que tu hijo nos ha proporcionado datos personales sin tu consentimiento, contáctanos a <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a>.</p>
+      <p>Si eres padre, madre o tutor y consideras que tu hijo nos ha proporcionado datos personales sin tu consentimiento, contáctanos a <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off-->.</p>
 
       <h2 id="cambios">9. Cambios al Aviso de Privacidad</h2>
       <p>VonoaWeb se reserva el derecho de modificar el presente Aviso de Privacidad en cualquier momento para adaptarlo a cambios legislativos, jurisprudenciales, prácticas de la industria o políticas internas. Cualquier modificación será notificada a través de:</p>
@@ -342,7 +350,7 @@
       <h2 id="contacto-legal">10. Contacto y quejas</h2>
       <p>Para cualquier duda, solicitud o comentario relacionado con el tratamiento de tus datos personales, puedes contactarnos en:</p>
       <ul>
-        <li><strong>Correo electrónico:</strong> <a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a></li>
+        <li><strong>Correo electrónico:</strong> <!--email_off--><a href="mailto:hola@vonoaweb.com">hola@vonoaweb.com</a><!--/email_off--></li>
         <li><strong>WhatsApp:</strong> <a href="https://wa.me/5215644645574" target="_blank" rel="noopener">+52 56 4464 5574</a></li>
         <li><strong>Horario de atención:</strong> Lunes a viernes de 9:00 a 18:00 h (hora del Centro de México)</li>
       </ul>
@@ -364,7 +372,7 @@
         <div><span class="overline">Legal</span><a href="aviso-privacidad.html" class="active">Aviso de privacidad</a><a href="terminos-condiciones.html">Términos y condiciones</a></div>
       </div>
     </div>
-    <div class="f-bot"><span>© 2026 VonoaWeb · Zapopan, Jalisco · MX</span><span>hola@vonoaweb.com</span></div>
+    <div class="f-bot"><span>© 2026 VonoaWeb · Zapopan, Jalisco · MX</span><span><!--email_off-->hola@vonoaweb.com<!--/email_off--></span></div>
   </div>
 </footer>
 

@@ -30,6 +30,8 @@
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preload" href="../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* Sora y DM Sans (licencia OFL) servidas desde el propio sitio: en celular se
        ahorran las dos conexiones a Google Fonts. Son los mismos archivos de Google. */
@@ -37,6 +39,12 @@
     @font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/dmsans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
     @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/sora-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
     @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/sora-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+    /* Respaldo con las medidas de Sora y DM Sans: mientras carga la fuente, el texto ocupa
+       casi lo mismo y la pagina no brinca (CLS). size-adjust medido contra Arial. */
+    @font-face{font-family:'Sora Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:113%;ascent-override:86%;descent-override:26%;line-gap-override:0%}
+    @font-face{font-family:'Sora Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:108%;ascent-override:90%;descent-override:27%;line-gap-override:0%}
+    @font-face{font-family:'DM Sans Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:104%;ascent-override:95%;descent-override:30%;line-gap-override:0%}
+    @font-face{font-family:'DM Sans Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:102%;ascent-override:97%;descent-override:30%;line-gap-override:0%}
   </style>
   <link rel="icon" type="image/webp" href="../assets/vona-icon-104.webp">
   <link rel="apple-touch-icon" href="../assets/vona-icon.webp">
@@ -45,7 +53,7 @@
   <link rel="preload" as="image" href="../assets/voni-cut-800.webp"
     imagesrcset="../assets/voni-cut-400.webp 400w, ../assets/voni-cut-800.webp 800w" imagesizes="380px"
     media="(min-width: 901px)">
-  <link rel="stylesheet" href="../styles.css?v=6">
+  <link rel="stylesheet" href="../styles.css?v=7">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -816,7 +824,7 @@
         <p>Send the form and you'll get a real reply from the person who'd build it &mdash; usually the same business
           day, always within 24 hours. If it's not a fit, we'll say so.</p>
         <ul class="c-info">
-          <li><b>Email</b><span>hola@vonoaweb.com</span></li>
+          <li><b>Email</b><span><!--email_off-->hola@vonoaweb.com<!--/email_off--></span></li>
           <li><b>Hours</b><span>Mon&ndash;Fri &middot; 9:00&ndash;18:00 Central Time</span></li>
           <li><b>Serving</b><span>United States &middot; Canada &middot; Mexico</span></li>
           <li><b>Response</b><span>Same business day, in English</span></li>
@@ -938,7 +946,7 @@
       </div>
       <div class="f-bot">
         <span>&copy; 2026 VonoaWeb &middot; Serving the US, Canada and Mexico</span>
-        <span>hola@vonoaweb.com</span>
+        <span><!--email_off-->hola@vonoaweb.com<!--/email_off--></span>
       </div>
     </div>
   </footer>

@@ -32,6 +32,8 @@
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preload" href="assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   /* Sora y DM Sans (licencia OFL) servidas desde el propio sitio: en celular se
      ahorran las dos conexiones a Google Fonts. Son los mismos archivos de Google. */
@@ -39,8 +41,14 @@
   @font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/dmsans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
   @font-face{font-family:'Sora';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/sora-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  /* Respaldo con las medidas de Sora y DM Sans: mientras carga la fuente, el texto ocupa
+     casi lo mismo y la pagina no brinca (CLS). size-adjust medido contra Arial. */
+  @font-face{font-family:'Sora Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:113%;ascent-override:86%;descent-override:26%;line-gap-override:0%}
+  @font-face{font-family:'Sora Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:108%;ascent-override:90%;descent-override:27%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Helvetica');size-adjust:104%;ascent-override:95%;descent-override:30%;line-gap-override:0%}
+  @font-face{font-family:'DM Sans Fallback';font-weight:600 800;src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Helvetica-Bold');size-adjust:102%;ascent-override:97%;descent-override:30%;line-gap-override:0%}
 </style>
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
   <style>
     /* Enlace al sitio en ingles. Solo a partir de 1000px: por debajo la nav va
        justa (870px de contenido y el burger entra a los 900). */
@@ -143,7 +151,7 @@
 <section class="page-hero">
   <div class="container">
     <span class="overline">Nosotros</span>
-    <h1>Tecnología + diseño para <span class="g">PYMES</span> que quieren crecer</h1>
+    <h1>Agencia de diseño web e IA para <span class="g">PYMES</span> que quieren crecer</h1>
     <p class="lede">Somos un equipo de diseño web, marketing digital e inteligencia artificial basado en Guadalajara, Jalisco.</p>
   </div>
 </section>
@@ -265,7 +273,7 @@
         <div><span class="overline">Legal</span><a href="aviso-privacidad.html">Aviso de privacidad</a><a href="terminos-condiciones.html">Términos y condiciones</a></div>
       </div>
     </div>
-    <div class="f-bot"><span>© 2026 VonoaWeb · Zapopan, Jalisco · MX</span><span>hola@vonoaweb.com</span></div>
+    <div class="f-bot"><span>© 2026 VonoaWeb · Zapopan, Jalisco · MX</span><span><!--email_off-->hola@vonoaweb.com<!--/email_off--></span></div>
   </div>
 </footer>
 
