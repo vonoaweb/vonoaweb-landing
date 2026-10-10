@@ -267,7 +267,8 @@
 
       const payload = {
         access_key: WEB3_KEY,
-        subject: 'Nueva solicitud desde VonoaWeb',
+        // El servicio en el asunto distingue en la bandeja, p. ej. las maquetas gratis
+        subject: 'Nueva solicitud desde VonoaWeb' + (form.querySelector('[name=service]').value ? ' · ' + form.querySelector('[name=service]').value : ''),
         from_name: 'VonoaWeb Contacto',
         replyto: form.querySelector('[name=email]').value,
         name:    form.querySelector('[name=name]').value,
@@ -275,8 +276,13 @@
         negocio: form.querySelector('[name=biz]').value,
         servicio:form.querySelector('[name=service]').value,
         presupuesto: form.querySelector('[name=budget]')?.value || '',
-        mensaje: form.querySelector('[name=msg]').value
+        mensaje: form.querySelector('[name=msg]').value,
+        // Opcionales: solo los tiene el formulario de maqueta-gratis.html
+        whatsapp: form.querySelector('[name=phone]')?.value || '',
+        sitio_actual: form.querySelector('[name=site]')?.value || ''
       };
+      if (!payload.whatsapp) delete payload.whatsapp;
+      if (!payload.sitio_actual) delete payload.sitio_actual;
 
       // Si el envio falla (sin conexion, Web3Forms caido o bloqueado por la CSP
       // de Cloudflare, como paso en sep-2026) el prospecto no se pierde: se le
@@ -290,6 +296,8 @@
           payload.servicio ? 'Servicio: ' + payload.servicio : '',
           payload.presupuesto ? 'Presupuesto: ' + payload.presupuesto : '',
           'Correo: ' + payload.email,
+          payload.whatsapp ? 'WhatsApp: ' + payload.whatsapp : '',
+          payload.sitio_actual ? 'Sitio o redes: ' + payload.sitio_actual : '',
           payload.mensaje ? 'Mensaje: ' + payload.mensaje : ''
         ].filter(Boolean).join('\n');
         const box = document.createElement('div');
@@ -364,7 +372,9 @@
           form.innerHTML = `
             <div class="check">✓</div>
             <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">¡Gracias, ${name}!</h3>
-            <p style="color:var(--fg-muted);font-size:14px;">Recibimos tu mensaje. Te escribimos en menos de 24 horas.</p>
+            <p style="color:var(--fg-muted);font-size:14px;">${payload.servicio === 'Maqueta gratis'
+              ? 'Recibimos tus datos. Te mandamos tu maqueta por WhatsApp en 2 días hábiles.'
+              : 'Recibimos tu mensaje. Te escribimos en menos de 24 horas.'}</p>
           `;
         } else {
           planB();
