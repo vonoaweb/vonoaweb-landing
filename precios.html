@@ -102,6 +102,91 @@
   ]
 }
 </script>
+<!-- Preguntas sobre precios: copia exacta de las que se ven en la seccion #preguntas-precios. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Los precios incluyen IVA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Todos los precios están en pesos mexicanos y no incluyen IVA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las páginas web tienen mensualidad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los planes solo de diseño web (Impulso, Presencia Pro y Premium) se pagan una sola vez. Las mensualidades son solo de los planes con inteligencia artificial, automatizaciones y marketing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se paga?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La mitad al empezar y la otra mitad cuando tu página queda publicada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué incluye el precio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diseño profesional con enfoque UX/UI, hosting y dominio (o la instalación en el tuyo), soporte durante el desarrollo, un manual básico para actualizar tu sitio y ajustes pequeños gratis los primeros 30 días. El dominio, el código y el contenido son tuyos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo ver cómo quedaría mi página antes de pagar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Pide tu maqueta gratis: te mandamos por WhatsApp cómo se vería la nueva página de tu negocio, con tu marca y una propuesta con precio, sin costo y sin compromiso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿En cuánto tiempo está lista mi página?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Desde 7 días. El tiempo exacto depende del plan y de qué tan pronto nos compartes tus textos y fotos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay contrato forzoso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Ningún plan tiene contrato forzoso."
+      }
+    }
+  ]
+}
+</script>
+  <style>
+    /* Guia de precios y preguntas frecuentes: mismo diseno que las preguntas de index.html. */
+    .price-guide{max-width:780px;margin:0 auto}
+    .price-guide p{margin:0 0 16px}
+    .price-guide ul{margin:0 0 20px;padding-left:20px;display:flex;flex-direction:column;gap:12px}
+    .price-guide li{color:#B6C2D8;font-size:16px;line-height:1.65}
+    .price-guide li strong{color:#fff}
+    .price-guide a,.faq-list a{color:#1CA0F4}
+    .faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .faq-list details{background:var(--vw-midnight);border:1px solid var(--border);
+      border-radius:14px;padding:18px 22px;transition:border-color .2s}
+    .faq-list details[open]{border-color:rgba(46,233,185,.28)}
+    .faq-list summary{cursor:pointer;font-family:var(--font-display);font-weight:600;
+      font-size:16px;color:#fff;list-style:none;display:flex;
+      justify-content:space-between;align-items:center;gap:16px}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{content:"+";color:#2EE9B9;font-size:22px;line-height:1;flex:0 0 auto}
+    .faq-list details[open] summary::after{content:"\2013"}
+    .faq-list p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--fg-muted)}
+  </style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -472,6 +557,65 @@
           <p class="calc-fine">Precios en MXN · IVA no incluido · Sin contratos forzosos</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CUANTO CUESTA + PREGUNTAS ======= -->
+<section class="section" id="cuanto-cuesta">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Guía de precios</span>
+      <h2>¿Cuánto cuesta una página web en Guadalajara?</h2>
+    </div>
+    <div class="price-guide reveal">
+      <p>Con VonoaWeb, una página web para tu negocio cuesta desde <strong>$5,200 MXN en un solo pago</strong>. El precio depende sobre todo de esto:</p>
+      <ul>
+        <li><strong>Cuántas secciones necesitas.</strong> Hasta 3 secciones (por ejemplo inicio, servicios y contacto) es el Plan Impulso, de $5,200 MXN. Hasta 6 secciones, con animaciones e integración con tus redes, es Presencia Pro, de $7,400 MXN.</li>
+        <li><strong>Si vas a vender en línea.</strong> Una tienda WooCommerce con pagos en línea, carga de hasta 10 productos y analíticas cuesta $10,500 MXN. Más detalles en <a href="tienda-en-linea.html">tiendas en línea</a>.</li>
+        <li><strong>Si quieres que tu negocio conteste solo.</strong> El <a href="chatbot-whatsapp-ia.html">chatbot con IA para WhatsApp</a> y tu página se cobra aparte: $4,999 MXN de instalación más $2,999 MXN al mes.</li>
+        <li><strong>Si necesitas un sistema para tu operación</strong> (inventario, citas, cotizaciones). Se cotiza por proyecto, se paga una sola vez y es tuyo: <a href="software-a-la-medida.html">software a la medida</a>.</li>
+      </ul>
+      <p>Precios en pesos mexicanos, IVA no incluido. Si quieres comparar con freelancers, otras agencias o plataformas para hacerla tú mismo, lee nuestra guía <a href="https://blog.vonoaweb.com/posts/cuanto-cuesta-pagina-web-guadalajara-2026/">cuánto cuesta una página web en Guadalajara</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="preguntas-precios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Preguntas frecuentes</span>
+      <h2>Lo que nos preguntan sobre precios</h2>
+    </div>
+    <div class="faq-list">
+        <details>
+          <summary>¿Los precios incluyen IVA?</summary>
+          <p>No. Todos los precios están en pesos mexicanos y no incluyen IVA.</p>
+        </details>
+        <details>
+          <summary>¿Las páginas web tienen mensualidad?</summary>
+          <p>Los planes solo de diseño web (Impulso, Presencia Pro y Premium) se pagan una sola vez. Las mensualidades son solo de los planes con inteligencia artificial, automatizaciones y marketing.</p>
+        </details>
+        <details>
+          <summary>¿Cómo se paga?</summary>
+          <p>La mitad al empezar y la otra mitad cuando tu página queda publicada.</p>
+        </details>
+        <details>
+          <summary>¿Qué incluye el precio?</summary>
+          <p>Diseño profesional con enfoque UX/UI, hosting y dominio (o la instalación en el tuyo), soporte durante el desarrollo, un manual básico para actualizar tu sitio y ajustes pequeños gratis los primeros 30 días. El dominio, el código y el contenido son tuyos.</p>
+        </details>
+        <details>
+          <summary>¿Puedo ver cómo quedaría mi página antes de pagar?</summary>
+          <p>Sí. Pide tu <a href="maqueta-gratis.html">maqueta gratis</a>: te mandamos por WhatsApp cómo se vería la nueva página de tu negocio, con tu marca y una propuesta con precio, sin costo y sin compromiso.</p>
+        </details>
+        <details>
+          <summary>¿En cuánto tiempo está lista mi página?</summary>
+          <p>Desde 7 días. El tiempo exacto depende del plan y de qué tan pronto nos compartes tus textos y fotos.</p>
+        </details>
+        <details>
+          <summary>¿Hay contrato forzoso?</summary>
+          <p>No. Ningún plan tiene contrato forzoso.</p>
+        </details>
     </div>
   </div>
 </section>
