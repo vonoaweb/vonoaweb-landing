@@ -42,6 +42,8 @@ Inteligencia artificial (instalación más mensualidad):
 
 - [Inicio](https://vonoaweb.com/): qué hace VonoaWeb y para quién.
 - [Servicios](https://vonoaweb.com/servicios.html): diseño web, chatbots con IA, automatización, marketing y SEO.
+- [Chatbot con IA para WhatsApp](https://vonoaweb.com/chatbot-whatsapp-ia.html): qué hace el asistente, para qué negocios sirve, planes y preguntas frecuentes.
+- [Tienda en línea](https://vonoaweb.com/tienda-en-linea.html): tiendas en WooCommerce desde $10,500 MXN, qué incluyen y cómo se trabaja.
 - [Precios](https://vonoaweb.com/precios.html): planes y cotizador interactivo.
 - [Preguntas frecuentes](https://vonoaweb.com/#preguntas): cuánto cuesta, en cuánto tiempo se entrega, si incluye hosting y dominio, zona de servicio y contratos.
 - [Portafolio](https://vonoaweb.com/portafolio.html): proyectos con enlace al sitio en vivo de cada cliente.
