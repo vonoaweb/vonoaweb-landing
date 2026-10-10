@@ -1,5 +1,7 @@
 # Non-web files
 *.py
+# Scripts de los workflows de GitHub (no se publican: Jekyll ignora .github)
+!.github/*.py
 *.ps1
 *.exe
 *.stl
