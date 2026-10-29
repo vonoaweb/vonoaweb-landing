@@ -11,6 +11,9 @@
 *.pdf
 *.md
 !README.md
+# El instalador y el manual de Cuota Clara sí se publican (vonoaweb.com/descargas/)
+!descargas/**/*.exe
+!descargas/**/*.pdf
 config-v1.1.xml
 .htaccess
 vona.png
