@@ -14,6 +14,8 @@
 # El instalador y el manual de Cuota Clara sí se publican (vonoaweb.com/descargas/)
 !descargas/**/*.exe
 !descargas/**/*.pdf
+# El manual del sistema en línea de Cuota Clara (vonoaweb.com/cuota-clara/)
+!cuota-clara/**/*.pdf
 config-v1.1.xml
 .htaccess
 vona.png
