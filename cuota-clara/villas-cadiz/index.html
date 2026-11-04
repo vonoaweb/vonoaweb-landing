@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Villas Cádiz · Cuota Clara</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="El sistema de administración para Villas Cádiz: cobranza, canchas, visitas y avisos. Descarguen la prueba gratis de 15 días.">
+<meta name="description" content="El sistema de administración para Villas Cádiz: cobranza, canchas, visitas y avisos. Pruébenlo 15 días gratis en línea.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Villas Cádiz, con las cuentas claras">
 <meta property="og:description" content="Cobranza, canchas, visitas y avisos en un solo sistema. Pruébenlo 15 días gratis.">
@@ -18,10 +18,10 @@
 <!--
   Landing de Cuota Clara para Villas Cádiz (4-nov-2026). Fernando: "una landing page en la
   página de Vonoa y que vea lo que puede ganar, con animaciones y todo". La prueba de 15 días
-  es el programa de escritorio "Cuota Clara Villas Cádiz" (cuota-clara-escritorio:
-  `node scripts/dist-cliente.js villas-cadiz` y `CLIENTE=villas-cadiz node scripts/publicar.js`): dura 15 días
-  desde que lo abren y se alarga con `node scripts/extender.js villas-cadiz AAAA-MM-DD`. Los botones de
-  descarga leen el nombre del instalador vigente de latest.yml.
+  es el sistema en línea en ./sistema/ (python armar-cliente.py villas-cadiz-prueba en condominio-app), que
+  guarda en el Worker cuota-clara-nube (vonoaweb.com/api/cuota-clara): la administradora entra con su
+  usuario y la cuenta "vecinos" solo aparta canchas y casa club. 15 días desde que alguien entra; se
+  alargan con `node scripts/extender.js villas-cadiz AAAA-MM-DD` en C:/Users/makin/cuota-clara-nube.
   Página sola: no usa styles.css ni site.js del sitio (ver el cache-buster de las 8 páginas).
   Las cuentas de "lo que pueden ganar" salen de los números que ellos mueven; no hay cifras
   de estudios ni promesas.
@@ -220,7 +220,7 @@
       <svg viewBox="0 0 210 210" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M 0 18 L 39 91 L 49 72 L 9 0 L 0 18 Z M 161 72 L 171 91 L 210 18 L 201 0 L 161 72 Z M 63 77 L 72 84 C 89 68 121 68 140 84 L 147 77 C 135 65 121 61 105 61 C 89 61 75 65 63 77 Z M 105 173 L 65 100 L 56 119 L 105 210 L 154 119 L 145 100 L 105 173 Z"/></svg>
       <span>VONOA<em>WEB</em></span>
     </a>
-    <a class="btn btn--negro" href="/descargas/villas-cadiz/" data-descarga><span class="t">Descargar prueba gratis</span><span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+    <a class="btn btn--negro" href="sistema/"><span class="t">Entrar al sistema</span><span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
   </div>
 </div>
 
@@ -232,10 +232,10 @@
         <h1 id="titulo"><span class="linea">Las cuentas del</span><span class="linea">condominio,</span><span class="linea"><span class="resalta">claras</span> para</span><span class="linea">todos.</span></h1>
         <p class="bajada">Cobranza, canchas, visitas y avisos en un solo sistema. Cada vecino ve lo suyo desde su celular y ningún pago se puede borrar.</p>
         <div class="acciones">
-          <a class="btn btn--negro" href="/descargas/villas-cadiz/" data-descarga>Descargar prueba gratis<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+          <a class="btn btn--negro" href="sistema/">Entrar al sistema<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
           <a class="btn btn--blanco" href="#ganan">Ver lo que ganan</a>
         </div>
-        <p class="nota-descarga">Para Windows 10 u 11 · 15 días gratis desde que lo abren · funciona sin internet</p>
+        <p class="nota-descarga">Desde la computadora o el celular · sin instalar nada · 15 días gratis</p>
       </div>
 
       <div class="cobro" aria-label="Ejemplo: así se ve la cobranza del mes, casa por casa">
@@ -387,20 +387,20 @@
       <span class="pill pill--lima ceja rev">La prueba</span>
       <h2 class="rev">Quince días para usarlo de verdad.</h2>
       <div class="pasos">
-        <div class="paso rev"><div class="paso__n">1</div><h3>Descargan el programa</h3><p>Para la computadora de la administración, con Windows 10 u 11. Se instala como cualquier programa y funciona sin internet.</p></div>
-        <div class="paso rev"><div class="paso__n">2</div><h3>Empiezan con sus casas</h3><p>Abre en blanco, en Primeros pasos: el nombre, las 131 casas, la cuota y lo que debía cada una. Todo se guarda en esa computadora.</p></div>
-        <div class="paso rev"><div class="paso__n">3</div><h3>15 días desde que lo abren</h3><p>Arriba ven cuántos días les quedan. ¿Necesitan más? Nos escriben y se los damos, sin reinstalar nada. Lo que capturen se queda guardado.</p></div>
+        <div class="paso rev"><div class="paso__n">1</div><h3>Entran con su usuario</h3><p>Desde el navegador de la computadora o del celular, con el usuario y la contraseña que les damos. No hay que instalar nada.</p></div>
+        <div class="paso rev"><div class="paso__n">2</div><h3>Empiezan con sus casas</h3><p>Abre en blanco, en Primeros pasos: el nombre, las 131 casas, la cuota y lo que debía cada una. Todo queda guardado en línea.</p></div>
+        <div class="paso rev"><div class="paso__n">3</div><h3>15 días desde que entran</h3><p>Arriba ven cuántos días les quedan. ¿Necesitan más? Nos escriben y se los damos, sin reinstalar nada. Lo que capturen se queda guardado.</p></div>
       </div>
 
       <div class="instalar tarjeta rev">
         <div>
-          <h3>Si Windows pregunta al instalarlo</h3>
-          <p>Es normal: el programa es nuevo y todavía no tiene firma digital.</p>
+          <h3>Los vecinos apartan desde su celular</h3>
+          <p>Con la cuenta de vecinos entran a la misma liga y solo ven las canchas y la casa club.</p>
         </div>
         <ol>
-          <li>Si el navegador dice que el archivo <b>no se descarga con frecuencia</b>, toquen <b>Conservar</b>.</li>
-          <li>Al abrirlo, si sale <b>«Windows protegió su PC»</b>: <b>Más información</b> → <b>Ejecutar de todas formas</b>.</li>
-          <li><b>Siguiente → Instalar → Terminar</b>. Queda el ícono «Cuota Clara Villas Cádiz» en el escritorio.</li>
+          <li>Escogen el área, el día y la hora: ven al momento qué está <b>libre</b> y qué ya está apartado.</li>
+          <li>Ponen su <b>número de casa</b> y el nombre de quien va a jugar. Las reglas del área se revisan solas.</li>
+          <li>La administración lo ve en su sistema <b>en ese momento</b>, con su línea en la bitácora.</li>
         </ol>
       </div>
 
@@ -423,10 +423,10 @@
 
       <div class="cierre rev">
         <div>
-          <h3>Descárguenlo hoy y empiecen con su propia información.</h3>
+          <h3>Entren hoy y empiecen con su propia información.</h3>
           <p>Cualquier duda: <a href="mailto:hola@vonoaweb.com?subject=Cuota%20Clara%20para%20Villas%20C%C3%A1diz" style="color:#fff">hola@vonoaweb.com</a></p>
         </div>
-        <a class="btn btn--lima" href="/descargas/villas-cadiz/" data-descarga>Descargar prueba gratis<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+        <a class="btn btn--lima" href="sistema/">Entrar al sistema<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -447,16 +447,6 @@
   var $ = function (id) { return document.getElementById(id); };
   var mover = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !!window.gsap;
 
-  /* ---------- Descargar: el instalador vigente; si no se puede leer, la página de descarga ---------- */
-  var BASE = '/descargas/cuota-clara/villas-cadiz/';
-  fetch(BASE + 'latest.yml?v=' + Date.now(), { cache: 'no-store' })
-    .then(function (r) { return r.ok ? r.text() : ''; })
-    .then(function (t) {
-      var m = /^path:\s*(\S+\.exe)\s*$/m.exec(t || '');
-      if (!m) return;
-      document.querySelectorAll('[data-descarga]').forEach(function (a) { a.href = BASE + m[1]; a.setAttribute('download', ''); });
-    })
-    .catch(function () { /* se queda la página de descarga */ });
   if (mover) gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Las 131 casas de la portada ---------- */
