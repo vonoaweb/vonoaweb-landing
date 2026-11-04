@@ -37,7 +37,7 @@
   html{scroll-behavior:smooth}
   body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--fondo);color:var(--ink);
     font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  img{display:block;max-width:100%}
+  img{display:block;max-width:100%;height:auto}
   a{color:inherit}
   .marco{width:min(1200px,100% - 32px);margin:0 auto}
 
@@ -149,7 +149,9 @@
   .func__txt{color:var(--ink-2);font-size:16px}
   .func__img{border-radius:18px;overflow:hidden;border:1px solid var(--linea);margin-top:auto;aspect-ratio:1270/760;background:#F2F4F6}
   .func__img img{width:100%;height:100%;object-fit:cover;object-position:0 0}
-  .func__img--cel{aspect-ratio:auto;max-width:300px;align-self:center;border-radius:28px;border:8px solid var(--ink)}
+  /* el celular necesita su ancho: centrado en una columna flex, sin ancho se encoge a 0 */
+  .func__img--cel{aspect-ratio:auto;width:min(300px,100%);align-self:center;border-radius:28px;border:8px solid var(--ink)}
+  .func__img--cel img{height:auto}
 
   /* ---------- nadie hace trampa ---------- */
   .trampa{background:var(--ink);color:#fff;border-radius:var(--radio);padding:64px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
