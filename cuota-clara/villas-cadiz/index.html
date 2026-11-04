@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Villas Cádiz · Cuota Clara</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="El sistema de administración para Villas Cádiz: cobranza, canchas, visitas y avisos. Descarguen la prueba gratis de 15 días.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Villas Cádiz, con las cuentas claras">
+<meta property="og:description" content="Cobranza, canchas, visitas y avisos en un solo sistema. Pruébenlo 15 días gratis.">
+<meta property="og:image" content="https://vonoaweb.com/cuota-clara/villas-cadiz/img/og.jpg">
+<meta property="og:url" content="https://vonoaweb.com/cuota-clara/villas-cadiz/">
+<link rel="icon" type="image/webp" href="../../assets/vona-icon-104.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  Landing de Cuota Clara para Villas Cádiz (4-nov-2026). Fernando: "una landing page en la
+  página de Vonoa y que vea lo que puede ganar, con animaciones y todo". La prueba de 15 días
+  es el programa de escritorio "Cuota Clara Villas Cádiz" (cuota-clara-escritorio:
+  `node scripts/dist-cliente.js villas-cadiz` y `CLIENTE=villas-cadiz node scripts/publicar.js`): dura 15 días
+  desde que lo abren y se alarga con `node scripts/extender.js villas-cadiz AAAA-MM-DD`. Los botones de
+  descarga leen el nombre del instalador vigente de latest.yml.
+  Página sola: no usa styles.css ni site.js del sitio (ver el cache-buster de las 8 páginas).
+  Las cuentas de "lo que pueden ganar" salen de los números que ellos mueven; no hay cifras
+  de estudios ni promesas.
+-->
+<style>
+  :root{
+    --ink:#0F110C; --ink-2:#2B2F27; --gris:#62675D; --gris-2:#8A8F84;
+    --fondo:#ECEEE7; --tarjeta:#FFFFFF; --linea:#D9DCD2; --lima:#DBF26A; --lima-2:#C9E24F;
+    --radio:34px; --radio-2:24px;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--fondo);color:var(--ink);
+    font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .marco{width:min(1200px,100% - 32px);margin:0 auto}
+
+  /* ---------- botones y pastillas ---------- */
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;font-size:13px;font-weight:600;
+    background:var(--tarjeta);border:1px solid var(--linea);white-space:nowrap}
+  .pill--lima{background:var(--lima);border-color:var(--lima)}
+  .pill--negra{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:12px;padding:15px 18px 15px 26px;border-radius:99px;font:700 16px/1 inherit;
+    font-family:inherit;text-decoration:none;border:0;cursor:pointer;transition:transform .2s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible,.pill:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .btn--negro{background:var(--ink);color:#fff}
+  .btn--negro .flecha{background:var(--lima);color:var(--ink)}
+  .btn--blanco{background:var(--tarjeta);color:var(--ink);border:1px solid var(--linea);padding:15px 26px}
+  .btn--lima{background:var(--lima);color:var(--ink)}
+  .btn--lima .flecha{background:var(--ink);color:var(--lima)}
+  .flecha{display:grid;place-items:center;width:34px;height:34px;border-radius:99px;margin:-8px 0}
+  .flecha svg{width:16px;height:16px}
+
+  /* ---------- barra de arriba ---------- */
+  .barra{position:sticky;top:12px;z-index:20;margin-top:12px}
+  .barra__in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:99px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--linea)}
+  .vonoa{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;letter-spacing:.06em;font-size:14px}
+  .vonoa svg{width:24px;height:24px}
+  .vonoa em{font-style:normal;color:var(--gris)}
+  .barra .btn{padding:10px 10px 10px 18px;font-size:14px}
+  .barra .flecha{width:28px;height:28px}
+
+  /* ---------- portada ---------- */
+  .portada{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:stretch;padding:56px 0 28px}
+  .portada__txt{display:flex;flex-direction:column;justify-content:center;gap:24px}
+  h1{font-size:clamp(42px,6.2vw,80px);line-height:.98;letter-spacing:-.045em;font-weight:800}
+  h1 .linea{display:block;overflow:hidden;padding-bottom:.08em}
+  h1 .p{display:inline-block}
+  .resalta{display:inline-block;background:var(--lima);border-radius:99px;padding:0 .28em .06em;margin-left:-.04em}
+  .bajada{font-size:19px;color:var(--ink-2);max-width:34ch}
+  .acciones{display:flex;flex-wrap:wrap;gap:12px}
+
+  .cobro{background:var(--ink);color:#fff;border-radius:var(--radio);padding:28px;display:flex;flex-direction:column;gap:20px;min-height:460px}
+  .cobro__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .cobro__lab{font-size:13px;color:#B9BDB2;font-weight:500}
+  .cobro__cifra{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:6px}
+  .cobro__cifra small{font-size:18px;color:#B9BDB2;font-weight:600;letter-spacing:0;margin-left:6px}
+  .cobro .pill{background:#22261D;border-color:#33392C;color:#fff}
+  .casas{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;flex:1;align-content:center}
+  .cap{height:13px;border-radius:99px;border:1.5px dashed #4A5040}
+  .cap.ok{background:var(--lima);border:1.5px solid var(--lima)}
+  .cobro__pie{display:flex;gap:18px;font-size:13px;color:#B9BDB2;flex-wrap:wrap}
+  .cobro__pie i{display:inline-block;width:22px;height:10px;border-radius:99px;margin-right:7px;vertical-align:middle}
+  .cobro__pie .l1{background:var(--lima)} .cobro__pie .l2{border:1.5px dashed #6A705F}
+
+  .pantalla{margin:8px 0 0;border-radius:var(--radio);background:var(--tarjeta);border:1px solid var(--linea);padding:12px;
+    box-shadow:0 40px 80px -40px rgba(15,17,12,.35);transform-origin:50% 0}
+  .pantalla__barra{display:flex;gap:7px;padding:4px 6px 12px}
+  .pantalla__barra i{width:11px;height:11px;border-radius:99px;background:var(--linea)}
+  .pantalla img{border-radius:18px;width:100%}
+
+  /* ---------- secciones ---------- */
+  section{padding:96px 0}
+  .ceja{display:inline-flex;margin-bottom:18px}
+  h2{font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:18ch}
+  .intro{font-size:18px;color:var(--ink-2);max-width:56ch;margin-top:16px}
+
+  /* ---------- lo que pueden ganar ---------- */
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+  .tarjeta{background:var(--tarjeta);border:1px solid var(--linea);border-radius:var(--radio-2);padding:28px}
+  .control{display:grid;gap:10px;padding:18px 0;border-bottom:1px solid var(--linea)}
+  .control:first-of-type{padding-top:4px}
+  .control:last-of-type{border-bottom:0;padding-bottom:4px}
+  .control__fila{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .control label{font-weight:600;font-size:15px}
+  .control output{font-weight:800;font-size:18px;background:var(--fondo);border-radius:99px;padding:3px 12px;white-space:nowrap}
+  .control small{color:var(--gris);font-size:13px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+  input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:99px;background:linear-gradient(to right,var(--ink) var(--lleno,50%),var(--linea) var(--lleno,50%))}
+  input[type=range]::-moz-range-track{height:10px;border-radius:99px;background:var(--linea)}
+  input[type=range]::-moz-range-progress{height:10px;border-radius:99px;background:var(--ink)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:99px;background:var(--lima);
+    border:3px solid var(--ink);margin-top:-8px}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:99px;background:var(--lima);border:3px solid var(--ink)}
+
+  .resultados{display:grid;gap:20px;grid-template-rows:auto auto 1fr}
+  .res{border-radius:var(--radio-2);padding:26px 28px}
+  .res--lima{background:var(--lima)}
+  .res--negra{background:var(--ink);color:#fff}
+  .res--blanca{background:var(--tarjeta);border:1px solid var(--linea)}
+  .res__lab{font-size:14px;font-weight:600;opacity:.75}
+  .res__cifra{font-size:clamp(40px,5vw,60px);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin-top:6px}
+  .res__nota{font-size:14px;margin-top:6px;opacity:.8}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .meses{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-top:16px}
+  .mes{height:30px;border-radius:99px;border:1.5px dashed #4A5040}
+  .mes.ok{background:var(--lima);border:1.5px solid var(--lima)}
+  .meses__pie{display:flex;justify-content:space-between;font-size:12px;color:#B9BDB2;margin-top:8px}
+  .supuestos{font-size:14px;color:var(--gris);margin-top:18px;max-width:80ch}
+
+  /* ---------- lo que pidieron (desliza a los lados) ---------- */
+  .pidieron{overflow:hidden}
+  .riel{display:flex;gap:20px;margin-top:44px;width:max-content;padding-right:16px}
+  .func{width:min(560px,82vw);background:var(--tarjeta);border:1px solid var(--linea);border-radius:var(--radio);padding:26px;
+    display:flex;flex-direction:column;gap:14px;flex:none}
+  .func:nth-child(3n+2){background:var(--ink);color:#fff;border-color:var(--ink)}
+  .func:nth-child(3n+2) .func__txt{color:#C9CDC2}
+  .func:nth-child(3n+2) .pill{background:#22261D;border-color:#33392C;color:#fff}
+  .func__top{display:flex;justify-content:space-between;align-items:center}
+  .func h3{font-size:28px;letter-spacing:-.03em;line-height:1.1;font-weight:800}
+  .func__txt{color:var(--ink-2);font-size:16px}
+  .func__img{border-radius:18px;overflow:hidden;border:1px solid var(--linea);margin-top:auto;aspect-ratio:1270/760;background:#F2F4F6}
+  .func__img img{width:100%;height:100%;object-fit:cover;object-position:0 0}
+  .func__img--cel{aspect-ratio:auto;max-width:300px;align-self:center;border-radius:28px;border:8px solid var(--ink)}
+
+  /* ---------- nadie hace trampa ---------- */
+  .trampa{background:var(--ink);color:#fff;border-radius:var(--radio);padding:64px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .trampa h2{color:#fff}
+  .trampa .intro{color:#C9CDC2}
+  .folio{font-size:clamp(56px,8vw,104px);font-weight:800;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;margin:26px 0 6px}
+  .folio span{color:var(--lima)}
+  .puntos{display:grid;gap:12px;margin-top:28px}
+  .punto{display:flex;gap:14px;align-items:flex-start;background:#1A1D16;border:1px solid #2C3125;border-radius:20px;padding:16px 18px}
+  .punto b{display:block;font-size:16px}
+  .punto p{color:#B9BDB2;font-size:14.5px;margin-top:2px}
+  .punto .n{flex:none;width:30px;height:30px;border-radius:99px;background:var(--lima);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+  .trampa__img{border-radius:22px;overflow:hidden;border:1px solid #2C3125}
+
+  /* ---------- la prueba ---------- */
+  .pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .paso{background:var(--tarjeta);border:1px solid var(--linea);border-radius:var(--radio-2);padding:28px;display:flex;flex-direction:column;gap:12px}
+  .paso:nth-child(2){background:var(--lima);border-color:var(--lima)}
+  .paso__n{font-size:64px;font-weight:800;letter-spacing:-.05em;line-height:1}
+  .paso h3{font-size:22px;letter-spacing:-.02em}
+  .paso p{color:var(--ink-2);font-size:15.5px}
+  .cierre{margin-top:20px;background:var(--ink);color:#fff;border-radius:var(--radio);padding:40px;display:flex;justify-content:space-between;
+    align-items:center;gap:28px;flex-wrap:wrap}
+  .cierre h3{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.035em;line-height:1.08;max-width:22ch}
+  .cierre p{color:#C9CDC2;margin-top:8px;font-size:15.5px}
+
+  .nota-descarga{font-size:13.5px;color:var(--gris);margin-top:-8px}
+  .instalar{margin-top:20px;display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}
+  .instalar h3{font-size:22px;letter-spacing:-.02em}
+  .instalar p{color:var(--ink-2);font-size:15.5px;margin-top:6px}
+  .instalar ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:15.5px;color:var(--ink-2)}
+  .instalar b{color:var(--ink)}
+  .precio{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px;margin-top:44px}
+  .precio .res__cifra{font-size:clamp(34px,4vw,48px)}
+
+  footer{padding:40px 0 56px;color:var(--gris);font-size:14px}
+  footer .marco{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--linea);padding-top:24px}
+  footer a{text-decoration:none;font-weight:600;color:var(--ink)}
+
+  @media (max-width:900px){
+    .portada,.calc,.trampa{grid-template-columns:1fr}
+    .portada{padding-top:36px}
+    .cobro{min-height:0}
+    .riel{width:auto;flex-direction:column;padding-right:0}
+    .func{width:100%}
+    .pasos,.precio,.instalar{grid-template-columns:1fr}
+    .trampa{padding:40px 24px}
+    section{padding:72px 0}
+  }
+  @media (max-width:520px){
+    body{font-size:16px}
+    .dos{grid-template-columns:1fr}
+    .barra .btn span.t{display:none}
+    .barra .btn{padding:6px}
+    .casas{gap:4px}
+    .cap{height:10px}
+    .cierre{padding:28px}
+    .tarjeta,.res{padding:22px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="marco barra">
+  <div class="barra__in">
+    <a class="vonoa" href="https://vonoaweb.com" aria-label="Vonoa Web">
+      <svg viewBox="0 0 210 210" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M 0 18 L 39 91 L 49 72 L 9 0 L 0 18 Z M 161 72 L 171 91 L 210 18 L 201 0 L 161 72 Z M 63 77 L 72 84 C 89 68 121 68 140 84 L 147 77 C 135 65 121 61 105 61 C 89 61 75 65 63 77 Z M 105 173 L 65 100 L 56 119 L 105 210 L 154 119 L 145 100 L 105 173 Z"/></svg>
+      <span>VONOA<em>WEB</em></span>
+    </a>
+    <a class="btn btn--negro" href="/descargas/villas-cadiz/" data-descarga><span class="t">Descargar prueba gratis</span><span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+  </div>
+</div>
+
+<main>
+  <div class="marco">
+    <div class="portada">
+      <div class="portada__txt">
+        <span class="pill ceja" style="margin:0;align-self:flex-start">Para Villas Cádiz · 131 casas</span>
+        <h1 id="titulo"><span class="linea">Las cuentas del</span><span class="linea">condominio,</span><span class="linea"><span class="resalta">claras</span> para</span><span class="linea">todos.</span></h1>
+        <p class="bajada">Cobranza, canchas, visitas y avisos en un solo sistema. Cada vecino ve lo suyo desde su celular y ningún pago se puede borrar.</p>
+        <div class="acciones">
+          <a class="btn btn--negro" href="/descargas/villas-cadiz/" data-descarga>Descargar prueba gratis<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+          <a class="btn btn--blanco" href="#ganan">Ver lo que ganan</a>
+        </div>
+        <p class="nota-descarga">Para Windows 10 u 11 · 15 días gratis desde que lo abren · funciona sin internet</p>
+      </div>
+
+      <div class="cobro" aria-label="Ejemplo: así se ve la cobranza del mes, casa por casa">
+        <div class="cobro__top">
+          <div>
+            <div class="cobro__lab">Cobranza del mes · ejemplo</div>
+            <div class="cobro__cifra"><span id="pagaron">114</span><small>de 131 casas al corriente</small></div>
+          </div>
+          <span class="pill">Noviembre</span>
+        </div>
+        <div class="casas" id="casas"></div>
+        <div class="cobro__pie"><span><i class="l1"></i>Pagó</span><span><i class="l2"></i>Le falta, y le llega su aviso</span></div>
+      </div>
+    </div>
+
+    <figure class="pantalla" id="pantalla">
+      <div class="pantalla__barra" aria-hidden="true"><i></i><i></i><i></i></div>
+      <img src="img/panel.webp" width="1600" height="1000" alt="El Panel de Cuota Clara con los datos de ejemplo de Villas Cádiz: lo cobrado del mes, lo que falta y quién debe">
+    </figure>
+  </div>
+
+  <!-- Lo que pueden ganar -->
+  <section id="ganan">
+    <div class="marco">
+      <span class="pill pill--lima ceja rev">Lo que pueden ganar</span>
+      <h2 class="rev">Pongan sus números y vean lo que regresa a la caja.</h2>
+      <p class="intro rev">Muevan cada barra con lo que pasa hoy en Villas Cádiz. Las cuentas se hacen con lo que ustedes pongan.</p>
+
+      <div class="calc">
+        <div class="tarjeta rev">
+          <div class="control">
+            <div class="control__fila"><label for="cCasas">Casas</label><output id="oCasas" for="cCasas">131</output></div>
+            <input type="range" id="cCasas" min="40" max="300" step="1" value="131">
+          </div>
+          <div class="control">
+            <div class="control__fila"><label for="cCuota">Cuota mensual de cada casa</label><output id="oCuota" for="cCuota">$1,500</output></div>
+            <input type="range" id="cCuota" min="500" max="5000" step="50" value="1500">
+            <small>Pongan la suya.</small>
+          </div>
+          <div class="control">
+            <div class="control__fila"><label for="cAtraso">Casas que pagan tarde o deben</label><output id="oAtraso" for="cAtraso">15%</output></div>
+            <input type="range" id="cAtraso" min="0" max="50" step="1" value="15">
+          </div>
+          <div class="control">
+            <div class="control__fila"><label for="cRecupera">De eso, lo que se recupera con avisos a tiempo</label><output id="oRecupera" for="cRecupera">40%</output></div>
+            <input type="range" id="cRecupera" min="10" max="80" step="5" value="40">
+            <small>Cada vecino recibe su estado de cuenta por WhatsApp con lo que debe, mes por mes, y lo ve en su portal.</small>
+          </div>
+          <div class="control">
+            <div class="control__fila"><label for="cMinutos">Minutos que hoy toma cada pago (recibo, anotarlo, cuadrar)</label><output id="oMinutos" for="cMinutos">6 min</output></div>
+            <input type="range" id="cMinutos" min="2" max="20" step="1" value="6">
+            <small>Con el sistema: un minuto. El recibo con folio sale solo.</small>
+          </div>
+        </div>
+
+        <div class="resultados" aria-live="polite">
+          <div class="res res--lima rev">
+            <div class="res__lab">Lo que se recupera al año</div>
+            <div class="res__cifra" id="rAnio">$141,480</div>
+            <div class="res__nota" id="rMes">$11,790 al mes que hoy se queda atrasado.</div>
+          </div>
+          <div class="dos">
+            <div class="res res--blanca rev">
+              <div class="res__lab">Horas que se ahorran al mes</div>
+              <div class="res__cifra" id="rHoras">11</div>
+              <div class="res__nota">en recibos, notas y cuadrar la caja.</div>
+            </div>
+            <div class="res res--blanca rev">
+              <div class="res__lab">Les queda el primer año</div>
+              <div class="res__cifra" id="rQueda">$118,480</div>
+              <div class="res__nota">ya descontado el sistema.</div>
+            </div>
+          </div>
+          <div class="res res--negra rev">
+            <div class="res__lab">El sistema se paga solo en</div>
+            <div class="res__cifra" id="rMeses">2 meses</div>
+            <div class="meses" id="meses" aria-hidden="true"></div>
+            <div class="meses__pie"><span>mes 1</span><span>mes 12</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="supuestos rev">Así se calcula: casas × cuota × las que se atrasan = lo que se queda atrasado cada mes; de eso, lo que se recupera con avisos a tiempo, por 12 meses. Contra una inversión de $23,000 (el mantenimiento del primer año va incluido). Son sus números, no una promesa: lo que sí hace el sistema es avisar a tiempo, que cada vecino vea lo que debe y que ningún pago quede sin folio.</p>
+    </div>
+  </section>
+
+  <!-- Lo que pidieron -->
+  <section class="pidieron" id="pidieron">
+    <div class="marco">
+      <span class="pill pill--lima ceja rev">Lo que pidieron, ya está</span>
+      <h2 class="rev">Todo lo que nos contaron, funcionando.</h2>
+      <div class="riel" id="riel">
+        <article class="func">
+          <div class="func__top"><span class="pill">01</span><span class="pill">Canchas y casa club</span></div>
+          <h3>Las canchas se apartan sin pleitos.</h3>
+          <p class="func__txt">Las dos canchas de tenis y la casa club, hora por hora. Cada casa ve qué está libre, con sus reglas: horas por día, días de anticipación y quién no puede apartar si debe.</p>
+          <div class="func__img"><img src="img/reservas.webp" width="1270" height="1000" loading="lazy" alt="Agenda de las canchas de tenis y la casa club"></div>
+        </article>
+        <article class="func">
+          <div class="func__top"><span class="pill">02</span><span class="pill">Visitas</span></div>
+          <h3>La caseta sabe quién viene.</h3>
+          <p class="func__txt">Registro de entradas y salidas con placas. Los vecinos avisan desde su celular quién los visita y el guardia solo confirma.</p>
+          <div class="func__img"><img src="img/visitas.webp" width="1270" height="1000" loading="lazy" alt="Registro de visitas de la caseta"></div>
+        </article>
+        <article class="func">
+          <div class="func__top"><span class="pill">03</span><span class="pill">Portal del vecino</span></div>
+          <h3>Cada casa ve lo suyo, en línea.</h3>
+          <p class="func__txt">Su saldo, sus recibos y la cuenta para pagar. Nadie tiene que preguntarle a la administración cuánto debe. En la prueba lo ven en «Portal del residente»; ya contratado, cada vecino entra desde su celular.</p>
+          <div class="func__img func__img--cel"><img src="img/portal-cel.webp" width="780" height="1060" loading="lazy" alt="El portal del vecino en el celular, con su saldo y sus recibos"></div>
+        </article>
+        <article class="func">
+          <div class="func__top"><span class="pill">04</span><span class="pill">Anualidad</span></div>
+          <h3>Pagan el año por adelantado.</h3>
+          <p class="func__txt">Pagos adelantados y anualidad, con los meses de regalo que ustedes decidan. El sistema crea los meses, aplica el descuento y entrega el recibo.</p>
+          <div class="func__img"><img src="img/cobranza.webp" width="1270" height="1000" loading="lazy" alt="Cobranza del mes con los pagos registrados"></div>
+        </article>
+        <article class="func">
+          <div class="func__top"><span class="pill">05</span><span class="pill">Avisos</span></div>
+          <h3>Un aviso llega a las 131 casas.</h3>
+          <p class="func__txt">Corte de agua, asamblea, mantenimiento de la cancha: se publica una vez y se manda por WhatsApp o correo.</p>
+          <div class="func__img"><img src="img/avisos.webp" width="1270" height="1000" loading="lazy" alt="Tablero de avisos del condominio"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nadie hace trampa -->
+  <section id="trampa">
+    <div class="marco">
+      <div class="trampa">
+        <div>
+          <span class="pill pill--lima ceja">Cuentas que no se pueden maquillar</span>
+          <h2>Nadie puede borrar un pago.</h2>
+          <div class="folio" aria-label="Folio de recibo P-0379"><span>P-</span><span id="folio">0379</span></div>
+          <p class="intro">Cada recibo y cada egreso lleva folio seguido. Si algo se cancela, el folio se queda a la vista con el motivo.</p>
+          <div class="puntos">
+            <div class="punto"><span class="n">1</span><div><b>Bitácora</b><p>Quién registró, corrigió o canceló cada cosa, y a qué hora.</p></div></div>
+            <div class="punto"><span class="n">2</span><div><b>Cierre de mes con candado</b><p>El comité cierra el mes y ya nadie lo mueve sin reabrirlo con un motivo.</p></div></div>
+            <div class="punto"><span class="n">3</span><div><b>Entrega-recepción</b><p>Si cambia la administración, sale un acta con saldos, caja, folios y quién debe.</p></div></div>
+          </div>
+        </div>
+        <div class="trampa__img"><img src="img/folios.webp" width="1270" height="1000" loading="lazy" alt="Folios y bitácora: cada folio, quién lo hizo y cuándo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- La prueba -->
+  <section id="prueba">
+    <div class="marco">
+      <span class="pill pill--lima ceja rev">La prueba</span>
+      <h2 class="rev">Quince días para usarlo de verdad.</h2>
+      <div class="pasos">
+        <div class="paso rev"><div class="paso__n">1</div><h3>Descargan el programa</h3><p>Para la computadora de la administración, con Windows 10 u 11. Se instala como cualquier programa y funciona sin internet.</p></div>
+        <div class="paso rev"><div class="paso__n">2</div><h3>Empiezan con sus casas</h3><p>Abre en blanco, en Primeros pasos: el nombre, las 131 casas, la cuota y lo que debía cada una. Todo se guarda en esa computadora.</p></div>
+        <div class="paso rev"><div class="paso__n">3</div><h3>15 días desde que lo abren</h3><p>Arriba ven cuántos días les quedan. ¿Necesitan más? Nos escriben y se los damos, sin reinstalar nada. Lo que capturen se queda guardado.</p></div>
+      </div>
+
+      <div class="instalar tarjeta rev">
+        <div>
+          <h3>Si Windows pregunta al instalarlo</h3>
+          <p>Es normal: el programa es nuevo y todavía no tiene firma digital.</p>
+        </div>
+        <ol>
+          <li>Si el navegador dice que el archivo <b>no se descarga con frecuencia</b>, toquen <b>Conservar</b>.</li>
+          <li>Al abrirlo, si sale <b>«Windows protegió su PC»</b>: <b>Más información</b> → <b>Ejecutar de todas formas</b>.</li>
+          <li><b>Siguiente → Instalar → Terminar</b>. Queda el ícono «Cuota Clara Villas Cádiz» en el escritorio.</li>
+        </ol>
+      </div>
+
+      <div class="precio">
+        <div class="res res--blanca rev">
+          <div class="res__lab">Si deciden quedarse</div>
+          <div class="res__cifra">$23,000</div>
+          <div class="res__nota">en dos pagos de $11,500: al firmar y al entregar. Sin mensualidades por usarlo.</div>
+        </div>
+        <div class="res res--blanca rev">
+          <div class="res__lab">Mantenimiento</div>
+          <div class="res__cifra">$250<span style="font-size:.45em;letter-spacing:0"> /mes</span></div>
+          <div class="res__nota">El primer año va incluido.</div>
+        </div>
+        <div class="res res--lima rev">
+          <div class="res__lab">Ya incluye</div>
+          <div class="res__nota" style="opacity:1;font-size:15.5px;margin-top:10px">Cobranza, canchas, visitas, avisos, portal del vecino, folios, cierre de mes y el manual.</div>
+        </div>
+      </div>
+
+      <div class="cierre rev">
+        <div>
+          <h3>Descárguenlo hoy y empiecen con su propia información.</h3>
+          <p>Cualquier duda: <a href="mailto:hola@vonoaweb.com?subject=Cuota%20Clara%20para%20Villas%20C%C3%A1diz" style="color:#fff">hola@vonoaweb.com</a></p>
+        </div>
+        <a class="btn btn--lima" href="/descargas/villas-cadiz/" data-descarga>Descargar prueba gratis<span class="flecha" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v9M4 8l4 4 4-4M3 14h10"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="marco">
+    <span>Cuota Clara · hecho y mantenido por <a href="https://vonoaweb.com">Vonoa Web</a>, Guadalajara</span>
+    <span>Los datos de ejemplo son inventados; solo el nombre del condominio es real.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var moneda = function (n) { return '$' + Math.round(n).toLocaleString('es-MX'); };
+  var $ = function (id) { return document.getElementById(id); };
+  var mover = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !!window.gsap;
+
+  /* ---------- Descargar: el instalador vigente; si no se puede leer, la página de descarga ---------- */
+  var BASE = '/descargas/cuota-clara/villas-cadiz/';
+  fetch(BASE + 'latest.yml?v=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.text() : ''; })
+    .then(function (t) {
+      var m = /^path:\s*(\S+\.exe)\s*$/m.exec(t || '');
+      if (!m) return;
+      document.querySelectorAll('[data-descarga]').forEach(function (a) { a.href = BASE + m[1]; a.setAttribute('download', ''); });
+    })
+    .catch(function () { /* se queda la página de descarga */ });
+  if (mover) gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Las 131 casas de la portada ---------- */
+  var casas = $('casas'), PAGARON = 114, TOTAL = 131;
+  // Las que faltan, salteadas como en la vida real (siempre las mismas)
+  var faltan = {}, s = 7;
+  while (Object.keys(faltan).length < TOTAL - PAGARON) { s = (s * 37 + 11) % TOTAL; faltan[s] = 1; }
+  for (var i = 0; i < TOTAL; i++) {
+    var c = document.createElement('span');
+    c.className = 'cap' + (faltan[i] ? '' : ' ok');
+    casas.appendChild(c);
+  }
+
+  /* ---------- Lo que pueden ganar ---------- */
+  var INVERSION = 23000;
+  var campos = { casas: $('cCasas'), cuota: $('cCuota'), atraso: $('cAtraso'), recupera: $('cRecupera'), minutos: $('cMinutos') };
+  var mostrado = { anio: 0, mes: 0, horas: 0, queda: 0 };
+  var cajaMeses = $('meses');
+  for (var m = 0; m < 12; m++) { var e = document.createElement('span'); e.className = 'mes'; cajaMeses.appendChild(e); }
+
+  function llenar(r) { r.style.setProperty('--lleno', ((r.value - r.min) / (r.max - r.min) * 100) + '%'); }
+
+  function calcular(animar) {
+    var n = +campos.casas.value, cuota = +campos.cuota.value, atraso = campos.atraso.value / 100,
+      recupera = campos.recupera.value / 100, min = +campos.minutos.value;
+    $('oCasas').textContent = n;
+    $('oCuota').textContent = moneda(cuota);
+    $('oAtraso').textContent = campos.atraso.value + '%';
+    $('oRecupera').textContent = campos.recupera.value + '%';
+    $('oMinutos').textContent = min + ' min';
+    Object.keys(campos).forEach(function (k) { llenar(campos[k]); });
+
+    var atrasadoMes = n * atraso * cuota, recuperaMes = atrasadoMes * recupera;
+    var meta = { anio: recuperaMes * 12, mes: atrasadoMes, horas: n * Math.max(0, min - 1) / 60, queda: recuperaMes * 12 - INVERSION };
+    var meses = recuperaMes > 0 ? Math.ceil(INVERSION / recuperaMes) : Infinity;
+
+    var pintar = function () {
+      $('rAnio').textContent = moneda(mostrado.anio);
+      $('rMes').textContent = moneda(mostrado.mes) + ' al mes que hoy se queda atrasado.';
+      $('rHoras').textContent = Math.round(mostrado.horas);
+      $('rQueda').textContent = mostrado.queda < 0 ? '−' + moneda(-mostrado.queda) : moneda(mostrado.queda);
+    };
+    if (mover && animar) gsap.to(mostrado, Object.assign({ duration: .6, ease: 'power2.out', onUpdate: pintar, overwrite: true }, meta));
+    else { Object.assign(mostrado, meta); pintar(); }
+
+    $('rMeses').textContent = meses === Infinity ? 'más de un año' : meses > 12 ? 'más de un año' : meses === 1 ? '1 mes' : meses + ' meses';
+    var celdas = cajaMeses.children;
+    for (var j = 0; j < 12; j++) celdas[j].classList.toggle('ok', j < Math.min(meses, 12) && meses !== Infinity);
+    if (mover && animar) gsap.fromTo(Array.prototype.slice.call(celdas, 0, Math.min(meses, 12)), { scaleX: .3 }, { scaleX: 1, duration: .4, stagger: .04, ease: 'back.out(2)', overwrite: true });
+  }
+  Object.keys(campos).forEach(function (k) { campos[k].addEventListener('input', function () { calcular(true); }); });
+  calcular(false);
+
+  if (!mover) return;
+
+  /* ---------- Portada: el título entra palabra por palabra ---------- */
+  var titulo = $('titulo');
+  titulo.querySelectorAll('.linea').forEach(function (l) {
+    l.childNodes.forEach(function (nodo) {
+      if (nodo.nodeType !== 3) { nodo.classList.add('p'); return; }
+      var frag = document.createDocumentFragment();
+      nodo.textContent.split(/(\s+)/).forEach(function (t) {
+        if (!t) return;
+        if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+        var w = document.createElement('span'); w.className = 'p'; w.textContent = t; frag.appendChild(w);
+      });
+      l.replaceChild(frag, nodo);
+    });
+  });
+  var inicio = gsap.timeline({ defaults: { ease: 'power4.out' } });
+  inicio.from('#titulo .p', { yPercent: 110, duration: 1, stagger: .06 })
+    .from('.resalta', { scale: .6, duration: .7, ease: 'back.out(2.2)' }, '-=.55')
+    .from('.portada__txt .bajada, .portada__txt .acciones, .portada__txt .ceja', { y: 24, opacity: 0, duration: .7, stagger: .08 }, '-=.6')
+    .from('.cobro', { y: 40, opacity: 0, duration: .9 }, '-=.9');
+
+  // Las casas se van pagando: primero todas pendientes, luego cada una que paga se pone en lima
+  var oks = casas.querySelectorAll('.cap.ok');
+  oks.forEach(function (c) { c.classList.remove('ok'); });
+  var cuenta = { n: 0 };
+  inicio.add(function () {
+    var orden = gsap.utils.shuffle(Array.prototype.slice.call(oks));
+    gsap.to(cuenta, { n: PAGARON, duration: 2.6, ease: 'power1.inOut', onUpdate: function () {
+      var k = Math.round(cuenta.n);
+      $('pagaron').textContent = k;
+      for (var x = 0; x < orden.length; x++) orden[x].classList.toggle('ok', x < k);
+    } });
+  }, '-=.4');
+
+  // La pantalla del sistema sube y se endereza con el scroll
+  gsap.fromTo('#pantalla', { scale: .92, rotateX: 10, y: 30, transformPerspective: 1400 }, { scale: 1, rotateX: 0, y: 0, ease: 'none',
+    scrollTrigger: { trigger: '#pantalla', start: 'top 95%', end: 'top 35%', scrub: true } });
+
+  /* ---------- Lo que va apareciendo ---------- */
+  gsap.set('.rev', { y: 36, opacity: 0 });
+  ScrollTrigger.batch('.rev', { start: 'top 88%', once: true,
+    onEnter: function (l) { gsap.to(l, { y: 0, opacity: 1, duration: .8, ease: 'power3.out', stagger: .09 }); } });
+
+  // Al llegar a la calculadora, las cifras cuentan desde cero
+  ScrollTrigger.create({ trigger: '.resultados', start: 'top 80%', once: true, onEnter: function () {
+    Object.keys(mostrado).forEach(function (k) { mostrado[k] = 0; });
+    calcular(true);
+  } });
+
+  /* ---------- Lo que pidieron: en computadora, el riel corre de lado mientras bajan ---------- */
+  ScrollTrigger.matchMedia({
+    '(min-width: 901px)': function () {
+      var riel = $('riel');
+      var distancia = function () { return riel.scrollWidth - document.querySelector('#pidieron .marco').clientWidth; };
+      gsap.to(riel, { x: function () { return -distancia(); }, ease: 'none',
+        scrollTrigger: { trigger: '#pidieron', start: 'top top', end: function () { return '+=' + distancia(); }, pin: true, scrub: 1, invalidateOnRefresh: true } });
+    },
+    '(max-width: 900px)': function () {
+      gsap.utils.toArray('.func').forEach(function (f) {
+        gsap.from(f, { y: 40, opacity: 0, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: f, start: 'top 88%', once: true } });
+      });
+    }
+  });
+
+  /* ---------- Los folios corren con el scroll: del 0001 al 0379, sin saltarse uno ---------- */
+  var folio = { n: 1 };
+  gsap.to(folio, { n: 379, ease: 'none', onUpdate: function () { $('folio').textContent = String(Math.round(folio.n)).padStart(4, '0'); },
+    scrollTrigger: { trigger: '.trampa', start: 'top 80%', end: 'center 40%', scrub: .6 } });
+  gsap.from('.trampa .punto', { x: -30, opacity: 0, duration: .7, stagger: .12, ease: 'power3.out',
+    scrollTrigger: { trigger: '.trampa .puntos', start: 'top 85%', once: true } });
+  gsap.from('.trampa__img', { y: 60, rotate: 2, opacity: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.trampa', start: 'top 70%', once: true } });
+})();
+</script>
+</body>
+</html>
