@@ -92,6 +92,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- ── PAGINAS POR CIUDAD ── -->
+  <url>
+    <loc>https://vonoaweb.com/paginas-web-puerto-vallarta.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- ── PRECIOS (prioridad alta — intención comercial) ── -->
   <url>
