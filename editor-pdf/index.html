@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de PDF gratis en línea, sin subir tu archivo | Vonoa Web</title>
+<meta name="description" content="Edita PDF gratis desde tu navegador: cambia el texto, tapa, resalta, firma, inserta imágenes, une, gira y elimina páginas. Tu archivo nunca sale de tu computadora.">
+<link rel="canonical" href="https://vonoaweb.com/editor-pdf/">
+<link rel="icon" type="image/webp" href="/assets/vona-icon-104.webp">
+<link rel="apple-touch-icon" href="/assets/vona-icon.webp">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vonoaweb.com/editor-pdf/">
+<meta property="og:title" content="Editor de PDF gratis, sin subir tu archivo | Vonoa Web">
+<meta property="og:description" content="Cambia texto, firma, tapa, une y ordena páginas. Todo pasa en tu navegador.">
+<meta property="og:image" content="https://vonoaweb.com/assets/og-voni.jpg">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="VonoaWeb">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Editor de PDF de Vonoa Web","url":"https://vonoaweb.com/editor-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Navegador web","offers":{"@type":"Offer","price":"0","priceCurrency":"MXN"},"inLanguage":"es-MX","publisher":{"@type":"Organization","name":"Vonoa Web","url":"https://vonoaweb.com/"}}</script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app" id="app" data-empty="1">
+
+  <!-- Barra de herramientas -->
+  <nav class="rail">
+    <a class="logo" href="https://vonoaweb.com/" target="_blank" rel="noopener" data-tip="Hecho por Vonoa Web">V</a>
+    <button class="tool active" data-tool="select" data-tip="Seleccionar y mover · V">
+      <svg viewBox="0 0 24 24"><path d="M6 3.5l12.5 7.2-5.6 1.5-3 5.3z"/></svg>
+    </button>
+    <button class="tool" data-tool="edit" data-tip="Editar texto del PDF · E">
+      <svg viewBox="0 0 24 24"><path d="M4 7V4.5h11V7M9.5 4.5V18M7 18h5"/><path d="M14.5 20.5v-2.3l5-5 2.3 2.3-5 5z"/></svg>
+    </button>
+    <button class="tool" data-tool="text" data-tip="Agregar texto · T">
+      <svg viewBox="0 0 24 24"><path d="M5 7V4.5h14V7M12 4.5v15M9 19.5h6"/></svg>
+    </button>
+    <button class="tool" data-tool="rect" data-tip="Tapar / borrar zona · B">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.5"/><path d="M7 10.5h10M7 13.5h6"/></svg>
+    </button>
+    <button class="tool" data-tool="hl" data-tip="Resaltar · H">
+      <svg viewBox="0 0 24 24"><path d="M14.5 4.5l5 5-7.5 7.5h-5v-5z"/><path d="M7 12l5 5M4 20.5h9"/></svg>
+    </button>
+    <button class="tool" data-tool="ink" data-tip="Dibujar a mano · D">
+      <svg viewBox="0 0 24 24"><path d="M3.5 17.5c2.5-4 4.6-7 6.6-7 2.2 0 .8 5 3.1 5 1.8 0 3-3.4 7.3-8"/></svg>
+    </button>
+    <span class="rail-sep"></span>
+    <button class="tool" data-act="image" data-tip="Insertar imagen · I">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-8 8"/></svg>
+    </button>
+    <button class="tool" data-act="sign" data-tip="Firmar · F">
+      <svg viewBox="0 0 24 24"><path d="M3 16.5c2.2-.6 3.8-6.5 6-6.5 1.6 0 .4 5.6 2.2 5.6 1.6 0 2.1-3.1 3.6-3.1 1.2 0 1 2.2 2.2 2.2.9 0 1.5-.8 2.5-1.3M3 20.5h18"/></svg>
+    </button>
+  </nav>
+
+  <main class="work">
+    <header class="top">
+      <div class="doc">
+        <span class="doc-title">Editor PDF</span>
+        <span class="pill doc-name" id="docName">Sin archivo</span>
+      </div>
+
+      <div class="props" id="props">
+        <div class="pg" data-for="text">
+          <select id="pFont" title="Tipo de letra">
+            <option value="helv">Sans (Helvetica)</option>
+            <option value="times">Serif (Times)</option>
+            <option value="cour">Mono (Courier)</option>
+          </select>
+          <input id="pSize" type="number" min="4" max="200" step="0.5" title="Tamaño">
+          <button id="pBold" class="pbtn" title="Negritas"><b>B</b></button>
+        </div>
+        <div class="pg" data-for="ink">
+          <input id="pWidth" type="range" min="0.5" max="12" step="0.5" title="Grosor">
+        </div>
+        <div class="pg" data-for="color">
+          <label class="swatch" title="Color"><input id="pColor" type="color"><span id="pSwatch"></span></label>
+          <button id="pPick" class="pbtn" title="Tomar color del documento">
+            <svg viewBox="0 0 24 24"><path d="M14.5 5.5l4 4M17 3.5l3.5 3.5-2 2-3.5-3.5zM15 7.5l-9 9-1.5 4 4-1.5 9-9"/></svg>
+          </button>
+        </div>
+        <div class="pg" data-for="del">
+          <button id="pDel" class="pbtn danger" title="Eliminar (Supr)">
+            <svg viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="pill-group">
+          <button class="ibtn" id="bUndo" title="Deshacer (Ctrl+Z)" disabled><svg viewBox="0 0 24 24"><path d="M9 7.5L4.5 12 9 16.5M5 12h9.5a5 5 0 010 10H12"/></svg></button>
+          <button class="ibtn" id="bRedo" title="Rehacer (Ctrl+Y)" disabled><svg viewBox="0 0 24 24"><path d="M15 7.5l4.5 4.5-4.5 4.5M19 12H9.5a5 5 0 000 10H12"/></svg></button>
+        </div>
+        <div class="pill-group">
+          <button class="ibtn" id="bZoomOut" title="Alejar"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+          <button class="zoom" id="bZoom" title="Ajustar al ancho">100%</button>
+          <button class="ibtn" id="bZoomIn" title="Acercar"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+        </div>
+        <button class="btn ghost" id="bOpen">Abrir</button>
+        <button class="btn lime" id="bSave" disabled>
+          <svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></svg>
+          Guardar PDF
+        </button>
+      </div>
+    </header>
+
+    <div class="stage" id="stage" data-tool="select">
+      <div class="empty" id="empty">
+        <h1>Edita tu PDF <span class="pill lime-pill">sin subirlo</span></h1>
+        <p>Todo pasa en esta computadora: el archivo nunca sale de aquí.</p>
+        <div class="drop" id="drop">
+          <button class="btn dark" id="bOpen2">Abrir PDF</button>
+          <span>o arrástralo a esta ventana</span>
+        </div>
+        <ul class="feats">
+          <li><b>Editar</b> el texto que ya trae</li>
+          <li><b>Tapar</b>, resaltar y dibujar</li>
+          <li><b>Firmar</b> e insertar imágenes</li>
+          <li><b>Unir</b>, girar, ordenar y borrar páginas</li>
+        </ul>
+        <p class="credit">Herramienta gratis de <a href="https://vonoaweb.com/" target="_blank" rel="noopener">Vonoa Web</a>. ¿Necesitas un sistema así para tu negocio? <a href="https://vonoaweb.com/software-a-la-medida.html" target="_blank" rel="noopener">Hacemos software a la medida →</a></p>
+      </div>
+      <div class="pages" id="pages"></div>
+    </div>
+  </main>
+
+  <aside class="side">
+    <div class="side-head">
+      <span>Páginas</span>
+      <span class="pill lime-pill" id="pageCount">0</span>
+    </div>
+    <div class="thumbs" id="thumbs"></div>
+    <div class="side-foot">
+      <span class="pick-info" id="pickInfo"></span>
+      <button class="btn ghost sm" id="bAddPdf">+ Unir otro PDF</button>
+      <button class="btn ghost sm" id="bBlank">+ Página en blanco</button>
+    </div>
+  </aside>
+</div>
+
+<!-- Firma -->
+<div class="modal" id="signModal" hidden>
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2>Tu firma</h2>
+      <div class="pill-group">
+        <button class="swatch-btn active" data-ink="#111111" style="--c:#111111" title="Negro"></button>
+        <button class="swatch-btn" data-ink="#1f3fbf" style="--c:#1f3fbf" title="Azul"></button>
+      </div>
+    </div>
+    <canvas id="signPad" width="1120" height="400"></canvas>
+    <p class="hint">Firma con el mouse o el dedo dentro del recuadro.</p>
+    <div class="sheet-foot">
+      <button class="btn ghost" id="sClear">Borrar</button>
+      <button class="btn ghost" id="sSaved" hidden>Usar la guardada</button>
+      <span class="grow"></span>
+      <button class="btn ghost" id="sCancel">Cancelar</button>
+      <button class="btn lime" id="sOk">Insertar firma</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fOpen" accept="application/pdf,.pdf" hidden>
+<input type="file" id="fAdd" accept="application/pdf,.pdf" multiple hidden>
+<input type="file" id="fImg" accept="image/*" hidden>
+<div class="toast" id="toast"></div>
+
+<script src="lib/pdf.min.js"></script>
+<script src="lib/pdf.worker.min.js"></script>
+<script src="lib/pdf-lib.min.js"></script>
+<script src="app.js"></script>
+<script>
+// Solo Google Analytics (sin grabación de sesión): el contenido del PDF no se envía a ningún lado.
+(function(){var done=false;function load(){if(done)return;done=true;
+var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-3KN5E8EFG2';document.head.appendChild(s);
+window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config','G-3KN5E8EFG2');}
+['pointerdown','keydown','scroll'].forEach(function(e){addEventListener(e,load,{once:true,passive:true});});setTimeout(load,2500);})();
+</script>
+</body>
+</html>

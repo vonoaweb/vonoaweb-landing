@@ -132,6 +132,14 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- ── HERRAMIENTAS ── -->
+  <url>
+    <loc>https://vonoaweb.com/editor-pdf/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- El blog (blog.vonoaweb.com) es otro host: su sitemap propio va declarado en robots.txt -->
 
 </urlset>
