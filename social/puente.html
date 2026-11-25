@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>puente</title>
+<script>
+// Herramienta interna: pasa un video de /social/ a la pestaña que la abrió en iframe (subidas a redes desde el navegador de Claude).
+const v = new URLSearchParams(location.search).get('v') || '';
+if (/^[\w\/.-]+\.mp4$/.test(v) && !v.includes('..') && parent !== window) {
+  fetch('/social/' + v).then(r => r.blob()).then(b => {
+    const f = new File([b], v.split('/').pop(), { type: 'video/mp4' });
+    parent.postMessage({ puenteVideo: f }, '*');
+  });
+}
+</script>
